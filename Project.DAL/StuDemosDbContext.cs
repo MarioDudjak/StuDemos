@@ -7,7 +7,7 @@ namespace Project.DAL
 {
     public class StuDemosDbContext : DbContext, IDbContext
     {
-        public StuDemosDbContext() : base("name=WebGalleryDbConnectionString") { }
+        public StuDemosDbContext() : base("name=StuDemosDbConnectionString") { }
 
         public static StuDemosDbContext Create()
         {

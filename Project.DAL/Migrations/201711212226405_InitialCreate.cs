@@ -1,7 +1,8 @@
 namespace Project.DAL.Migrations
 {
+    using System;
     using System.Data.Entity.Migrations;
-
+    
     public partial class InitialCreate : DbMigration
     {
         public override void Up()
@@ -10,12 +11,12 @@ namespace Project.DAL.Migrations
                 "dbo.Students",
                 c => new
                     {
-                        UserId = c.Guid(nullable: false, identity: true),
+                        StudentId = c.Guid(nullable: false, identity: true),
                         Username = c.String(nullable: false),
                         Email = c.String(nullable: false),
                         Password = c.String(nullable: false),
                     })
-                .PrimaryKey(t => t.UserId);
+                .PrimaryKey(t => t.StudentId);
             
         }
         

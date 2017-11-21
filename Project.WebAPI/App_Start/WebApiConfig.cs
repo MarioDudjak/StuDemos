@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using FluentValidation.WebApi;
+using Project.WebAPI.App_Start;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
@@ -14,6 +13,10 @@ namespace Project.WebAPI
             // Web API routes
             config.MapHttpAttributeRoutes();
 
+            // Add Custom validation filters  
+            config.Filters.Add(new ValidateModelStateFilter());
+            FluentValidationModelValidatorProvider.Configure(config);
+
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
@@ -22,6 +25,7 @@ namespace Project.WebAPI
 
             EnableCorsAttribute cors = new EnableCorsAttribute("http://localhost:4200", "*", "GET,POST");
             config.EnableCors(cors);
+            
         }
     }
 }

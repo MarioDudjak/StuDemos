@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using FluentValidation.Attributes;
+using Project.WebAPI.Validators;
+using System;
 
 namespace Project.WebAPI.ViewModels
 {
+    [Validator(typeof(StudentValidator))]
+
     public class StudentVM
     {
-        public Guid UserId { get; set; }
+        public Guid StudentId { get; set; }
         public string Username { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }

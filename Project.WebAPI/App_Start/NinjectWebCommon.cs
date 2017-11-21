@@ -2,14 +2,12 @@
 using Ninject;
 using Ninject.Web.Common;
 using Ninject.Web.Common.WebHost;
-using Ninject.Web.WebApi;
 using System;
 using System.Linq;
 using System.Web;
-using System.Web.Http;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Project.WebAPI.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Project.WebAPI.App_Start.NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.ApplicationShutdownMethod(typeof(Project.WebAPI.App_Start.NinjectWebCommon), "Stop")]
 
 
 namespace Project.WebAPI.App_Start
