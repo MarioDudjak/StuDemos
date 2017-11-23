@@ -9,8 +9,8 @@ namespace Project.DAL.Mappings
         public StudentEntityMap()
         {
             // key
-            HasKey(entity => entity.UserId);
-            Property(entity => entity.UserId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            HasKey(entity => entity.StudentId);
+            Property(entity => entity.StudentId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             //properties
             Property(entity => entity.Username).IsRequired();
