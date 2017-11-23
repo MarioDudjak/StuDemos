@@ -15,7 +15,13 @@ namespace Project.DAL
         }
 
         public DbSet<StudentEntity> Students { get; set; }
-       
+        public DbSet<Apply> Applications { get; set; }
+
+        public DbSet<Course> Courses { get; set; }
+
+        public DbSet<Selection> Selections { get; set; }
+
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

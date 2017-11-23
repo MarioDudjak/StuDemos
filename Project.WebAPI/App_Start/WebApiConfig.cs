@@ -25,7 +25,10 @@ namespace Project.WebAPI
 
             EnableCorsAttribute cors = new EnableCorsAttribute("http://localhost:4200", "*", "GET,POST");
             config.EnableCors(cors);
-            
+
+            config.Formatters.JsonFormatter
+            .SerializerSettings
+            .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
         }
     }
 }

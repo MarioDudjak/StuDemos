@@ -51,12 +51,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DIModule.cs" />
+    <Compile Include="Entities\Apply.cs" />
+    <Compile Include="Entities\Course.cs" />
+    <Compile Include="Entities\Selection.cs" />
     <Compile Include="Entities\StudentEntity.cs" />
     <Compile Include="IDbContext.cs" />
     <Compile Include="Mappings\StudentEntityMap.cs" />
-    <Compile Include="Migrations\201711212226405_InitialCreate.cs" />
-    <Compile Include="Migrations\201711212226405_InitialCreate.Designer.cs">
-      <DependentUpon>201711212226405_InitialCreate.cs</DependentUpon>
+
+    <Compile Include="Migrations\201711231833552_Initial.cs" />
+    <Compile Include="Migrations\201711231833552_Initial.Designer.cs">
+      <DependentUpon>201711231833552_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -67,8 +71,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201711212226405_InitialCreate.resx">
-      <DependentUpon>201711212226405_InitialCreate.cs</DependentUpon>
+    
+    <EmbeddedResource Include="Migrations\201711231833552_Initial.resx">
+      <DependentUpon>201711231833552_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

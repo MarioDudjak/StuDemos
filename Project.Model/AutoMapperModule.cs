@@ -16,9 +16,21 @@ namespace Project.Model
         {
             Mapper.Initialize(config =>
             {
-                config.CreateMap<StudentEntity, StudentPOCO>().ReverseMap();
-                config.CreateMap<StudentEntity, IStudent>().ReverseMap();
+               
                 config.CreateMap<StudentPOCO, IStudent>().ReverseMap();
+                config.CreateMap<ApplyPOCO, IApply>().ReverseMap();
+                config.CreateMap<SelectionPOCO, ISelection>().ReverseMap();
+                config.CreateMap<CoursePOCO, ICourse>().ReverseMap();
+
+                config.CreateMap<ApplyPOCO, Apply>().ReverseMap();
+                config.CreateMap<SelectionPOCO, Selection>().ReverseMap();
+                config.CreateMap<CoursePOCO, Course>().ReverseMap();
+
+                config.CreateMap<IApply, Apply>().ReverseMap();
+                config.CreateMap<ISelection, Selection>().ReverseMap();
+                config.CreateMap<ICourse, Course>().ReverseMap();
+
+
 
             });
 
