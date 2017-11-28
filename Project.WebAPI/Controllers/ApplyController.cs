@@ -1,135 +1,109 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using System.Web.Http.Description;
-using Project.DAL;
-using Project.DAL.Entities;
+using Project.WebAPI.ViewModels;
+using AutoMapper;
+using Project.Model.Common;
+using Project.Service.Common;
 
 namespace Project.WebAPI.Controllers
 {
+    [RoutePrefix("api/apply")]
+
     public class ApplyController : ApiController
     {
-        private StuDemosDbContext db = new StuDemosDbContext();
 
-        // GET: api/Apply
-        public IQueryable<Apply> GetApplications()
+        #region Constructors
+
+        public ApplyController(IApplyService applyService, IMapper mapper)
         {
-            return db.Applications;
+            ApplyService = applyService;
+            Mapper = mapper;
         }
+        #endregion Constructors
+        #region Properties
+        protected IApplyService ApplyService { get; private set; }
+        private readonly IMapper Mapper;
+        #endregion Properties
 
-        // GET: api/Apply/5
-        [ResponseType(typeof(Apply))]
-        public async Task<IHttpActionResult> GetApply(Guid id)
+        #region Methods
+
+        [HttpGet]
+        [Route("get")]
+        public async Task<IHttpActionResult> Get()
         {
-            Apply apply = await db.Applications.FindAsync(id);
-            if (apply == null)
+            var result = await ApplyService.GetAllAsync();
+            if (result != null)
             {
+                // return Ok(Mapper.Map<List<IApply>, ApplyVM>(result.ToList()));
+                return Ok(result);
+            }
+            else
+            { 
                 return NotFound();
             }
-
-            return Ok(apply);
+        }
+        [HttpGet]
+        [Route("getbyid/{id:guid}")]
+        public async Task<IHttpActionResult> Get(Guid id)
+        {
+            var result = await ApplyService.GetAsync(id);
+            if (result != null)
+            {
+                return Ok(Mapper.Map<IApply, ApplyVM>(result));
+                
+            }
+            else
+            {
+                return BadRequest("Wrong ID");
+            }
         }
 
-        // PUT: api/Apply/5
-        [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutApply(Guid id, Apply apply)
+       
+        [HttpPost]
+        [Route("create")]
+        public async Task<IHttpActionResult> Create(ApplyVM apply)
         {
-            if (!ModelState.IsValid)
+            var newApply = await ApplyService.CreateAsync(Mapper.Map<ApplyVM, IApply>(apply));
+            if (newApply!=null)
             {
-                return BadRequest(ModelState);
+                return Ok(newApply);
             }
-
-            if (id != apply.ApplyID)
+            else
             {
                 return BadRequest();
             }
-
-            db.Entry(apply).State = EntityState.Modified;
-
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ApplyExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Apply
-        [ResponseType(typeof(Apply))]
-        public async Task<IHttpActionResult> PostApply(Apply apply)
+        [HttpPut]
+        [Route("update")]
+        public async Task<IHttpActionResult> Update(ApplyVM apply)
         {
-            if (!ModelState.IsValid)
+            var newApply = await ApplyService.UpdateAsync(Mapper.Map<ApplyVM, IApply>(apply));
+            if (newApply != null)
             {
-                return BadRequest(ModelState);
+                return Ok(newApply);
             }
-
-            db.Applications.Add(apply);
-
-            try
+            else
             {
-                await db.SaveChangesAsync();
+                return BadRequest();
             }
-            catch (DbUpdateException)
-            {
-                if (ApplyExists(apply.ApplyID))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtRoute("DefaultApi", new { id = apply.ApplyID }, apply);
         }
 
-        // DELETE: api/Apply/5
-        [ResponseType(typeof(Apply))]
-        public async Task<IHttpActionResult> DeleteApply(Guid id)
+        [HttpDelete]
+        [Route("delete/{id:guid}")]
+        public async Task<IHttpActionResult> Delete(Guid id)
         {
-            Apply apply = await db.Applications.FindAsync(id);
-            if (apply == null)
+            var result = await ApplyService.DeleteAsync(id);
+            if (result == 1)
             {
-                return NotFound();
+                return Ok(result);
             }
-
-            db.Applications.Remove(apply);
-            await db.SaveChangesAsync();
-
-            return Ok(apply);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
+            else
             {
-                db.Dispose();
+                return BadRequest("Wrong ID");
             }
-            base.Dispose(disposing);
         }
-
-        private bool ApplyExists(Guid id)
-        {
-            return db.Applications.Count(e => e.ApplyID == id) > 0;
-        }
+        #endregion Methods
     }
 }

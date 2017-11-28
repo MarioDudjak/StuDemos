@@ -34,11 +34,11 @@ namespace Project.WebAPI.Controllers
         [HttpPost]
         [Route("create")]
         public async Task<IHttpActionResult> Create(StudentVM student)
-        { 
-            var newStudentID = await StudentService.CreateAsync(Mapper.Map<StudentVM, IStudent>(student));
-            if (newStudentID!=0)
+        {
+            var newStudent = await StudentService.CreateAsync(Mapper.Map<StudentVM, IStudent>(student));
+            if (newStudent != null)
             {
-                return Created<int>(Request.RequestUri + newStudentID.ToString(), newStudentID);
+                return Ok(newStudent);
             }
             else
             {

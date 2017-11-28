@@ -1,9 +1,14 @@
-﻿namespace Project.Model.Common
+﻿using System;
+using System.Collections.Generic;
+
+namespace Project.Model.Common
 {
-    public interface ISelection
+     public interface ISelection
     {
-        int Priority { get; }
-        ICourse Course { get; }
-        int CourseGrade { get; }
+         Guid SelectionID { get; set; }
+         int Priority { get; set; }
+         int CourseGrade { get; set; }
+         ICourse Course { get; set; }
+         //ICollection<IApply> Applications { get; set; }
     }
 }

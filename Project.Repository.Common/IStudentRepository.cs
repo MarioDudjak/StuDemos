@@ -10,6 +10,6 @@ namespace Project.Repository.Common
         /// </summary>
         /// <param name="student">Student which will be created.</param>
         /// <returns></returns>
-        Task<int> CreateAsync(IStudent student);
+        Task<IStudent> CreateAsync(IStudent student);
     }
 }

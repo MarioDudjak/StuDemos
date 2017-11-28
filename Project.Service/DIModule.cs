@@ -6,8 +6,10 @@ namespace Project.Service
     {
         public override void Load()
         {
-            Bind<IStudentService>().To<StudentService>();     
-            
+            Bind<IStudentService>().To<StudentService>();
+            Bind<IApplyService>().To<ApplyService>();
+
+
         }
     }
 }

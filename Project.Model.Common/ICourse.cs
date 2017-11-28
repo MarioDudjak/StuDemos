@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace Project.Model.Common
 {
-    public interface ICourse
+     public interface ICourse
     {
-        string CourseName { get; set; }
+         Guid CourseID { get; set; }
+         string CourseName { get; set; }
+         string StudyLevel { get; set; }
+
+
     }
 }

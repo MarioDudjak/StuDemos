@@ -1,23 +1,23 @@
-﻿using Project.Model.Common;
+﻿using Project.Common.Enums;
+using Project.Model.Common;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project.Model
 {
     public class ApplyPOCO : IApply
     {
-        public string FirstName {get ; }
+        public Guid ApplyID { get; set; }
+        public string FirstName { get; set; }
 
-        public string SecondName {get ; }
+        public string LastName { get; set; }
 
-        public double GradeAverage {get ; }
+        public double GradeAverage { get; set; }
 
-        public int NumberOfApplyHours {get ; }
+        public int NumberOfApplyHours { get; set; }
 
         public DateTime ApplyDate { get; set; }
+        public ApplyStatus ApplyStatus { get; set; }
         public ICollection<ISelection> Selections { get; set; }
     }
 }

@@ -14,6 +14,6 @@ namespace Project.Service.Common
         /// </summary>
         /// <param name="student">Student to be created.</param>
         /// <returns></returns>
-        Task<int> CreateAsync(IStudent student);
+        Task<IStudent> CreateAsync(IStudent student);
     }
 }

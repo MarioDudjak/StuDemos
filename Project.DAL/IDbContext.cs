@@ -12,10 +12,10 @@ namespace Project.DAL
     public interface IDbContext : IDisposable
     {
         DbSet<Apply> Applications { get; set; }
+        DbSet<Selection> Selections { get; set; }
 
         DbSet<Course> Courses { get; set; }
 
-        DbSet<Selection> Selections { get; set; }
 
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
 

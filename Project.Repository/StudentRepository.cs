@@ -33,11 +33,11 @@ namespace Project.Repository
         /// </summary>
         /// <param name="student">Student which will be created.</param>
         /// <returns></returns>
-        public async Task<int> CreateAsync(IStudent student)
+        public async Task<IStudent> CreateAsync(IStudent student)
         {
-            student.StudentId = Guid.NewGuid();
             var studentEntity = Mapper.Map<IStudent, StudentEntity>(student);
-            return await GenericRepository.AddAsync<StudentEntity>(studentEntity);
+            var result = await GenericRepository.AddAsync<StudentEntity>(studentEntity);
+            return Mapper.Map<StudentEntity, IStudent>(result);
         }
         #endregion Methods
 

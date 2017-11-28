@@ -17,6 +17,7 @@ namespace Project.DAL.Mappings
             Property(entity => entity.Email).IsRequired();
             Property(entity => entity.Password).IsRequired();
 
+
             //table
             ToTable("Students");
 

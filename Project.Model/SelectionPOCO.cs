@@ -9,10 +9,10 @@ namespace Project.Model
 {
     public class SelectionPOCO : ISelection
     {
-        public int Priority {get ; }
-
-        public ICourse Course {get ; }
-
-        public int CourseGrade {get ; }
+        public Guid SelectionID { get; set; }
+        public int Priority { get; set; }
+        public int CourseGrade { get; set; }
+        public  ICourse Course { get; set; }
+        //public ICollection<IApply> Applications { get; set; }
     }
 }

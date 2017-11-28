@@ -24,7 +24,7 @@ namespace Project.Service
         #endregion Properties
 
         #region Methods
-        public async Task<int> CreateAsync(IStudent user)
+        public async Task<IStudent> CreateAsync(IStudent user)
         {
             return await Repository.CreateAsync(user);
             //Tu treba provjeriti jel možda već postoji

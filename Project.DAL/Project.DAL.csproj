@@ -56,11 +56,13 @@
     <Compile Include="Entities\Selection.cs" />
     <Compile Include="Entities\StudentEntity.cs" />
     <Compile Include="IDbContext.cs" />
+    <Compile Include="Mappings\ApplyEntityMap.cs" />
+    <Compile Include="Mappings\CourseEntityMap.cs" />
+    <Compile Include="Mappings\SelectionEntityMap.cs" />
     <Compile Include="Mappings\StudentEntityMap.cs" />
-
-    <Compile Include="Migrations\201711231833552_Initial.cs" />
-    <Compile Include="Migrations\201711231833552_Initial.Designer.cs">
-      <DependentUpon>201711231833552_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201711272355477_AddedApplyStatus.cs" />
+    <Compile Include="Migrations\201711272355477_AddedApplyStatus.Designer.cs">
+      <DependentUpon>201711272355477_AddedApplyStatus.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,10 +73,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    
-    <EmbeddedResource Include="Migrations\201711231833552_Initial.resx">
-      <DependentUpon>201711231833552_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201711272355477_AddedApplyStatus.resx">
+      <DependentUpon>201711272355477_AddedApplyStatus.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Project.Common\Project.Common.csproj">
+      <Project>{293A9222-DBA5-4409-BB85-10A50FDFDACD}</Project>
+      <Name>Project.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

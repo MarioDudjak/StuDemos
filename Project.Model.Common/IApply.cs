@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Project.Common.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,14 +9,14 @@ namespace Project.Model.Common
 {
     public interface IApply
     {
-        string FirstName { get;}
-        string SecondName { get;}
-        double GradeAverage { get; }
-        int NumberOfApplyHours { get; }
+        Guid ApplyID { get; set; }
+        string FirstName { get; set; }
+        string LastName { get; set; }
+        double GradeAverage { get; set; }
+        int NumberOfApplyHours { get; set; }
 
-        
         DateTime ApplyDate { get; set; }
-
+        ApplyStatus ApplyStatus { get; set; }
         ICollection<ISelection> Selections { get; set; }
 
 
