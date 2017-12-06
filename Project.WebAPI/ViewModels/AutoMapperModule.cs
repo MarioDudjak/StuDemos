@@ -36,6 +36,19 @@ namespace Project.WebAPI.ViewModels
                 config.CreateMap<ISelection, Selection>().ReverseMap();
                 config.CreateMap<IApply, Apply>().ReverseMap();
 
+                config.CreateMap<IApplicationUser, ApplicationUserPOCO>().ReverseMap();
+                config.CreateMap<IApplicationUser, CreateUserVM>().ReverseMap();
+                config.CreateMap<IApplicationUser, ApplicationUser>().ReverseMap();
+                config.CreateMap<ApplicationUserPOCO, ApplicationUser>().ReverseMap();
+
+                config.CreateMap<CreateUserVM, ApplicationUser>().ReverseMap();
+                config.CreateMap<IApplicationUser,CreateUserVM>().ReverseMap();
+
+
+
+
+
+
 
             });
 

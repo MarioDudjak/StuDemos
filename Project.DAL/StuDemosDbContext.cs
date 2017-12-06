@@ -1,4 +1,5 @@
-﻿using Project.DAL.Entities;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using Project.DAL.Entities;
 using Project.DAL.Mappings;
 using System;
 using System.Data.Entity;
@@ -6,7 +7,7 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace Project.DAL
 {
-    public class StuDemosDbContext : DbContext, IDbContext
+    public class StuDemosDbContext : IdentityDbContext<ApplicationUser>, IDbContext
     {
         public StuDemosDbContext() : base("name=StuDemosDbConnectionString") { }
 
@@ -21,7 +22,6 @@ namespace Project.DAL
         public DbSet<Selection> Selections { get; set; }
 
         public DbSet<Course> Courses { get; set; }
-
 
 
 

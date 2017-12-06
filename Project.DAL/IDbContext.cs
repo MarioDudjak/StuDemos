@@ -15,8 +15,7 @@ namespace Project.DAL
         DbSet<Selection> Selections { get; set; }
 
         DbSet<Course> Courses { get; set; }
-
-
+        
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
 
         DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;

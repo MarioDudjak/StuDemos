@@ -1,5 +1,9 @@
 ﻿using FluentValidation.WebApi;
+using Newtonsoft.Json.Serialization;
+using Ninject.Web.Common;
 using Project.WebAPI.App_Start;
+using System.Linq;
+using System.Net.Http.Formatting;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
@@ -12,6 +16,9 @@ namespace Project.WebAPI
 
             // Web API routes
             config.MapHttpAttributeRoutes();
+
+            var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
+            jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
             // Add Custom validation filters  
             config.Filters.Add(new ValidateModelStateFilter());
