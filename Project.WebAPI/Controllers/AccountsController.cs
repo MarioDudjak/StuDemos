@@ -37,12 +37,13 @@ namespace Project.WebAPI.Controllers
         private readonly IMapper Mapper;
         private ApplicationUserManager _AppUserManager = null;
         #endregion Fields
+        [Authorize]
         [Route("users")]
         public IHttpActionResult GetUsers()
         {
             return Ok(this.AppUserManager.Users.ToList().Select(u => u));
         }
-
+        [Authorize]
         [Route("user/{id:guid}", Name = "GetUserById")]
         public async Task<IHttpActionResult> GetUser(string Id)
         {
@@ -56,7 +57,7 @@ namespace Project.WebAPI.Controllers
             return NotFound();
 
         }
-
+        [Authorize]
         [Route("user/{username}")]
         public async Task<IHttpActionResult> GetUserByName(string username)
         {
@@ -70,7 +71,7 @@ namespace Project.WebAPI.Controllers
             return NotFound();
 
         }
-
+        [AllowAnonymous]
         [Route("create")]
         public async Task<IHttpActionResult> CreateUser(CreateUserVM createUserModel)
         {
@@ -88,6 +89,7 @@ namespace Project.WebAPI.Controllers
                 FirstName = createUserModel.FirstName,
                 LastName = createUserModel.LastName,
                 JoinDate = DateTime.Now.Date,
+                EmailConfirmed =true, //Ovo kasnije implementirati, to je samo za probu
             };
             
 

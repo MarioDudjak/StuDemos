@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using Project.DAL.Entities;
 using Project.DAL.Mappings;
-using System;
 using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace Project.DAL
 {

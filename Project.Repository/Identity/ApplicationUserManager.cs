@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
-
 using Project.DAL;
 using Project.DAL.Entities;
 using System;
@@ -29,5 +28,7 @@ namespace Project.Repository
                 throw ex;
             }
         }
+
+
     }
 }
