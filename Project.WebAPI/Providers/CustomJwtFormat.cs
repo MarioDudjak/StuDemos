@@ -26,7 +26,7 @@ namespace Project.WebAPI.Providers
 
             string audienceId = ConfigurationManager.AppSettings["as:AudienceId"];
 
-            string symmetricKeyAsBase64 = "uYuYFcQmRQuKCGHkbDXgfCM8jsqVP6QMYmFph43tGFF4wFrxFvMKc9HVuCB4eMnw"; //ConfigurationManager.AppSettings["as:AudienceSecret"];
+            string symmetricKeyAsBase64 = ConfigurationManager.AppSettings["as:AudienceSecret"];
 
             var keyByteArray = TextEncodings.Base64Url.Decode(symmetricKeyAsBase64);
 

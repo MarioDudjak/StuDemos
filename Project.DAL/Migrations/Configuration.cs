@@ -1,5 +1,8 @@
 namespace Project.DAL.Migrations
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using Project.DAL.Entities;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -17,7 +20,7 @@ namespace Project.DAL.Migrations
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data.
+            //  to avoid creating duplicate seed data
         }
     }
 }

@@ -2,10 +2,11 @@
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
 using Project.DAL.Entities;
+using Project.Repository;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace Project.Repository.Identity
+namespace Project.WebAPI.Providers
 {
     public class CustomOAuthProvider : OAuthAuthorizationServerProvider
     {
