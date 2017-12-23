@@ -278,7 +278,6 @@
     <Compile Include="Controllers\ApplyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
-    <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -286,14 +285,12 @@
     <Compile Include="Providers\CustomJwtFormat.cs" />
     <Compile Include="Providers\CustomOAuthProvider.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="Validators\StudentValidator.cs" />
     <Compile Include="ViewModels\AccountVM.cs" />
     <Compile Include="ViewModels\ApplyVM.cs" />
     <Compile Include="ViewModels\AutoMapperModule.cs" />
     <Compile Include="ViewModels\CourseVM.cs" />
     <Compile Include="ViewModels\RoleVM.cs" />
     <Compile Include="ViewModels\SelectionVM.cs" />
-    <Compile Include="ViewModels\StudentVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".bin\dk.nita.saml20.dll" />
@@ -363,6 +360,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Validators\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

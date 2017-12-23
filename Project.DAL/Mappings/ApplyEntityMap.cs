@@ -32,6 +32,9 @@ namespace Project.DAL.Mappings
                     entity.ToTable("ApplicationSelection");
                 });
                 */
+
+            HasRequired<ApplicationUser>(s => s.Student)
+                .WithMany(g => g.Applications);
             //table
             ToTable("Applications");
         }

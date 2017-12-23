@@ -1,15 +1,26 @@
 import { NgModule }              from '@angular/core';
 import { RouterModule, Routes }  from '@angular/router';
 import { AppComponent } from './app.component';
+import {MasterLayout} from './layouts';
+import {NoContentRoute} from './routes';
+import {HomeRoute} from './routes/home';
+import {StudentApplyRoute} from './routes/student';
 
-
-const appRoutes: Routes = [
-    { path: '',   redirectTo: '/', pathMatch: 'full' },
-  ];
-   
   @NgModule({
     imports: [
-      RouterModule.forRoot(appRoutes)
+      RouterModule.forRoot([
+        {
+            path: '',
+            component: MasterLayout,
+            data: {},
+            children: [
+                { path: 'main', component: HomeRoute },         
+                { path: 'student/apply', component: StudentApplyRoute },                              
+                { path: '', redirectTo: '/main', pathMatch: 'full' },
+                { path: '**', component: NoContentRoute }
+            ]
+        }
+    ])
     ],
     exports: [
       RouterModule

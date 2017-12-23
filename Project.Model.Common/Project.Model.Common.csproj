@@ -44,7 +44,6 @@
     <Compile Include="IApply.cs" />
     <Compile Include="ICourse.cs" />
     <Compile Include="ISelection.cs" />
-    <Compile Include="IStudent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

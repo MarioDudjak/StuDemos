@@ -42,7 +42,6 @@
   <ItemGroup>
     <Compile Include="IApplicationUserService.cs" />
     <Compile Include="IApplyService.cs" />
-    <Compile Include="IStudentService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

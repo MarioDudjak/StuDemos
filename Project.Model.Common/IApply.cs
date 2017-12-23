@@ -19,6 +19,7 @@ namespace Project.Model.Common
         ApplyStatus ApplyStatus { get; set; }
         ICollection<ISelection> Selections { get; set; }
 
+        IApplicationUser Student { get; set; }
 
     }
 }

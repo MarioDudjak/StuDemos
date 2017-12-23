@@ -61,6 +61,7 @@ namespace Project.WebAPI.Controllers
 
        
         [HttpPost]
+        [Authorize(Roles = "Student")]
         [Route("create")]
         public async Task<IHttpActionResult> Create(ApplyVM apply)
         {
@@ -76,6 +77,7 @@ namespace Project.WebAPI.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Student,Admin")]
         [Route("update")]
         public async Task<IHttpActionResult> Update(ApplyVM apply)
         {
@@ -92,6 +94,7 @@ namespace Project.WebAPI.Controllers
 
         [HttpDelete]
         [Route("delete/{id:guid}")]
+        [Authorize(Roles = "Student")]
         public async Task<IHttpActionResult> Delete(Guid id)
         {
             var result = await ApplyService.DeleteAsync(id);

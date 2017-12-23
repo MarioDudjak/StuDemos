@@ -18,6 +18,7 @@ namespace Project.DAL.Entities
         public ApplyStatus ApplyStatus { get; set; }
         public DateTime ApplyDate { get; set; }
         public virtual ICollection<Selection> Selections { get; set; }
+        public virtual ApplicationUser Student { get; set; }
 
     }
 }

@@ -19,5 +19,7 @@ namespace Project.Model
         public DateTime ApplyDate { get; set; }
         public ApplyStatus ApplyStatus { get; set; }
         public ICollection<ISelection> Selections { get; set; }
+
+        public IApplicationUser Student { get; set; }
     }
 }

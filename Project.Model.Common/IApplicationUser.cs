@@ -12,6 +12,7 @@ namespace Project.Model.Common
         string FirstName { get; set; }
         string LastName { get; set; }
         DateTime JoinDate { get; set; }
+        ICollection<IApply> Applications { get; set; }
 
     }
 }

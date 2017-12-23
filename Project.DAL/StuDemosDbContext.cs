@@ -14,7 +14,6 @@ namespace Project.DAL
             return new StuDemosDbContext();
         }
 
-        public DbSet<StudentEntity> Students { get; set; }
         public DbSet<Apply> Applications { get; set; }
 
         public DbSet<Selection> Selections { get; set; }
@@ -26,7 +25,6 @@ namespace Project.DAL
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
 
-            modelBuilder.Configurations.Add(new StudentEntityMap());
             modelBuilder.Configurations.Add(new ApplyEntityMap());
             modelBuilder.Configurations.Add(new SelectionEntityMap());
             modelBuilder.Configurations.Add(new CourseEntityMap());

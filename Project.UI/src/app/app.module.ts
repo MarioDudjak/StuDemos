@@ -3,19 +3,28 @@ import { RouterModule } from "@angular/router";
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import {StudentModule} from './student/student.module';
-import {SharedModule} from './shared/shared.module';
-
+import { SharedModule } from './shared/shared.module';
+import { MaterializeModule } from 'angular2-materialize';
+import { FilterPipe } from '../pipes';
+import {LayoutsModule} from './layouts';
+import {RoutesModule} from './routes';
+import {ComponentsModule} from './components';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FilterPipe,
   ],
   imports: [
     AppRoutingModule,
-    StudentModule,
-    SharedModule
+    SharedModule,
+    MaterializeModule,
+    LayoutsModule,
+    RoutesModule,
+    ComponentsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent,
+  ]
 })
 export class AppModule { }

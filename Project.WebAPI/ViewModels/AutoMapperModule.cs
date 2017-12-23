@@ -18,12 +18,10 @@ namespace Project.WebAPI.ViewModels
         {
             Mapper.Initialize(config =>
             {
-                config.CreateMap<IStudent, StudentVM>().ReverseMap();
                 config.CreateMap<ICourse, CourseVM>().ReverseMap();
                 config.CreateMap<ISelection, SelectionVM>().ReverseMap();
                 config.CreateMap<IApply, ApplyVM>().ReverseMap();
             
-                config.CreateMap<StudentPOCO, IStudent>().ReverseMap();
                 config.CreateMap<ApplyPOCO, IApply>().ReverseMap();
                 config.CreateMap<SelectionPOCO, ISelection>().ReverseMap();
                 config.CreateMap<CoursePOCO, ICourse>().ReverseMap();
