@@ -11,8 +11,11 @@ namespace Project.DAL
 {
     public interface IDbContext : IDisposable
     {
-        DbSet<StudentEntity> Students { get; set; }
-      
+        DbSet<Apply> Applications { get; set; }
+        DbSet<Selection> Selections { get; set; }
+
+        DbSet<Course> Courses { get; set; }
+        
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
 
         DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;

@@ -1,7 +1,6 @@
 ﻿using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using Ninject;
 using Ninject.Web.Common;
-using Ninject.Web.Common.WebHost;
 using System;
 using System.Linq;
 using System.Web;
@@ -14,7 +13,7 @@ namespace Project.WebAPI.App_Start
 {
     public static class NinjectWebCommon
     {
-        private static readonly Bootstrapper bootstrapper = new Bootstrapper();
+        public static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
         /// <summary>
         /// Starts the application
@@ -38,7 +37,7 @@ namespace Project.WebAPI.App_Start
         /// Creates the kernel that will manage your application.
         /// </summary>
         /// <returns>The created kernel.</returns>
-        private static IKernel CreateKernel()
+        public static IKernel CreateKernel()
         {
             var settings = new NinjectSettings()
             {
@@ -67,6 +66,7 @@ namespace Project.WebAPI.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             //GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);
+            
         }
     }
 }

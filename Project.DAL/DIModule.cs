@@ -1,4 +1,8 @@
-﻿namespace Project.DAL
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Project.DAL.Entities;
+
+namespace Project.DAL
 {
     public class DIModule : Ninject.Modules.NinjectModule
     {
@@ -6,7 +10,7 @@
         {
            
             Bind<IDbContext>().To<StuDemosDbContext>();
-
+            
         }
     }
 }
