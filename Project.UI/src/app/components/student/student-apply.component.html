@@ -1,5 +1,5 @@
 <div class="row">
-    <form materialize class="col s12 form-design" name="form" #myForm="ngForm" (ngSubmit)="myForm.form.valid && register(myForm)" novalidate>
+    <form materialize class="form-design" name="form" #myForm="ngForm" (ngSubmit)="myForm.form.valid && register(myForm)" novalidate>
         <h5 class="form-description">
             <span class="row">OBRAZAC PRIJAVE ZA DEMONSTRATURU</span>
             <span class="row">ZA {{semester}} SEMESTAR AK. GODINE {{academicYear}}</span>
@@ -39,7 +39,7 @@
         </div>
         <!-- Modal Trigger Start-->
         <div class="col s12">
-            <a class='btn waves-effect waves-light btn modal-trigger' data-target='demoModal' modal materialize open="openModal">
+            <a class='btn waves-effect waves-light btn modal-trigger trigger-modal-btn' data-target='demoModal' modal materialize open="openModal">
                 Odabir kolegija
             </a>
         </div>
@@ -50,9 +50,7 @@
                     {{i + 1}}. odabir
                 </label>
                 <div class="row">
-                    <span (click)="courseUp(i)"><i class="material-icons">arrow_upward</i></span>
-                    <span (click)="courseDown(i)"><i class="material-icons">arrow_downward</i></span>
-                    <div class="col s3 course-name">
+                    <div class="col s4 course-name">
                         {{course.name}}
                     </div>
                     <div class="col s4 course-study-programme">
@@ -63,10 +61,14 @@
                             placeholder="Ocjena iz predmeta" #courseGrade="ngModel" ngModel required>
                         <div *ngIf="myForm.submitted && !courseGrade.valid" class="help-block">Ovo polje je obavezno</div>
                     </div>
+                    <div class="position-arrow">
+                        <span class="arrow-upward" (click)="courseUp(i)"><i class="material-icons">arrow_upward</i></span>
+                        <span class="arrow-downward" (click)="courseDown(i)"><i class="material-icons">arrow_downward</i></span>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col s12">
+        <div class="col s12 form-btn">
             <button class="btn waves-effect waves-light" type="submit" name="action">Pošalji
                 <i class="material-icons right">send</i>
             </button>
@@ -78,7 +80,7 @@
 <div id="demoModal" class="modal" materialize="modal">
     <div class="modal-content">
         <div class="modal-title">
-            <a href="#!" class="col s2 modal-close-button modal-action modal-close waves-effect waves-green btn-flat">
+            <a class="col s2 modal-close-button modal-action modal-close waves-effect waves-green btn-flat">
                 <i class="material-icons">clear</i>
             </a>
             <span class="col s4">Izaberite kolegije za koje se želite prijaviti</span>
@@ -99,6 +101,6 @@
         </div>
     </div>
     <div class="modal-footer">
-        <a href="#!" class=" modal-action modal-close waves-effect btn-flat modal-button" (click)="checkboxSubmit()">Potvrdi</a>
+        <a class=" modal-action modal-close waves-effect btn-flat modal-button" (click)="checkboxSubmit()">Potvrdi</a>
     </div>
 </div>
