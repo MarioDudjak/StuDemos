@@ -15,3 +15,14 @@
 .logo-img{
     height: 80px;
 }
+
+.footer{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    background-color: #0e1e59;
+    text-align: center;
+    color: #4CAF50;
+}

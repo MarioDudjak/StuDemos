@@ -4,21 +4,23 @@ import {NoContentRoute} from './no-content.route';
 import {HomeRoute} from './home';
 import {StudentApplyRoute} from './student';
 import {ComponentsModule} from '../components';
+import {AdminApplyListRoute} from './admin';
 @NgModule({
     imports: [
         RouterModule,
         ComponentsModule
     ],
     declarations: [
-        // public
         HomeRoute,
         StudentApplyRoute,
+        AdminApplyListRoute,
         NoContentRoute
     ],
     exports: [
         NoContentRoute,
         HomeRoute,    
-        StudentApplyRoute    
+        StudentApplyRoute,
+        AdminApplyListRoute  
     ]
 })
 export class RoutesModule { }
