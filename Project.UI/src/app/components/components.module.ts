@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterializeModule } from "angular2-materialize";
 import {StudentService} from './student/shared';
 import {StudentApplyComponent} from './student';
-
+import {AdminApplyListComponent} from './admin';
 @NgModule({
     imports: [
         CommonModule,
@@ -13,10 +13,12 @@ import {StudentApplyComponent} from './student';
         MaterializeModule        
     ],
     declarations: [
-        StudentApplyComponent
+        StudentApplyComponent,
+        AdminApplyListComponent
     ],
     exports: [
-       StudentApplyComponent       
+       StudentApplyComponent,
+       AdminApplyListComponent       
     ],
     providers: [
        StudentService

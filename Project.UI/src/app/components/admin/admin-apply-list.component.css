@@ -1,0 +1,40 @@
+table {
+    margin-left:5%;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 90%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #92a7eb;
+}
+
+.btn{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width:100%;
+    border:0;
+    padding: 0.5em 1em;
+    color:white;
+    border-radius: 1em;
+    
+}
+.accept{
+    background-color: green;
+}
+
+.decline{
+    background-color: red;
+}
+
+.bulkActions{
+    margin-left:5%;    
+}
+
