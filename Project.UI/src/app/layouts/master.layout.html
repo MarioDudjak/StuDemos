@@ -1,7 +1,9 @@
 <div class="layout-style">
     <header class="header">
         <div class="logo-container">
-        <img [routerLink]="['/main']" src="assets/images/studemos.png" class="logo-img"/></div>
+            <img [routerLink]="['/main']" src="assets/images/studemos.png" class="logo-img"/>
+        </div>
+        <button [routerLink]="['/student/schedule']" class="btn schedule-btn">Raspored</button>
     </header>
     <main>
                 <router-outlet></router-outlet>

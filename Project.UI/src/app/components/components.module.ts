@@ -5,9 +5,9 @@ import { RouterModule } from '@angular/router';
 import { MaterializeModule } from "angular2-materialize";
 import {StudentService} from './student/shared';
 import {StudentApplyComponent} from './student';
-import {AdminApplyListComponent, AdminProfessorListComponent} from './admin';
+import {StudentScheduleComponent} from './student';
+import {AdminApplyListComponent,AdminProfessorListComponent} from './admin';
 import {AdminSidebarComponent} from './admin/shared';
-
 @NgModule({
     imports: [
         CommonModule,
@@ -18,15 +18,17 @@ import {AdminSidebarComponent} from './admin/shared';
     ],
     declarations: [
         StudentApplyComponent,
+		StudentScheduleComponent,
         AdminApplyListComponent,
-        AdminSidebarComponent,
-        AdminProfessorListComponent
+        AdminProfessorListComponent,
+        AdminSidebarComponent
     ],
     exports: [
        StudentApplyComponent,
+	   StudentScheduleComponent,
        AdminApplyListComponent,
-       AdminSidebarComponent,
-       AdminProfessorListComponent
+       AdminProfessorListComponent,
+       AdminSidebarComponent
     ],
     providers: [
        StudentService
