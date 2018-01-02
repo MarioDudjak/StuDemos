@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterializeModule } from "angular2-materialize";
 import {StudentService} from './student/shared';
 import {StudentApplyComponent} from './student';
+import {StudentScheduleComponent} from './student';
 
 @NgModule({
     imports: [
@@ -13,10 +14,12 @@ import {StudentApplyComponent} from './student';
         MaterializeModule        
     ],
     declarations: [
-        StudentApplyComponent
+        StudentApplyComponent,
+		StudentScheduleComponent
     ],
     exports: [
-       StudentApplyComponent       
+       StudentApplyComponent,
+	   StudentScheduleComponent
     ],
     providers: [
        StudentService

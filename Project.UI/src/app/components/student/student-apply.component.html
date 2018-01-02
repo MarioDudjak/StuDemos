@@ -80,10 +80,10 @@
 <div id="demoModal" class="modal" materialize="modal">
     <div class="modal-content">
         <div class="modal-title">
+            <span class="col s4">Izaberite kolegije za koje se želite prijaviti</span>
             <a class="col s2 modal-close-button modal-action modal-close waves-effect waves-green btn-flat">
                 <i class="material-icons">clear</i>
             </a>
-            <span class="col s4">Izaberite kolegije za koje se želite prijaviti</span>
         </div>
         <div *ngFor="let course of courses; let i=index">
             <div class="row"> 
@@ -93,7 +93,7 @@
                     <div class="col s6">
                         {{course.name}}
                     </div>
-                    <div class="col s5">
+                    <div class="col s6">
                         {{course.programme}}
                     </div>
                 </label>
