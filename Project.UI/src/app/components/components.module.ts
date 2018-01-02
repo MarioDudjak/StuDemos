@@ -5,7 +5,7 @@ import { MaterializeModule } from "angular2-materialize";
 import {StudentService} from './student/shared';
 import {StudentApplyComponent} from './student';
 import {StudentScheduleComponent} from './student';
-
+import {AdminApplyListComponent} from './admin';
 @NgModule({
     imports: [
         CommonModule,
@@ -15,11 +15,13 @@ import {StudentScheduleComponent} from './student';
     ],
     declarations: [
         StudentApplyComponent,
-		StudentScheduleComponent
+		StudentScheduleComponent,
+		AdminApplyListComponent
     ],
     exports: [
        StudentApplyComponent,
 	   StudentScheduleComponent
+       AdminApplyListComponent
     ],
     providers: [
        StudentService

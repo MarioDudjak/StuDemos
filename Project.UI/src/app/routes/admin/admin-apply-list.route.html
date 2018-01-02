@@ -1,0 +1,19 @@
+<div class="sidebar">
+<ul>
+    <li><a [routerLink]="['/admin/apply/list']" class="active">Lista studentskih prijava</a></li>
+    <li><a [routerLink]="['/**/']">Lista kolegija</a></li>
+    <li><a [routerLink]="['/**/']">Lista profesora</a></li>
+</ul>
+</div>
+
+<div class="content">
+    <h5 style="margin-left:5%;">Lista prijava</h5>
+    <div class="search" style="float:right; margin-right:10%; display:block;">
+            <input  type="text" name="search" placeholder="Unesite pojam...">   
+            <button type="submit" style="margin-left:20px;">Pretraži</button>  
+    </div>
+    <br>
+    <div class="apply-list" style="width:100%; height:100%; margin-bottom:10%;">
+            <admin-apply-list ></admin-apply-list>
+    </div>
+</div>

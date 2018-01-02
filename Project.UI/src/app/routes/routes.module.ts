@@ -5,23 +5,25 @@ import {HomeRoute} from './home';
 import {StudentApplyRoute} from './student';
 import {StudentScheduleRoute} from './student';
 import {ComponentsModule} from '../components';
+import {AdminApplyListRoute} from './admin';
 @NgModule({
     imports: [
         RouterModule,
         ComponentsModule
     ],
     declarations: [
-        // public
         HomeRoute,
         StudentApplyRoute,
 		StudentScheduleRoute,
+        AdminApplyListRoute,
         NoContentRoute
     ],
     exports: [
         NoContentRoute,
         HomeRoute,    
         StudentApplyRoute,
-		StudentScheduleRoute		
+		StudentScheduleRoute
+        AdminApplyListRoute
     ]
 })
 export class RoutesModule { }

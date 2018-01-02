@@ -1,0 +1,49 @@
+<form class="bulkActions" display="block">
+    
+    <select display="block">
+        <option value="accept" selected>Prihvati</option>
+        <option value="decline" >Odbij</option>
+        <option value="delete" >Obriši</option>        
+    </select>
+    <button style="margin-left:5px">Primijeni</button>
+</form>
+<table>
+    <tr>
+        <th width="2%" style="font-size:12px"><input type="checkbox" #All (click)="selectAll(All.checked)" name="select" title="Odaberi sve" >
+            <label for="select">Odaberi sve</label>
+        </th>
+        <th>Ime i prezime studenta</th>
+        <th>Datum prijave</th>
+        <th>Prosjek ocjena</th>
+        <th width="10%">Željeni broj sati demonstrature</th>     
+        <th>Prioritet kolegija</th>   
+        <th>Opcije</th>
+        
+    </tr>
+    <ng-container *ngFor="let apply of applications;  let i = index" [attr.data-index]="i">
+        <tr>
+            <td><input type="checkbox" name="select" title="Odaberi" #One [checked]="checkedApplications[i]" (change)="select(One.checked,i)">
+                <label for="select"></label>
+            </td>
+            <td>Ivica Ivic</td>
+            <td>30.12.2017.</td>
+            <td>3.5</td>
+            <td>60</td>    
+            <td style="text-align:left;">
+                <p style="display:inline"><span>1. Fizika 1 </span><span href="" style="float:right" (click)="collapse(i)">&#9660;</span></p><br>
+                <div  [hidden]="hiddenCourses[i]" class="hiddenCourses">
+                    <hr><p style="display:inline"><span>2. Matematika 1 </span> <span style="float:right; margin-right:15%"><span>&#9651;</span>  <span>&#9661;</span></span></p><br><br> 
+                    <hr><p style="display:inline"><span>3. Računarstvo usluga i analiza podataka </span> <span style="float:right; margin-right:15%"><span>&#9651;</span>  <span>&#9661;</span></span></p><br><br> 
+                    <hr><p style="display:inline"><span>4. Programiranje 1</span> <span style="float:right; margin-right:15%"><span>&#9651;</span>  <span>&#9661;</span></span></p><br><br> 
+                    <hr><p style="display:inline"><span>5. Osnove energetike i ekologije </span> <span style="float:right; margin-right:15%"><span>&#9651;</span>  <span>&#9661;</span></span></p><br><br> 
+                </div>
+            </td>    
+            <td>
+                <button class="btn accept" style="margin-bottom:5px">Potvrdi</button>
+                <button class="btn decline">Odbij</button>
+            </td>
+        </tr>
+    </ng-container>
+    
+    
+</table>
