@@ -6,7 +6,7 @@ import { MaterializeModule } from "angular2-materialize";
 import {StudentService} from './student/shared';
 import {StudentApplyComponent} from './student';
 import {StudentScheduleComponent} from './student';
-import {AdminApplyListComponent,AdminProfessorListComponent} from './admin';
+import {AdminApplyListComponent,AdminProfessorListComponent,AdminCourseListComponent} from './admin';
 import {AdminSidebarComponent} from './admin/shared';
 @NgModule({
     imports: [
@@ -21,14 +21,16 @@ import {AdminSidebarComponent} from './admin/shared';
 		StudentScheduleComponent,
         AdminApplyListComponent,
         AdminProfessorListComponent,
-        AdminSidebarComponent
+        AdminSidebarComponent,
+        AdminCourseListComponent
     ],
     exports: [
        StudentApplyComponent,
 	   StudentScheduleComponent,
        AdminApplyListComponent,
        AdminProfessorListComponent,
-       AdminSidebarComponent
+       AdminSidebarComponent,
+       AdminCourseListComponent
     ],
     providers: [
        StudentService

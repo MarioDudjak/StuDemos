@@ -1,0 +1,51 @@
+<form class="bulkActions" display="block">
+        
+        <select display="block">
+            <option value="change" selected>Izmijeni</option>               
+            <option value="remove" >Ukloni</option>   
+        </select>
+        <button style="margin-left:5px">Primijeni</button>
+    </form>
+    <table>
+        <tr>
+            <th width="2%" style="font-size:12px"><input type="checkbox" #All (click)="selectAll(All.checked)" name="select" title="Odaberi sve" >
+                <label for="select">Odaberi sve</label>
+            </th>
+            <th>Naziv kolegija</th>
+            <th>Šifra kolegija</th>      
+            <th>Semestar izvođenja</th>                        
+            <th>Popis profesora</th>  
+            <th>Popis demonstratora</th>               
+            <th>Opcije</th>
+            
+        </tr>
+        <ng-container *ngFor="let course of courses;  let i = index" [attr.data-index]="i">
+            <tr>
+                <td><input type="checkbox" name="select" title="Odaberi" #One [checked]="checkedCourses[i]" (change)="select(One.checked,i)">
+                    <label for="select"></label>
+                </td>
+                <td>Osnove elektrotehnike</td>
+                <td>DR1-4214</td> 
+                <td>Ljetni</td>   
+                <td style="text-align:left;">
+                    <p style="display:inline"><span>Iva Ivic</span><span href="" style="float:right" (click)="collapse(i)">&#9660;</span></p><br>
+                    <div  [hidden]="hiddenCourses[i]" class="hiddenCourses">
+                        <hr><p style="display:inline"><span>Ivica Ivica </span></p><br><br> 
+                        <hr><p style="display:inline"><span>Marko Maric </span> </p><br><br> 
+                        <hr><p style="display:inline"><span>Mirko Lukić</span> </p><br><br> 
+                        <hr><p style="display:inline"><span>Juraj Dobrila </span> </p><br><br> 
+                    </div>
+                </td>   
+                <td style="text-align:left;">
+                        <p style="display:inline"><span>Marko Marulic</span></p><br>
+                        <hr><p style="display:inline"><span>Luka Lukić</span></p><br><br> 
+                </td>    
+                <td>
+                    <button class="btn accept" style="margin-bottom:5px">Izmijeni</button>
+                    <button class="btn decline">Ukloni</button>
+                </td>
+            </tr>
+        </ng-container>
+    </table>
+    <button class="btn prof-add">Dodaj novi kolegij</button>
+    
