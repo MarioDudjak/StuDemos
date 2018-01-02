@@ -1,24 +1,32 @@
 ﻿import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { MaterializeModule } from "angular2-materialize";
 import {StudentService} from './student/shared';
 import {StudentApplyComponent} from './student';
-import {AdminApplyListComponent} from './admin';
+import {AdminApplyListComponent, AdminProfessorListComponent} from './admin';
+import {AdminSidebarComponent} from './admin/shared';
+
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         ReactiveFormsModule, 
-        MaterializeModule        
+        MaterializeModule,
+        RouterModule     
     ],
     declarations: [
         StudentApplyComponent,
-        AdminApplyListComponent
+        AdminApplyListComponent,
+        AdminSidebarComponent,
+        AdminProfessorListComponent
     ],
     exports: [
        StudentApplyComponent,
-       AdminApplyListComponent       
+       AdminApplyListComponent,
+       AdminSidebarComponent,
+       AdminProfessorListComponent
     ],
     providers: [
        StudentService

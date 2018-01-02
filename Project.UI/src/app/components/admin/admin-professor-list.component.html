@@ -1,0 +1,43 @@
+<form class="bulkActions" display="block">
+    
+    <select display="block">
+        <option value="change" selected>Izmijeni</option>               
+        <option value="remove" >Ukloni</option>   
+    </select>
+    <button style="margin-left:5px">Primijeni</button>
+</form>
+<table>
+    <tr>
+        <th width="2%" style="font-size:12px"><input type="checkbox" #All (click)="selectAll(All.checked)" name="select" title="Odaberi sve" >
+            <label for="select">Odaberi sve</label>
+        </th>
+        <th>Ime i prezime profesora</th>
+        <th>Datum prijave</th>     
+        <th>Popis kolegija</th>   
+        <th>Opcije</th>
+        
+    </tr>
+    <ng-container *ngFor="let professor of professors;  let i = index" [attr.data-index]="i">
+        <tr>
+            <td><input type="checkbox" name="select" title="Odaberi" #One [checked]="checkedProfessors[i]" (change)="select(One.checked,i)">
+                <label for="select"></label>
+            </td>
+            <td>Ivica Ivic</td>
+            <td>30.12.2017.</td>    
+            <td style="text-align:left;">
+                <p style="display:inline"><span>Fizika 1 </span><span href="" style="float:right" (click)="collapse(i)">&#9660;</span></p><br>
+                <div  [hidden]="hiddenCourses[i]" class="hiddenCourses">
+                    <hr><p style="display:inline"><span>Matematika 1 </span></p><br><br> 
+                    <hr><p style="display:inline"><span>Računarstvo usluga i analiza podataka </span> </p><br><br> 
+                    <hr><p style="display:inline"><span>Programiranje 1</span> </p><br><br> 
+                    <hr><p style="display:inline"><span>Osnove energetike i ekologije </span> </p><br><br> 
+                </div>
+            </td>    
+            <td>
+                <button class="btn accept" style="margin-bottom:5px">Izmijeni</button>
+                <button class="btn decline">Ukloni</button>
+            </td>
+        </tr>
+    </ng-container>
+</table>
+<button class="btn prof-add">Dodaj novog profesora</button>
