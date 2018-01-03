@@ -8,7 +8,7 @@ import {StudentApplyComponent} from './student';
 import {StudentScheduleComponent} from './student';
 import {AdminApplyListComponent,AdminProfessorListComponent,AdminCourseListComponent} from './admin';
 import {AdminSidebarComponent} from './admin/shared';
-import { RegisterComponent } from './membership';
+import { RegisterComponent, LoginComponent } from './membership';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AlertComponent } from '../directives/index';
 import { AuthGuard } from '../guards/index';
@@ -30,6 +30,7 @@ import { AlertService, AuthenticationService } from '../services/index';
         AdminProfessorListComponent,
         AdminSidebarComponent,
         RegisterComponent,
+        LoginComponent,
         AlertComponent,
         AdminCourseListComponent
     ],
@@ -40,6 +41,7 @@ import { AlertService, AuthenticationService } from '../services/index';
        AdminProfessorListComponent,
        AdminSidebarComponent,
        RegisterComponent,
+       LoginComponent,
        AlertComponent,
        AdminCourseListComponent
     ],
