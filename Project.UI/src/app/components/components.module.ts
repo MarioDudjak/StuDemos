@@ -20,7 +20,7 @@ import {AdminApplyListComponent} from './admin';
     ],
     exports: [
        StudentApplyComponent,
-	   StudentScheduleComponent
+	   StudentScheduleComponent,
        AdminApplyListComponent
     ],
     providers: [

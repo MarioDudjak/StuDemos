@@ -22,7 +22,7 @@ import {AdminApplyListRoute} from './admin';
         NoContentRoute,
         HomeRoute,    
         StudentApplyRoute,
-		StudentScheduleRoute
+		StudentScheduleRoute,
         AdminApplyListRoute
     ]
 })

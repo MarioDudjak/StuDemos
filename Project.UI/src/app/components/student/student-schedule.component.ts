@@ -14,11 +14,32 @@ export class StudentScheduleComponent implements OnInit {
 
   constructor(private studentService:StudentService) { }
 
-  ngOnInit() {
-    //Current date
-    const currentDate = new Date();
-    const currentYear = currentDate.getFullYear();
-    const currentMonth = currentDate.getMonth()+1;
+  private scheduleUrl:string = 'https://www.ferit.unios.hr/raspored/';
+
+  async ngOnInit() {
+    const scheduleDate:string = this.getMondayDate();
+    this.scheduleUrl += scheduleDate + ".xml";
+
+    this.scheduleUrl = 'https://www.ferit.unios.hr/raspored/2017-12-04.xml';
+
+    let schedule:Object = await this.studentService.getSchedule(this.scheduleUrl);
+    //console.log(schedule);
   }
-  
+
+  //Get first monday date
+  private getMondayDate() : string {
+    const d = new Date();
+    let year:string = d.getFullYear().toString();
+    let month:string = (d.getMonth() + 1).toString();
+    month.length === 1 ? month = this.addZero(month) : month;
+    let monday:string = (d.getDate() - d.getDay() + 1).toString();
+    monday.length === 1 ? monday = this.addZero(monday) : monday;
+    return year + "-" + month + "-" + monday;
+  }
+
+  //Set month or day value
+  private addZero(num:string) : string {
+    return "0" + num;
+  }
+
 }
