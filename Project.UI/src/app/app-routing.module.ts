@@ -7,6 +7,8 @@ import {HomeRoute} from './routes/home';
 import {StudentApplyRoute} from './routes/student';
 import {StudentScheduleRoute} from './routes/student';
 import {AdminApplyListRoute, AdminProfessorListRoute,AdminCourseListRoute} from './routes/admin';
+import {RegisterRoute} from './routes/membership';
+
   @NgModule({
     imports: [
       RouterModule.forRoot([
@@ -20,7 +22,8 @@ import {AdminApplyListRoute, AdminProfessorListRoute,AdminCourseListRoute} from 
 				        { path: 'student/schedule', component: StudentScheduleRoute },
                 { path: 'admin/apply/list', component: AdminApplyListRoute},
                 { path: 'admin/professor/list', component: AdminProfessorListRoute},     
-                { path: 'admin/course/list', component: AdminCourseListRoute},                                
+                { path: 'admin/course/list', component: AdminCourseListRoute},
+                { path: 'membership/register', component: RegisterRoute },                                
                 { path: '', redirectTo: '/main', pathMatch: 'full' },
                 { path: '**', component: NoContentRoute }
             ]

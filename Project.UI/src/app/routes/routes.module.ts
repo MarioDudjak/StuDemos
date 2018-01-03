@@ -6,6 +6,7 @@ import {StudentApplyRoute} from './student';
 import {StudentScheduleRoute} from './student';
 import {ComponentsModule} from '../components';
 import {AdminApplyListRoute, AdminProfessorListRoute, AdminCourseListRoute} from './admin';
+import {RegisterRoute} from './membership';
 
 @NgModule({
     imports: [
@@ -19,6 +20,7 @@ import {AdminApplyListRoute, AdminProfessorListRoute, AdminCourseListRoute} from
         AdminApplyListRoute,
         AdminProfessorListRoute,
         AdminCourseListRoute,
+        RegisterRoute,
         NoContentRoute
     ],
     exports: [
@@ -28,6 +30,7 @@ import {AdminApplyListRoute, AdminProfessorListRoute, AdminCourseListRoute} from
 		StudentScheduleRoute,
         AdminApplyListRoute,
         AdminProfessorListRoute,
+        RegisterRoute,
         AdminCourseListRoute
     ]
 })
