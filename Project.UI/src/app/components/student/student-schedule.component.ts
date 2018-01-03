@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Student} from './shared/student.model';
-import {StudentService} from './shared/student.service';
+import { StudentService } from './shared/student.service';
 import { NgForm } from '@angular/forms';
-import {Course} from '../course/shared';
 
 @Component({
   selector: 'student-schedule',
@@ -14,30 +12,64 @@ export class StudentScheduleComponent implements OnInit {
 
   constructor(private studentService:StudentService) { }
 
-  private scheduleUrl:string = 'https://www.ferit.unios.hr/raspored/';
+  private courses:Object[] = [];
+  //private scheduleDate = this.getMondayDate();
+  private scheduleDate = this.changeDate(new Date(), -30);
 
-  async ngOnInit() {
-    const scheduleDate:string = this.getMondayDate();
-    this.scheduleUrl += scheduleDate + ".xml";
+  ngOnInit() {
+    this.getWeekSchedule();
+  }
 
-    this.scheduleUrl = 'https://www.ferit.unios.hr/raspored/2017-12-04.xml';
+  private async getWeekSchedule() {
+    for (let j=0;j<6;j++) {
+      let date:string = this.getDateString(this.scheduleDate);
+      let scheduleUrl:string = 'https://www.ferit.unios.hr/raspored/';
+      scheduleUrl += date + ".xml";
+      let schedule:Object = await this.studentService.getSchedule(scheduleUrl);
+      //console.log(schedule);
+      if (schedule["stavkaRasporeda"] !== undefined) {
+        let subjects = [];
+        for(let i=0;i<schedule["stavkaRasporeda"].length;i++){
+          if(schedule["stavkaRasporeda"][i]["smjer"][0]["$"]["idsmjer"] === "38" 
+          && schedule["stavkaRasporeda"][i]["predmet"][0]["$"]["semestar"] === "3"){
+            //console.log(schedule);
+            subjects.push(schedule["stavkaRasporeda"][i]);
+          }
+        }
+        let element = {};
+        element["date"] = date;
+        element["subject"] = subjects;
+        this.courses.push(element);
+      }
+      this.scheduleDate = this.changeDate(this.scheduleDate,1);
+    }
+    console.log(this.courses);
+  }
 
-    let schedule:Object = await this.studentService.getSchedule(this.scheduleUrl);
-    //console.log(schedule);
+  //Get year-month-day from date object
+  private getDateString(date):string {
+    let year:string = date.getUTCFullYear();
+    let month:string = (date.getUTCMonth() + 1).toString();
+    month.length === 1 ? month = this.addZero(month) : "";
+    let day:string = date.getUTCDate().toString();
+    day.length === 1 ? day = this.addZero(day) : "";
+    return year + "-" + month + "-" + day;
   }
 
   //Get first monday date
-  private getMondayDate() : string {
+  private getMondayDate() : Date {
     const d = new Date();
-    let year:string = d.getFullYear().toString();
-    let month:string = (d.getMonth() + 1).toString();
-    month.length === 1 ? month = this.addZero(month) : month;
-    let monday:string = (d.getDate() - d.getDay() + 1).toString();
-    monday.length === 1 ? monday = this.addZero(monday) : monday;
-    return year + "-" + month + "-" + monday;
+    return this.changeDate(d,-(d.getDay()-1));
   }
 
-  //Set month or day value
+  //Change date
+  private changeDate(date, days) {
+    let newDate = new Date(date);
+    newDate.setDate(newDate.getDate() + days);
+    return newDate;
+  }
+
+  //Add leading zero to date
   private addZero(num:string) : string {
     return "0" + num;
   }

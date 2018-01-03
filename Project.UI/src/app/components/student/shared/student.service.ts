@@ -20,7 +20,7 @@ export class StudentService {
         parseString(response["_body"], function (err, result) {
             scheduleData = result;
         });
-        return scheduleData;
+        return scheduleData["raspored"];
     }
 	
 }
