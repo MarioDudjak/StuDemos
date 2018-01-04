@@ -52,6 +52,8 @@ namespace Project.WebAPI.Controllers
         #endregion Fields
         [Authorize]  //Sve role po defaultu student, admine unijeti ručno, a jedino adminima omogućiti unos drugih profesora
         [Authorize(Roles = "Admin")]
+        [Route("users", Name = "GetUsers")]
+ 
         public IHttpActionResult GetUsers()
         {
             return Ok(this.AppUserManager.Users.ToList().Select(u => u));
@@ -70,7 +72,7 @@ namespace Project.WebAPI.Controllers
             return NotFound();
 
         }
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         [Route("user/{username}")]
         public async Task<IHttpActionResult> GetUserByName(string username)
         {

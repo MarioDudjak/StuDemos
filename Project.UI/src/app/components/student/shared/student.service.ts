@@ -2,14 +2,15 @@ import { Injectable } from "@angular/core";
 import { Headers, Http, RequestOptions } from "@angular/http";
 import 'rxjs/add/operator/map';
 import { Student } from "./student.model";
+import {HttpService} from '../../../shared/';
 import { parseString } from "xml2js";
 
 @Injectable()
 export class StudentService {
 	private apiUrl = "http://localhost:50968/api/student";
-    constructor(private http: Http) { }
+    constructor(private httpService: HttpService, private http:Http) { }
     
-    async getSchedule(scheduleUrl:string) : Promise<Object> {
+    public async getSchedule(scheduleUrl:string) : Promise<Object> {
         let headers = new Headers({ 'Content-Type': 'application/xml' });
         headers.append('Access-Control-Allow-Credentials', 'true');
         headers.append('Access-Control-Allow-Methods', 'GET');
@@ -23,12 +24,32 @@ export class StudentService {
         return scheduleData["raspored"];
     }
 
-    async getStudentDetails() : Promise<Object> {
+    public async getStudentDetails() : Promise<Object> {
         return {"branch":"DRC","semester":"3","demonstrationCode":"P301","already-chosen":[{"date":"10.01.2018.","time":"15:00","student":"st21"}]};
     }
 
-    async getId() : Promise<string> {
+    public async getId() : Promise<string> {
         return "st12";
+    }
+
+    public async createStudentAsync(student:Student):Promise<any>{
+        return await this.httpService.post(student,"user/create");
+    }
+
+    public async getStudentByIdAsync(id:string):Promise<any>{
+        return await this.httpService.getById(id,"user/getById");
+    }
+
+    public async getStudentsAsync():Promise<any>{
+        return await this.httpService.getAll("user/get");
+    }
+
+    public async putStudentAsync(student:Student):Promise<any>{
+        return await this.httpService.put(student,"user/put");
+    }
+
+    public async deleteStudentsAsync(id:string):Promise<any>{
+        return await this.httpService.delete(id,"user/delete");
     }
 	
 }
