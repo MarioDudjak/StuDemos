@@ -7,7 +7,6 @@
   font-weight: 400;
   src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://fonts.gstatic.com/s/materialicons/v17/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2) format('woff2');
 }
-
 .material-icons {
   font-family: 'Material Icons';
   font-weight: normal;
@@ -24,3 +23,52 @@
   -webkit-font-smoothing: antialiased;
 }
 
+/* Schedule details */
+.schedule-element {
+  background-color: lightblue;
+  width: 96%;
+  position: absolute;
+  top: 0;
+  left: 2px;
+  margin: 0;
+  font-size: 73%;
+  font-weight: bold;
+  z-index: 100;
+  -moz-box-shadow: 3px 3px 4px 1px rgba(50, 50, 50, 0.27);
+    -webkit-box-shadow: 3px 3px 4px 1px rgba(50, 50, 50, 0.27);
+    box-shadow: 3px 3px 4px 1px rgba(50, 50, 50, 0.27);
+}
+.schedule-demo-available{
+  background-color: #bfff7f;
+  z-index: 1;
+}
+.schedule-demo-my{
+  background-color: #e59400;
+  z-index: 1;
+}
+.schedule-demo-chosen{
+  background-color: #b2b2b2;
+  z-index: 1;
+}
+.parent-course-element:hover .schedule-element {
+  background-color: #333;
+  color: #b2b2b2;
+}
+.parent-course-element:hover .schedule-details {
+  display: block;
+}
+.schedule-details {
+  display: none;
+  position: absolute;
+  width: 190px;
+  height: 160px;
+  left: -30px;
+  font-size: 14px;
+  top: 15px;
+  z-index: 9999999999;
+  color: #fff;
+  background-color: rgba(0,0,0,0.7);
+}
+.yellow-detail {
+  color: yellow;
+}

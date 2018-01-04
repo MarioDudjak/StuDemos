@@ -22,5 +22,13 @@ export class StudentService {
         });
         return scheduleData["raspored"];
     }
+
+    async getStudentDetails() : Promise<Object> {
+        return {"branch":"DRC","semester":"3","demonstrationCode":"P301","already-chosen":[{"date":"10.01.2018.","time":"15:00","student":"st21"}]};
+    }
+
+    async getId() : Promise<string> {
+        return "st12";
+    }
 	
 }

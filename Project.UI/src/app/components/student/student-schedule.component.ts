@@ -12,15 +12,22 @@ export class StudentScheduleComponent implements OnInit {
 
   constructor(private studentService:StudentService) { }
 
+  //Logged student
+  private studentGroup:string;
+  private studentSemester:string[];
+  private demoCode:string;
+  private demoHours:Object[];
+  private studentId:string;
+
   private courses:Object[] = [];
   //private scheduleDate = this.getMondayDate();
-  private scheduleDate = this.changeDate(new Date(), -31);
+  private scheduleDate = this.changeDate(new Date(), +4);
 
   //Semesters according to the year of Study
   private firstYearSemesters:string[] = ["1","2"];
   private secondYearSemesters:string[] = ["3","4"];
   private thirdYearSemesters:string[] = ["5","6"];
-
+  //Schedule days, dates and time
   private weekDays:string[] = ["PON", "UTO", "SRI", "CET", "PET", "SUB"];
   private weekDates:string[] = [];
   private scheduleTime = [{"start":"08:00","end":"09:30"}, 
@@ -29,8 +36,26 @@ export class StudentScheduleComponent implements OnInit {
   {"start":"16:45","end":"18:15"}, {"start":"18:30","end":"20:00"}, 
   {"start":"20:15","end":"21:45"}];
 
-  ngOnInit() {
+  async ngOnInit() {
+    let student:Object = await this.studentService.getStudentDetails();
+    let idStudent:string = await this.studentService.getId();
+    this.setStudentData(student, idStudent);
     this.getWeekSchedule();
+  }
+
+  //Set student details
+  private setStudentData(student:Object, id:string) {
+    this.studentGroup = student["branch"];
+    this.demoCode = student["demonstrationCode"];
+    if (this.firstYearSemesters.includes(student["semester" ])) {
+      this.studentSemester = this.firstYearSemesters;
+    } else if (this.secondYearSemesters.includes(student["semester"])) {
+      this.studentSemester = this.secondYearSemesters;
+    } else {
+      this.studentSemester = this.thirdYearSemesters;
+    }
+    this.demoHours = student["already-chosen"];
+    this.studentId = id;
   }
 
   //Set schedule courses properties and show all courses
@@ -44,25 +69,54 @@ export class StudentScheduleComponent implements OnInit {
         let startTime:Date = new Date (new Date().toDateString() + ' ' + start);
         let endTime:Date = new Date (new Date().toDateString() + ' ' + end);
         let duration:number = Math.round((endTime.getTime() - startTime.getTime())/60000)/60;
+        let courseGroup:string = this.courses[i]["subject"][j]["grupastudenata"][0]["_"];
+        //Course details - show on hover
+        let courseType:string = this.courses[i]["subject"][j]["vrstanastave"][0]["_"];
+        let courseCode:string = this.courses[i]["subject"][j]["predmet"][0]["$"]["sifra"];
+        let courseLecturer:string = this.courses[i]["subject"][j]["nastavnik"][0]["_"];
+        let courseRoom:string = this.courses[i]["subject"][j]["prostorija"][0]["_"];
+        let courseDuration:string = " (" + this.courses[i]["subject"][j]["odradjeno"][0] + "/"+
+                                    this.courses[i]["subject"][j]["planirano"][0] + ")";
         
         //New element position
         let row:number = this.scheduleTime.indexOf(this.scheduleTime.find(o => o.start === start))+1;
         let column:number = i+1;
-        let element = document.getElementById(row+","+column);
+
+        let element;
+        let p = document.createElement("p");
+        let div = document.createElement("div");
+        let span = document.createElement("span");
+
+        if (row === 0) {
+          element = document.getElementById("s,"+column);
+          let r:number = ((startTime.getHours()*60+startTime.getMinutes()) - 8*60)/105;
+          p.style.top = (r*67+66) +"px";
+          div.style.top = (r*67+66+15) +"px";
+        } else {
+          element = document.getElementById(row+","+column);
+        }
 
         //Schedule element
-        let p = document.createElement("p");
-        p.style.backgroundColor = "lightblue";
-        p.innerHTML = text;
-        p.style.width = "100%";
-        p.style.position = "absolute";
-        p.style.top = "0";
-        p.style.left = "0";
-        p.style.margin = "0";
-        p.style.fontSize = "12px";
-        p.style.zIndex = "9999";
-        p.style.height = (duration/1.5)*57.33 + "px";
-        element.appendChild(p);
+        span.className = "parent-course-element";
+        element.appendChild(span);
+        p.className = "schedule-element";
+        if (courseCode.includes(this.demoCode)) {
+          if (this.demoHours.find(o => (o["date"] === this.weekDates[i] && o["time"] === start && o["student"] === this.studentId)) !== undefined) {
+            p.classList.add("schedule-demo-my");
+          } else if (this.demoHours.find(o => (o["date"] === this.weekDates[i] && o["time"] === start)) !== undefined) {
+            p.classList.add("schedule-demo-chosen");
+          } else {
+            p.classList.add("schedule-demo-available");
+          }
+        }
+        p.innerHTML = "<div>"+text+" "+courseGroup+"</div><div>"+courseRoom+courseDuration+"</div>";
+        p.style.height = (duration/1.5)*57.33-3 + "px";
+        span.appendChild(p);
+        div.className = "schedule-details";
+        div.innerHTML = "<div>"+courseType+"</div><div class='yellow-detail'>"+text+" "+courseCode+"</div><div>"+start+
+        " - "+end+"</div><div class='yellow-detail'>"+courseLecturer+"</div><div><span class='yellow-detail'>"+courseRoom+
+        "</span>"+courseDuration+"</div>";
+        span.appendChild(div);
       }
     }
   }
@@ -75,14 +129,30 @@ export class StudentScheduleComponent implements OnInit {
       let scheduleUrl:string = 'https://www.ferit.unios.hr/raspored/';
       scheduleUrl += date + ".xml";
       let schedule:Object = await this.studentService.getSchedule(scheduleUrl);
-      //console.log(schedule);
       if (schedule["stavkaRasporeda"] !== undefined) {
         let subjects = [];
         for(let i=0;i<schedule["stavkaRasporeda"].length;i++){
-          if(schedule["stavkaRasporeda"][i]["smjer"][0]["$"]["idsmjer"] === "38" 
-          && this.secondYearSemesters.includes(schedule["stavkaRasporeda"][i]["predmet"][0]["$"]["semestar"])){
-            //console.log(schedule);
-            subjects.push(schedule["stavkaRasporeda"][i]);
+          let groupOfStudents:string = schedule["stavkaRasporeda"][i]["grupastudenata"][0]["_"];
+          let currentSemester:string = schedule["stavkaRasporeda"][i]["predmet"][0]["$"]["semestar"];
+          let courseCode:string = schedule["stavkaRasporeda"][i]["predmet"][0]["$"]["sifra"];
+          let startT:string = schedule["stavkaRasporeda"][i]["pocetak"][0];
+          let endT:string = schedule["stavkaRasporeda"][i]["kraj"][0];
+          if((groupOfStudents.includes(this.studentGroup) && this.studentSemester.includes(currentSemester)) || courseCode === this.demoCode){
+            let exist:boolean = false;
+            if (subjects.length !== 0) {
+              for (let obj of subjects) {
+                if (obj["pocetak"][0] === startT && obj["kraj"][0] === endT) {
+                  if (!obj["grupastudenata"][0]["_"].includes(schedule["stavkaRasporeda"][i]["grupastudenata"][0]["_"]) &&
+                      obj["predmet"][0]["_"].includes(schedule["stavkaRasporeda"][i]["predmet"][0]["_"])) {
+                    obj["grupastudenata"][0]["_"] += ", " + schedule["stavkaRasporeda"][i]["grupastudenata"][0]["_"];
+                    exist = true;
+                  }
+                }
+              }
+            } 
+            if (exist === false) {
+              subjects.push(schedule["stavkaRasporeda"][i]);
+            } 
           }
         }
         let element = {};
