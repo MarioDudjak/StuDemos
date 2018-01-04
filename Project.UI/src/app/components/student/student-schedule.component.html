@@ -1,3 +1,18 @@
-<div>
-    Raspored
-</div>
+<table class="schedule-table">
+    <tr>
+        <th></th>
+        <th *ngFor="let day of weekDays; let i = index">
+            <div>{{day}}</div>
+            <div>{{weekDates[i]}}</div>
+        </th>
+    </tr>
+        <tr *ngFor="let time of scheduleTime; let i = index">
+            <td><div>{{time.start}}</div><div>{{time.end}}</div></td>
+            <td id="{{i+1}},1"></td>
+            <td id="{{i+1}},2"></td>
+            <td id="{{i+1}},3"></td>
+            <td id="{{i+1}},4"></td>
+            <td id="{{i+1}},5"></td>
+            <td id="{{i+1}},6"></td>
+        </tr>
+</table>

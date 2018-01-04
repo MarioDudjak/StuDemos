@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'student-apply-route',
-  template: `<student-apply><student-apply>`
+  templateUrl: 'student-apply.route.html',
+  styleUrls: ['./student-apply.route.less'],
 })
 
 export class StudentApplyRoute {

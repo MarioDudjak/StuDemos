@@ -8,11 +8,18 @@ import {StudentApplyComponent} from './student';
 import {StudentScheduleComponent} from './student';
 import {AdminApplyListComponent,AdminProfessorListComponent,AdminCourseListComponent} from './admin';
 import {AdminSidebarComponent} from './admin/shared';
+import { RegisterComponent, LoginComponent } from './membership';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AlertComponent } from '../directives/index';
+import { AuthGuard } from '../guards/index';
+import { AlertService, AuthenticationService } from '../services/index';
+
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
-        ReactiveFormsModule, 
+        ReactiveFormsModule,
+        HttpClientModule, 
         MaterializeModule,
         RouterModule     
     ],
@@ -22,6 +29,9 @@ import {AdminSidebarComponent} from './admin/shared';
         AdminApplyListComponent,
         AdminProfessorListComponent,
         AdminSidebarComponent,
+        RegisterComponent,
+        LoginComponent,
+        AlertComponent,
         AdminCourseListComponent
     ],
     exports: [
@@ -30,10 +40,16 @@ import {AdminSidebarComponent} from './admin/shared';
        AdminApplyListComponent,
        AdminProfessorListComponent,
        AdminSidebarComponent,
+       RegisterComponent,
+       LoginComponent,
+       AlertComponent,
        AdminCourseListComponent
     ],
     providers: [
-       StudentService
+       StudentService,
+       AuthGuard,
+       AlertService,
+       AuthenticationService
     ]
 })
 export class ComponentsModule { }
