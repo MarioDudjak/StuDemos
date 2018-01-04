@@ -11,6 +11,7 @@ namespace Project.DAL
 {
     public interface IDbContext : IDisposable
     {
+
         DbSet<Apply> Applications { get; set; }
         DbSet<Selection> Selections { get; set; }
 
