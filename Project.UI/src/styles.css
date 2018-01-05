@@ -31,24 +31,27 @@
   top: 0;
   left: 2px;
   margin: 0;
-  font-size: 73%;
+  font-size: 72%;
   font-weight: bold;
   z-index: 100;
   -moz-box-shadow: 3px 3px 4px 1px rgba(50, 50, 50, 0.27);
     -webkit-box-shadow: 3px 3px 4px 1px rgba(50, 50, 50, 0.27);
     box-shadow: 3px 3px 4px 1px rgba(50, 50, 50, 0.27);
 }
-.schedule-demo-available{
+.schedule-demo-available {
   background-color: #bfff7f;
   z-index: 1;
 }
-.schedule-demo-my{
+.schedule-demo-my {
   background-color: #ffb732;
   z-index: 1;
 }
-.schedule-demo-chosen{
+.schedule-demo-chosen {
   background-color: #b2b2b2;
   z-index: 1;
+}
+.element-display-none {
+  display: none;
 }
 .parent-course-element:hover .schedule-element {
   background-color: #333;

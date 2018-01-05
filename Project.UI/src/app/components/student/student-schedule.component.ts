@@ -27,7 +27,7 @@ export class StudentScheduleComponent implements OnInit {
   //Schedule courses, monday date, days, dates and time
   private courses:Object[] = [];
   //private scheduleDate = this.getMondayDate();
-  private scheduleDate = this.changeDate(new Date(), +3);
+  private scheduleDate = this.changeDate(new Date(), +2);
   private weekDays:string[] = ["PON", "UTO", "SRI", "CET", "PET", "SUB"];
   public weekDates:string[] = [];
   private scheduleTime = [{"start":"08:00","end":"09:30"}, 
@@ -41,6 +41,7 @@ export class StudentScheduleComponent implements OnInit {
     let idStudent:string = await this.studentService.getId();
     this.setStudentData(student, idStudent);
     this.getWeekSchedule();
+    document.getElementById("normalSchedule").classList.add("active");
   }
 
   //Set student details
@@ -139,7 +140,7 @@ export class StudentScheduleComponent implements OnInit {
       }
     }
     p.innerHTML = "<div>"+text+" "+courseGroup+"</div><div>"+roomAndDuration[0]+roomAndDuration[1]+"</div>";
-    p.style.height = (duration/1.5)*57.5 + "px";
+    p.style.height = (duration/1.5)*58 + "px";
     return p;
   }
 
@@ -219,7 +220,7 @@ export class StudentScheduleComponent implements OnInit {
     this.setWeekSchedule();
   }
 
-  //Get all day subjects
+  //Get all subjects for one day
   private getAllDaySubjects(schedule:Object): Array<Object> {
     let subjects = [];
     for(let i=0;i<schedule["stavkaRasporeda"].length;i++){
@@ -279,6 +280,68 @@ export class StudentScheduleComponent implements OnInit {
   //Add leading zero to date
   private addZero(num:string): string {
     return "0" + num;
+  }
+
+// *** Sidebar - schedule functionalities ***
+  private setActiveClass(id:string) {
+    if (document.getElementsByClassName("active")[0] !== undefined) {
+      document.getElementsByClassName("active")[0].classList.remove("active");
+    }
+    document.getElementById(id).classList.add("active");
+  }
+
+  private returnNormalSchedule() {
+    let displayNormal:NodeListOf<Element> = document.querySelectorAll(".element-display-none");
+    [].forEach.call(displayNormal, function(dn) {
+        dn.classList.remove("element-display-none");
+    });
+  }
+
+  private normalSchedule(id:string) {
+    this.setActiveClass(id);
+    this.returnNormalSchedule();
+  }
+
+  private mySchedule(id:string) {
+    this.setActiveClass(id);
+    this.returnNormalSchedule();
+    let myCourses:NodeListOf<Element> = document.querySelectorAll(".schedule-demo-available, .schedule-demo-my, .schedule-demo-chosen");
+    [].forEach.call(myCourses, function(dc) {
+        dc.parentElement.classList.add("element-display-none");
+    });
+  }
+
+  private demoSchedule(id:string) {
+    this.setActiveClass(id);
+    this.returnNormalSchedule();
+    let demoCourses:NodeListOf<Element> = document.querySelectorAll(".schedule-element");
+    [].forEach.call(demoCourses, function(dc) {
+        if(dc.classList.length === 1) {
+          dc.parentElement.classList.add("element-display-none");
+        }
+    });
+  }
+
+  private chosenDemo(id:string) {
+    this.setActiveClass(id);
+    this.returnNormalSchedule();
+    let selectedCourses:NodeListOf<Element> = document.querySelectorAll(".schedule-element");
+    [].forEach.call(selectedCourses, function(sc) {
+        if(!sc.classList.contains('schedule-demo-my')) {
+          sc.parentElement.classList.add("element-display-none");
+        }
+    });
+  }
+
+  private availableDemo(id:string) {
+    this.setActiveClass(id);
+    this.returnNormalSchedule();
+    let availableCourses:NodeListOf<Element> = document.querySelectorAll(".schedule-element");
+    [].forEach.call(availableCourses, function(ac) {
+        if(!ac.classList.contains('schedule-demo-available')) {
+          ac.parentElement.classList.add("element-display-none");
+        }
+    });
   }
 
 }
