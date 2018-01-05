@@ -10,6 +10,7 @@ export class StudentService {
 	private apiUrl = "http://localhost:50968/api/student";
     constructor(private httpService: HttpService, private http:Http) { }
     
+    //Get schedule data
     public async getSchedule(scheduleUrl:string) : Promise<Object> {
         let headers = new Headers({ 'Content-Type': 'application/xml' });
         headers.append('Access-Control-Allow-Credentials', 'true');
@@ -24,12 +25,19 @@ export class StudentService {
         return scheduleData["raspored"];
     }
 
+    //Get this student details
     public async getStudentDetails() : Promise<Object> {
         return {"branch":"DRC","semester":"3","demonstrationCode":"P301","already-chosen":[{"date":"10.01.2018.","time":"15:00","student":"st21"}]};
     }
 
+    //Get this student id
     public async getId() : Promise<string> {
         return "st12";
+    }
+
+    //Set student as demonstrator
+    public setMyDemoCourse(courseCode:string, courseDate:string, timeStart:string) {
+        console.log(courseCode, courseDate, timeStart);
     }
 
     public async createStudentAsync(student:Student):Promise<any>{

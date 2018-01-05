@@ -43,7 +43,7 @@
   z-index: 1;
 }
 .schedule-demo-my{
-  background-color: #e59400;
+  background-color: #ffb732;
   z-index: 1;
 }
 .schedule-demo-chosen{
@@ -60,9 +60,9 @@
 .schedule-details {
   display: none;
   position: absolute;
-  width: 190px;
+  width: 132%;
   height: 160px;
-  left: -30px;
+  left: -15%;
   font-size: 14px;
   top: 15px;
   z-index: 9999999999;
@@ -70,5 +70,44 @@
   background-color: rgba(0,0,0,0.7);
 }
 .yellow-detail {
-  color: yellow;
+  color: #ffff00;
+}
+.select-course-button {
+  position: absolute;
+  width: 23px;
+  height: 23px;
+  background-color: #228B22;
+  z-index: 50;
+  border-radius: 50%;
+  top: -8px;
+  right: -3px;
+  border: none;
+  font-family: "Material Icons";
+}
+.select-course-button::after {
+  content: '\E145';
+  left: -1.5px;
+  top: -1.5px;
+  font-weight: bold;
+  font-size: 100%;
+  color: #fff;
+  z-index: 50;
+  position: relative;
+  border-radius: 50%;
+  -moz-box-shadow: 0px 1px 10px 2px rgba(50, 50, 50, 0.3);
+  -webkit-box-shadow: 0px 1px 10px 2px rgba(50, 50, 50, 0.3);
+  box-shadow: 0px 1px 10px 2px rgba(50, 50, 50, 0.3);
+}
+.select-course-button:hover::after {
+  background-color: #228B22;
+  border: 9px solid #228B22;
+  color: #fff;
+  font-weight: bold;
+  font-size: 15px;
+  left: -12px;
+  top: -6px;
+}
+.select-course-button:focus::after {
+  background-color: #228B22;
+  border-color: #228B22;
 }
