@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { AlertService, AuthenticationService } from '../../services/index';
+import { AlertService } from '../../shared';
+import {LoginService} from '../../shared';
 
 @Component({
     selector: 'app-login',
@@ -17,12 +18,12 @@ export class LoginComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private authenticationService: AuthenticationService,
-        private alertService: AlertService) { }
+        private alertService: AlertService,
+        private loginService: LoginService) { }
 
     ngOnInit() {
         // reset login status
-        this.authenticationService.logout();
+        this.loginService.logout();
 
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -30,14 +31,6 @@ export class LoginComponent implements OnInit {
 
     login() {
         this.loading = true;
-        this.authenticationService.login(this.model.username, this.model.password)
-            .subscribe(
-                data => {
-                    this.router.navigate([this.returnUrl]);
-                },
-                error => {
-                    this.alertService.error(error);
-                    this.loading = false;
-                });
+        this.loginService.LoginUserAsync(this.model.username,this.model.password);
     }
 }

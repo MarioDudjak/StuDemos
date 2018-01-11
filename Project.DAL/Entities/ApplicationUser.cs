@@ -18,6 +18,9 @@ namespace Project.DAL.Entities
         [MaxLength(100)]
         public string LastName { get; set; }
 
+        public string RoleName { get; set; }
+
+
         [Required]
         public DateTime JoinDate { get; set; }
 
@@ -29,6 +32,9 @@ namespace Project.DAL.Entities
         }
 
         public virtual ICollection<Apply> Applications { get; set; }
+
+        public virtual ICollection<Course> Courses { get; set; }
+
 
     }
 }

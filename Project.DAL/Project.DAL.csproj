@@ -88,6 +88,14 @@
     <Compile Include="Migrations\201801021939477_Initial.Designer.cs">
       <DependentUpon>201801021939477_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801111633207_UserCourseRelations.cs" />
+    <Compile Include="Migrations\201801111633207_UserCourseRelations.Designer.cs">
+      <DependentUpon>201801111633207_UserCourseRelations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801111755302_CourseUpdated.cs" />
+    <Compile Include="Migrations\201801111755302_CourseUpdated.Designer.cs">
+      <DependentUpon>201801111755302_CourseUpdated.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StuDemosDbContext.cs" />
@@ -105,6 +113,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201801021939477_Initial.resx">
       <DependentUpon>201801021939477_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801111633207_UserCourseRelations.resx">
+      <DependentUpon>201801111633207_UserCourseRelations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801111755302_CourseUpdated.resx">
+      <DependentUpon>201801111755302_CourseUpdated.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

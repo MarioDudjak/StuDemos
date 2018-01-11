@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-
-import { AlertService } from '../../services/index';
+import { AlertService } from '../../shared';
+import {User,RegisterService} from '../../shared';
 
 @Component({
     selector: 'app-register',
@@ -12,11 +12,14 @@ import { AlertService } from '../../services/index';
 export class RegisterComponent {
     model: any = {};
     loading = false;
-
+    user:User;
     constructor(
         private router: Router,
-        private alertService: AlertService) { }
+        private alertService: AlertService,
+        private registerService:RegisterService) { }
 
-    register() {
-            }
+    async register() :Promise<void> {
+        this.user=new User(this.model.email,this.model.username,this.model.firstName,this.model.lastName,"Student",this.model.password);
+        await this.registerService.createStudentAsync(this.user);
+       }
 }

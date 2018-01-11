@@ -94,9 +94,7 @@ namespace Project.WebAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-            //Bolje mapiranje
          
-           // var user2 = Mapper.Map< ApplicationUser>(createUserModel);
             var user = new ApplicationUser()
             {
                 UserName = createUserModel.UserName,
@@ -104,11 +102,11 @@ namespace Project.WebAPI.Controllers
                 FirstName = createUserModel.FirstName,
                 LastName = createUserModel.LastName,
                 JoinDate = DateTime.Now.Date,
-                EmailConfirmed =true, //Ovo kasnije implementirati, to je samo za probu
+                RoleName = createUserModel.RoleName,
+                EmailConfirmed =true, 
             };
             
 
-            //tu sad treba pozvati Service layer 
             IdentityResult addUserResult = await AppUserManager.CreateAsync(user ,createUserModel.Password);
 
             if (!addUserResult.Succeeded)
@@ -121,7 +119,7 @@ namespace Project.WebAPI.Controllers
 
         }
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [Route("user/{id:guid}/roles")]
         [HttpPut]
         public async Task<IHttpActionResult> AssignRolesToUser([FromUri] string id, [FromBody] string[] rolesToAssign)
