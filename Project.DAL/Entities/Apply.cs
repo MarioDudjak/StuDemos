@@ -1,7 +1,5 @@
-﻿using Project.Common.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace Project.DAL.Entities
 {

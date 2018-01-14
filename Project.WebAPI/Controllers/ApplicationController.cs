@@ -15,66 +15,62 @@ using AutoMapper;
 
 namespace Project.WebAPI.Controllers
 {
-    [RoutePrefix("api/course")]
-    public class CourseController : ApiController
-    {
+    [RoutePrefix("api/apply")]
 
+    public class ApplicationController : ApiController
+    {
         #region Constructors
 
-        public CourseController(IMapper mapper)
+        public ApplicationController(IMapper mapper)
         {
             Mapper = mapper;
         }
         #endregion Constructors
 
         private readonly IMapper Mapper;
-
         private StuDemosDbContext db = new StuDemosDbContext();
 
-       
-      
+        // GET: api/Application
         [HttpGet]
         [Route("get")]
-        [Authorize(Roles = "Admin")]
-        // GET: api/Course
-        public IQueryable<Course> GetCourses()
+        public IQueryable<Apply> GetApplications()
         {
-            return db.Courses;
+            return db.Applications;
         }
 
-        // GET: api/Course/5
-        [ResponseType(typeof(Course))]
+        // GET: api/Application/5
+        [ResponseType(typeof(Apply))]
         [HttpGet]
         [Route("getbyid/{id:guid}")]
-        public async Task<IHttpActionResult> GetCourse(Guid id)
+        public async Task<IHttpActionResult> GetApply(Guid id)
         {
-            Course course = await db.Courses.FindAsync(id);
-            if (course == null)
+            Apply apply = await db.Applications.FindAsync(id);
+            if (apply == null)
             {
                 return NotFound();
             }
 
-            return Ok(course);
+            return Ok(apply);
         }
 
-        // PUT: api/Course/5
+        // PUT: api/Application/5
         [ResponseType(typeof(void))]
         [HttpPut]
-        [Authorize(Roles = "Student,Professor,Admin")]
+        [Authorize(Roles = "Student,Admin")]
         [Route("update/{id:guid}")]
-        public async Task<IHttpActionResult> PutCourse(Guid id, Course course)
+        public async Task<IHttpActionResult> PutApply(Guid id, Apply apply)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != course.CourseID)
+            if (id != apply.ApplyID)
             {
                 return BadRequest();
             }
 
-            db.Entry(course).State = EntityState.Modified;
+            db.Entry(apply).State = EntityState.Modified;
 
             try
             {
@@ -82,7 +78,7 @@ namespace Project.WebAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CourseExists(id))
+                if (!ApplyExists(id))
                 {
                     return NotFound();
                 }
@@ -95,41 +91,41 @@ namespace Project.WebAPI.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Course
-        [ResponseType(typeof(Course))]
+        // POST: api/Application
+        [ResponseType(typeof(Apply))]
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Student")]
         [Route("create")]
-        public async Task<IHttpActionResult> PostCourse(Course course)
+        public async Task<IHttpActionResult> PostApply(Apply apply)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Courses.Add(course);
+            db.Applications.Add(apply);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = course.CourseID }, course);
+            return CreatedAtRoute("DefaultApi", new { id = apply.ApplyID }, apply);
         }
 
-        // DELETE: api/Course/5
-        [ResponseType(typeof(Course))]
+        // DELETE: api/Application/5
+        [ResponseType(typeof(Apply))]
         [HttpDelete]
         [Route("delete/{id:guid}")]
-        [Authorize(Roles = "Admin")]
-        public async Task<IHttpActionResult> DeleteCourse(Guid id)
+        [Authorize(Roles = "Student,Admin")]
+        public async Task<IHttpActionResult> DeleteApply(Guid id)
         {
-            Course course = await db.Courses.FindAsync(id);
-            if (course == null)
+            Apply apply = await db.Applications.FindAsync(id);
+            if (apply == null)
             {
                 return NotFound();
             }
 
-            db.Courses.Remove(course);
+            db.Applications.Remove(apply);
             await db.SaveChangesAsync();
 
-            return Ok(course);
+            return Ok(apply);
         }
 
         protected override void Dispose(bool disposing)
@@ -141,9 +137,9 @@ namespace Project.WebAPI.Controllers
             base.Dispose(disposing);
         }
 
-        private bool CourseExists(Guid id)
+        private bool ApplyExists(Guid id)
         {
-            return db.Courses.Count(e => e.CourseID == id) > 0;
+            return db.Applications.Count(e => e.ApplyID == id) > 0;
         }
     }
 }

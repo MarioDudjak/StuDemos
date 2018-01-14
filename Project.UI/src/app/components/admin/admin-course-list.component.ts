@@ -1,5 +1,5 @@
 import {Component,ViewEncapsulation, OnInit} from '@angular/core';
-
+import {CourseService} from '../course/shared';
 @Component({
     selector: 'admin-course-list',
     templateUrl: './admin-course-list.component.html',
@@ -11,11 +11,12 @@ export class AdminCourseListComponent implements OnInit{
     courses:any[] =[];
     hiddenCourses:boolean[]=[]
     checkedCourses:boolean[]=[]
-    constructor(){
+    constructor(private courseService:CourseService){
         
     }
 
     async ngOnInit():Promise<void>{
+        console.log(await this.courseService.getAllCourses());
         this.courses=new Array(4);
         this.hiddenCourses=new Array(this.courses.length);
         this.checkedCourses=new Array(this.courses.length);

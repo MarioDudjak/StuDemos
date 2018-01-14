@@ -7,7 +7,6 @@ import { parseString } from "xml2js";
 
 @Injectable()
 export class StudentService {
-	private apiUrl = "http://localhost:50968/api/student";
     constructor(private httpService: HttpService, private http:Http) { }
     
     //Get schedule data
@@ -52,12 +51,6 @@ export class StudentService {
         return await this.httpService.getAll("user/get");
     }
 
-    public async putStudentAsync(student:Student):Promise<any>{
-        return await this.httpService.put(student,"user/put");
-    }
 
-    public async deleteStudentsAsync(id:string):Promise<any>{
-        return await this.httpService.delete(id,"user/delete");
-    }
 	
 }

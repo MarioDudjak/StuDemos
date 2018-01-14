@@ -1,0 +1,5 @@
+﻿FirstName,LastName,UserName,IdentificationNumber,RoleName,CourseCode,Email,Password
+Marko,Filipovic,mfilipovic,345,Professor,PR101,mfilipovic@etfos.hr,123456
+Yvonne,Liermann-Zeljak,yvonne,38,Professor,P501,yvonne@etfos.hr,123456
+Ivica,Lukic,ilukic,94,Professor,SR102,ilukic@etfos.hr,123456
+Tomislav,Rudec,trudec,112,Professor,SI301,trudec@etfos.hr,123456

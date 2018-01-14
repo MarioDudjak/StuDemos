@@ -11,7 +11,9 @@ namespace Project.DAL.Entities
         public string Semester { get; set; }
         public string CourseName { get; set; }
         public string StudyLevel { get; set; }
-        public virtual ICollection<ApplicationUser> Users { get; set; }
+        public virtual ICollection<ApplicationUser> Professors { get; set; }
+        public virtual ICollection<ApplicationUser> Students { get; set; }
+
 
     }
 }

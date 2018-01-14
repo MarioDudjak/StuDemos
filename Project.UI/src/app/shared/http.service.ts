@@ -17,7 +17,7 @@ export class HttpService {
 		let options = new RequestOptions({ headers: headers });
 
 		try{
-			let response = await this.http.post(query,options)
+			let response = await this.http.get(query,options)
 			.toPromise();
 			console.log(response.json());
 			return response.json();
@@ -74,7 +74,7 @@ export class HttpService {
 		
 	}
 
-	async delete(id: string, route:string): Promise<any>	{
+	async delete(route:string): Promise<any>	{
 		this.accessToken=localStorage.getItem("access_token");		
 		let query = this.apiUrl+route;    
 		let headers = new Headers({ "Content-Type": "application/json" , "Accept":"application/json", "Authorization": "Bearer "+this.accessToken});

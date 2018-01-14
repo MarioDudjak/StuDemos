@@ -11,7 +11,8 @@ import {AdminSidebarComponent} from './admin/shared';
 import {StudentSidebarComponent} from './student/shared';
 import { RegisterComponent, LoginComponent } from './membership';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
+import {CourseService} from './course/shared';
+import {ApplicationService} from './application/shared';
 @NgModule({
     imports: [
         CommonModule,
@@ -45,6 +46,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     ],
     providers: [
        StudentService,
+       CourseService,
+       ApplicationService
     ]
 })
 export class ComponentsModule { }

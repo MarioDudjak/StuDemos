@@ -1,5 +1,4 @@
-﻿using Project.Common.Enums;
-using Project.Model.Common;
+﻿using Project.DAL.Entities;
 using System;
 using System.Collections.Generic;
 

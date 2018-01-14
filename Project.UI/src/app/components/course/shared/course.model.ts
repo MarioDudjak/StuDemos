@@ -1,11 +1,16 @@
 export class Course {
-    public id:number;
-    public name:string;
-    public programme:string;
+    public CourseID:string;
+    public CourseCode:string;
+    public Semester:string;
+    public CourseName:string;
+    public StudyLevel:string;
 
-    constructor(id:number,name:string,programme:string){
-        this.id=id;
-        this.name=name;
-        this.programme=programme;
-    }
+
+constructor(courseName:string,semester:string){
+    this.CourseName=courseName;
+    this.Semester = semester;
 }
+    
+}
+
+
