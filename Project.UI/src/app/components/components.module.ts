@@ -59,9 +59,6 @@ import {ApplicationService} from './application/shared';
        ScheduleService,
        StudentService,
        ProfessorService,
-       AuthGuard,
-       AlertService,
-       AuthenticationService,
        CourseService,
        ApplicationService
     ]
