@@ -16,10 +16,8 @@ import {AdminApplyListComponent,AdminProfessorListComponent,AdminCourseListCompo
 import {AdminSidebarComponent} from './admin/shared';
 import { RegisterComponent, LoginComponent } from './membership';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AlertComponent } from '../directives/index';
-import { AuthGuard } from '../guards/index';
-import { AlertService, AuthenticationService } from '../services/index';
-
+import {CourseService} from './course/shared';
+import {ApplicationService} from './application/shared';
 @NgModule({
     imports: [
         CommonModule,
@@ -41,7 +39,6 @@ import { AlertService, AuthenticationService } from '../services/index';
         AdminSidebarComponent,
         RegisterComponent,
         LoginComponent,
-        AlertComponent,
         AdminCourseListComponent
     ],
     exports: [
@@ -56,7 +53,6 @@ import { AlertService, AuthenticationService } from '../services/index';
        AdminSidebarComponent,
        RegisterComponent,
        LoginComponent,
-       AlertComponent,
        AdminCourseListComponent
     ],
     providers: [
@@ -65,7 +61,9 @@ import { AlertService, AuthenticationService } from '../services/index';
        ProfessorService,
        AuthGuard,
        AlertService,
-       AuthenticationService
+       AuthenticationService,
+       CourseService,
+       ApplicationService
     ]
 })
 export class ComponentsModule { }

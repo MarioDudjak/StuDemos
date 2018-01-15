@@ -1,12 +1,9 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
-using Project.Repository;
-using Project.Repository.Identity;
+using Project.DAL.Identity;
 using Project.WebAPI.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;

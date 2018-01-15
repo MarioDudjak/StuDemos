@@ -30,8 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CsvHelper, Version=6.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.6.1.0\lib\net45\CsvHelper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.Seeder.EF6, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.Seeder.EF6.0.4.0\lib\EntityFramework.Seeder.EF6.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
@@ -41,6 +47,9 @@
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.3.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
@@ -78,9 +87,12 @@
     <Compile Include="DIModule.cs" />
     <Compile Include="Entities\ApplicationUser.cs" />
     <Compile Include="Entities\Apply.cs" />
+    <Compile Include="Entities\ApplyStatus.cs" />
     <Compile Include="Entities\Course.cs" />
     <Compile Include="Entities\Selection.cs" />
     <Compile Include="IDbContext.cs" />
+    <Compile Include="Identity\ApplicationUserManager.cs" />
+    <Compile Include="Identity\RoleManager.cs" />
     <Compile Include="Mappings\ApplyEntityMap.cs" />
     <Compile Include="Mappings\CourseEntityMap.cs" />
     <Compile Include="Mappings\SelectionEntityMap.cs" />
@@ -88,23 +100,42 @@
     <Compile Include="Migrations\201801021939477_Initial.Designer.cs">
       <DependentUpon>201801021939477_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801111633207_UserCourseRelations.cs" />
+    <Compile Include="Migrations\201801111633207_UserCourseRelations.Designer.cs">
+      <DependentUpon>201801111633207_UserCourseRelations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801141049439_CourseChanged.cs" />
+    <Compile Include="Migrations\201801141049439_CourseChanged.Designer.cs">
+      <DependentUpon>201801141049439_CourseChanged.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801141200535_ProfessorID.cs" />
+    <Compile Include="Migrations\201801141200535_ProfessorID.Designer.cs">
+      <DependentUpon>201801141200535_ProfessorID.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StuDemosDbContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EmbeddedResource Include="Migrations\201801141049439_CourseChanged.resx">
+      <DependentUpon>201801141049439_CourseChanged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801141200535_ProfessorID.resx">
+      <DependentUpon>201801141200535_ProfessorID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\courses.xlsx" />
+    <EmbeddedResource Include="Migrations\courses.csv" />
+    <EmbeddedResource Include="Migrations\professors.csv" />
+    <EmbeddedResource Include="Migrations\professors.xlsx" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Project.Common\Project.Common.csproj">
-      <Project>{293A9222-DBA5-4409-BB85-10A50FDFDACD}</Project>
-      <Name>Project.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201801021939477_Initial.resx">
       <DependentUpon>201801021939477_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801111633207_UserCourseRelations.resx">
+      <DependentUpon>201801111633207_UserCourseRelations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -2,8 +2,7 @@
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Project.DAL.Entities;
-using Project.Repository;
-using Project.Repository.Identity;
+using Project.DAL.Identity;
 using Project.WebAPI.ViewModels;
 using System;
 using System.Linq;
@@ -22,8 +21,6 @@ namespace Project.WebAPI.Controllers
             get
             {
                 return _AppUserManager ?? Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                //Using another context (Owin) and some mechanism of DI here
-                //Think about refactoring and writing bindings for UserManager and inject it to Service layer and then in controller
             }
         }
 
@@ -44,13 +41,14 @@ namespace Project.WebAPI.Controllers
         }
        
         #endregion Constructors
-        #region Field
+        #region Fields
         private readonly IMapper Mapper;
         private ApplicationUserManager _AppUserManager = null;
         private ApplicationRoleManager _AppRoleManager = null;
 
         #endregion Fields
-        [Authorize]  //Sve role po defaultu student, admine unijeti ručno, a jedino adminima omogućiti unos drugih profesora
+
+        [Authorize]
         [Authorize(Roles = "Admin")]
         [Route("users", Name = "GetUsers")]
  
@@ -58,6 +56,23 @@ namespace Project.WebAPI.Controllers
         {
             return Ok(this.AppUserManager.Users.ToList().Select(u => u));
         }
+
+        [Authorize]
+        [Authorize(Roles = "Admin")]
+        [Route("professors", Name = "GetProfessors")]
+        public IHttpActionResult GetProfessors()
+        {
+            return Ok(this.AppUserManager.Users.Where(u => u.RoleName == "Professor").ToList());
+        }
+
+        [Authorize]
+        [Authorize(Roles = "Admin")]
+        [Route("students", Name = "GetStudents")]
+        public IHttpActionResult GetStudents()
+        {
+            return Ok(this.AppUserManager.Users.Where(u => u.RoleName == "Student").ToList());
+        }
+
         [Authorize(Roles = "Admin")]
         [Route("user/{id:guid}", Name = "GetUserById")]
         public async Task<IHttpActionResult> GetUser(string Id)
@@ -94,21 +109,19 @@ namespace Project.WebAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-            //Bolje mapiranje
-         
-           // var user2 = Mapper.Map< ApplicationUser>(createUserModel);
+
             var user = new ApplicationUser()
             {
                 UserName = createUserModel.UserName,
                 Email = createUserModel.Email,
                 FirstName = createUserModel.FirstName,
                 LastName = createUserModel.LastName,
-                JoinDate = DateTime.Now.Date,
-                EmailConfirmed =true, //Ovo kasnije implementirati, to je samo za probu
+                JoinDate = DateTime.UtcNow,
+                RoleName = createUserModel.RoleName,
+                EmailConfirmed =true, 
             };
             
 
-            //tu sad treba pozvati Service layer 
             IdentityResult addUserResult = await AppUserManager.CreateAsync(user ,createUserModel.Password);
 
             if (!addUserResult.Succeeded)
@@ -121,7 +134,6 @@ namespace Project.WebAPI.Controllers
 
         }
 
-        [Authorize(Roles = "Admin")]
         [Route("user/{id:guid}/roles")]
         [HttpPut]
         public async Task<IHttpActionResult> AssignRolesToUser([FromUri] string id, [FromBody] string[] rolesToAssign)

@@ -9,7 +9,7 @@ namespace Project.DAL
         public override void Load()
         {
            
-            Bind<IDbContext>().To<StuDemosDbContext>();
+            //Bind<IDbContext>().To<StuDemosDbContext>();
             
         }
     }

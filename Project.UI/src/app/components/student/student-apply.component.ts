@@ -3,6 +3,7 @@ import {Student} from './shared/student.model';
 import {StudentService} from './shared/student.service';
 import { NgForm } from '@angular/forms';
 import {Course} from '../course/shared';
+import {ApplicationService} from '../application/shared';
 
 @Component({
   selector: 'student-apply',
@@ -20,15 +21,16 @@ export class StudentApplyComponent implements OnInit {
   private semester:string;
 
   courses = [
-     new Course(0, 'Fizika', 'Sveučilišni preddiplomski studij' ),
-     new Course(1, 'Programiranje 1', 'Sveučilišni preddiplomski studij' ),
-     new Course(2, 'Mreže računala', 'Sveučilišni diplomski studij' ),
-     new Course(3, 'Dizajn računalnih sustava', 'Sveučilišni diplomski studij'),
-     new Course(4, 'Internet programiranje', 'Sveučilišni diplomski studij' ),
-     new Course(5, 'Razvoj mobilnih aplikacija', 'Sveučilišni diplomski studij')
+     new Course('Fizika', 'Sveučilišni preddiplomski studij' ),
+     new Course('Programiranje 1', 'Sveučilišni preddiplomski studij' ),
+     new Course('Mreže računala', 'Sveučilišni diplomski studij' ),
+     new Course('Dizajn računalnih sustava', 'Sveučilišni diplomski studij'),
+     new Course('Internet programiranje', 'Sveučilišni diplomski studij' ),
+     new Course('Razvoj mobilnih aplikacija', 'Sveučilišni diplomski studij')
   ];
 
-  constructor(private studentService:StudentService) { }
+  constructor(private studentService:StudentService,
+  private applicationService:ApplicationService) { }
 
   ngOnInit() {
     //Set courseSelected and disableSelect array on false at the beginning because courses are not selected
@@ -97,6 +99,10 @@ export class StudentApplyComponent implements OnInit {
   }
 
   register(myForm:NgForm) {
+
+    //tu bi trebalo spremit prijavu za demonstraturu, npr.
+    //Apply apply = new Apply(...)
+    //this.applicationService.CreateApplication(apply);
     console.log('Successful!');
     console.log(myForm);
   }
