@@ -9,6 +9,7 @@
 }
 .logo-container{
     position: absolute;
+    height: 80px;
     margin-left: 5%;
     background-color: #ffffff;
 }

@@ -4,6 +4,7 @@ import {NoContentRoute} from './no-content.route';
 import {HomeRoute} from './home';
 import {StudentApplyRoute} from './student';
 import {StudentScheduleRoute} from './student';
+import {ProfessorScheduleRoute} from './professor';
 import {ComponentsModule} from '../components';
 import {AdminApplyListRoute, AdminProfessorListRoute, AdminCourseListRoute} from './admin';
 import {RegisterRoute,LoginRoute} from './membership';
@@ -17,6 +18,7 @@ import {RegisterRoute,LoginRoute} from './membership';
         HomeRoute,
         StudentApplyRoute,
 		StudentScheduleRoute,
+		ProfessorScheduleRoute,
         AdminApplyListRoute,
         AdminProfessorListRoute,
         AdminCourseListRoute,
@@ -29,6 +31,7 @@ import {RegisterRoute,LoginRoute} from './membership';
         HomeRoute,    
         StudentApplyRoute,
 		StudentScheduleRoute,
+		ProfessorScheduleRoute,
         AdminApplyListRoute,
         AdminProfessorListRoute,
         RegisterRoute,
