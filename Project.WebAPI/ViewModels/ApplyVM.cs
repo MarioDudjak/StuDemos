@@ -16,7 +16,7 @@ namespace Project.WebAPI.ViewModels
         public int NumberOfApplyHours { get; set; }
 
         public DateTime ApplyDate { get; set; }
-        ApplyStatus ApplyStatus { get; set; }
+        public int  ApplyStatus { get; set; }
         public  ICollection<SelectionVM> Selections { get; set; }
     }
 }

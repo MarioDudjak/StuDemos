@@ -40,15 +40,15 @@ export class StudentService {
     }
 
     public async createStudentAsync(student:Student):Promise<any>{
-        return await this.httpService.post(student,"user/create");
+        return await this.httpService.post(student,"accounts/create");
     }
 
     public async getStudentByIdAsync(id:string):Promise<any>{
-        return await this.httpService.getById(id,"user/getById");
+        return await this.httpService.getById(id,"accounts/user");
     }
 
     public async getStudentsAsync():Promise<any>{
-        return await this.httpService.getAll("user/get");
+        return await this.httpService.getAll("accounts/students");
     }
 
 

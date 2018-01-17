@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {Student} from './shared/student.model';
 import {StudentService} from './shared/student.service';
 import { NgForm } from '@angular/forms';
 import {Course} from '../course/shared';
-import {ApplicationService} from '../application/shared';
-
+import {ApplicationService,Apply,Selection} from '../application/shared';
+import {CourseService} from '../course/shared';
+import {User} from '../../shared';
 @Component({
   selector: 'student-apply',
   templateUrl: './student-apply.component.html',
@@ -19,26 +19,24 @@ export class StudentApplyComponent implements OnInit {
   private checkedCourses:Course[] = [];
   private academicYear:string;
   private semester:string;
-
-  courses = [
-     new Course('Fizika', 'Sveučilišni preddiplomski studij' ),
-     new Course('Programiranje 1', 'Sveučilišni preddiplomski studij' ),
-     new Course('Mreže računala', 'Sveučilišni diplomski studij' ),
-     new Course('Dizajn računalnih sustava', 'Sveučilišni diplomski studij'),
-     new Course('Internet programiranje', 'Sveučilišni diplomski studij' ),
-     new Course('Razvoj mobilnih aplikacija', 'Sveučilišni diplomski studij')
-  ];
+  private courses:Course[];
+  private student:User;
 
   constructor(private studentService:StudentService,
-  private applicationService:ApplicationService) { }
+  private applicationService:ApplicationService,
+  private courseService: CourseService,
+) { }
 
-  ngOnInit() {
+  async ngOnInit() {    
+    this.courses= await this.courseService.getAllCourses();
+    this.student= await this.studentService.getStudentByIdAsync(localStorage.getItem('userId'));
+    console.log(this.student);
+    console.log(this.courses);
     //Set courseSelected and disableSelect array on false at the beginning because courses are not selected
     for(let i=0;i<this.courses.length;i++) {
       this.courseSelected.push(false);
       this.disableSelect.push(false);
     }
-
     //Set current academic year
     const currentDate = new Date();
     const currentYear = currentDate.getFullYear();
@@ -95,16 +93,20 @@ export class StudentApplyComponent implements OnInit {
         this.checkedCourses.push(this.courses[i]);
       }
     }
-    //console.log(this.checkedCourses);
   }
 
-  register(myForm:NgForm) {
-
-    //tu bi trebalo spremit prijavu za demonstraturu, npr.
-    //Apply apply = new Apply(...)
-    //this.applicationService.CreateApplication(apply);
-    console.log('Successful!');
-    console.log(myForm);
+  async register(myForm:NgForm){
+    var selectionsSize=this.checkedCourses.length;
+    var selections = new Array(selectionsSize); 
+    //tu bi trebalo pokupit podatke iz forme 
+    for(var i=0;i<selectionsSize;i++){
+      var selection = new Selection(1,4,this.checkedCourses[0]); //tu za svaki predmet prioritet i ocjenu
+      selections[i]=selection;      
+    }
+    
+    var apply= new Apply("FirstName","SecondName",3.4,60,0,selections,this.student); //tu podatke o studentu
+    let response = await this.applicationService.CreateApplication(apply);
+    console.log(response); 
   }
   
 }

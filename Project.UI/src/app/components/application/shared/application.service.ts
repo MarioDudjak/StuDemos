@@ -9,23 +9,26 @@ export class ApplicationService {
     constructor(private httpService: HttpService) { }
     
    async getAllApplications():Promise<any>{
-       await this.httpService.getAll("apply/get");
+       return await this.httpService.getAll("apply/get");
    }
 
    async getApplyById(id:string):Promise<any>{
-        await this.httpService.getById(id,"apply/getbyid");
+        return await this.httpService.getById(id,"apply/getbyid");
    }
 
    async UpdateApplication(apply:Apply):Promise<any>{
-       await this.httpService.put(apply,"apply/update/"+apply.ApplyID);
+       return await this.httpService.put(apply,"apply/update/"+apply.ApplyID);
    }
 
+   async CreateSelection(selection:any):Promise<any>{
+       return await this.httpService.post(selection,"selection/create");
+   }
    async CreateApplication(apply:Apply):Promise<any>{
-       await this.httpService.post(apply,"apply/create");
+       return await this.httpService.post(apply,"apply/create");
    }
 
    async DeleteCourse(courseID:string):Promise<any>{
-       await this.httpService.delete("course/delete"+courseID);
+       return await this.httpService.delete("course/delete"+courseID);
    }
 
 

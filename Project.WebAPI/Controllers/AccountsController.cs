@@ -73,7 +73,6 @@ namespace Project.WebAPI.Controllers
             return Ok(this.AppUserManager.Users.Where(u => u.RoleName == "Student").ToList());
         }
 
-        [Authorize(Roles = "Admin")]
         [Route("user/{id:guid}", Name = "GetUserById")]
         public async Task<IHttpActionResult> GetUser(string Id)
         {

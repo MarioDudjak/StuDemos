@@ -24,13 +24,10 @@ namespace Project.DAL
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-
+            
             modelBuilder.Configurations.Add(new ApplyEntityMap());
             modelBuilder.Configurations.Add(new SelectionEntityMap());
-            modelBuilder.Configurations.Add(new CourseEntityMap());
-
-
-
+            modelBuilder.Configurations.Add(new CourseEntityMap()); 
             base.OnModelCreating(modelBuilder);
         }
     }

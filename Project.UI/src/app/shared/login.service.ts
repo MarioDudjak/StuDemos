@@ -36,7 +36,6 @@ export class LoginService {
 
     public async getUserData(username:string){
         let response = await this.httpService.getById(username,"accounts/user");
-        console.log(response);
         localStorage.setItem('userName',response["userName"]);
         localStorage.setItem('userId',response["id"]);
         localStorage.setItem('userRole',response["roleName"]);

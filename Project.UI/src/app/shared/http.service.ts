@@ -19,7 +19,6 @@ export class HttpService {
 		try{
 			let response = await this.http.get(query,options)
 			.toPromise();
-			console.log(response.json());
 			return response.json();
 			} catch (error) {
 				this.handleError(error);

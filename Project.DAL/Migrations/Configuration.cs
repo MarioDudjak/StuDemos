@@ -5,9 +5,7 @@ namespace Project.DAL.Migrations
     using Microsoft.AspNet.Identity.EntityFramework;
     using Project.DAL.Entities;
     using System;
-    using System.Collections.Generic;
     using System.Data.Entity.Migrations;
-    using System.Data.Entity.Validation;
     using System.IO;
     using System.Linq;
     using System.Reflection;
@@ -51,6 +49,7 @@ namespace Project.DAL.Migrations
             var adminUser = manager.FindByName("SuperAdmin");
 
             manager.AddToRoles(adminUser.Id, new string[] { "Admin" });
+            
             Assembly assembly = Assembly.GetExecutingAssembly();
             string resourceName = "Project.DAL.Migrations.courses.csv";
             using (Stream stream = assembly.GetManifestResourceStream(resourceName))
@@ -62,8 +61,9 @@ namespace Project.DAL.Migrations
                     csvReader.Configuration.HeaderValidated = null;
                     csvReader.Configuration.MissingFieldFound = null;
                     var courses = csvReader.GetRecords<Course>().ToArray();
-                    context.Courses.AddOrUpdate(c => c.CourseCode, courses);
-                   
+               
+                    context.Courses.AddOrUpdate(c => c.CourseName, courses);
+                    context.SaveChanges();
                 }
             }
 
@@ -85,19 +85,30 @@ namespace Project.DAL.Migrations
                         professor.Courses = professorCourses;
                         professor.JoinDate = DateTime.UtcNow;
                         professor.EmailConfirmed = true;
-                        context.Users.AddOrUpdate(p => p.IdentificationNumber, professor);
-                        manager.AddToRoles(professor.Id, new string[] { "Professor" });
 
+                        context.Users.AddOrUpdate(p => p.IdentificationNumber, professor);
+                        context.SaveChanges();
+                        manager.AddToRoles(professor.Id, new string[] { "Professor" });
+                        
                         foreach (var item in professorCourses)
                         {
                             Course course = context.Courses.Find(item.CourseID);
-                            course.Professors.ToList().Add(professor);
-                            context.Courses.AddOrUpdate(c => c.CourseCode, course);
+                            if (course.Professors == null)
+                            {
+                                Guid[] professorIds = new Guid[] { new Guid(professor.Id) };
+                                course.Professors = professorIds;
+                            }
+                            else
+                            {
+                                course.Professors.ToList().Add(new Guid(professor.Id));
+                            }
+                            context.Courses.AddOrUpdate(c => c.CourseName, course);
                         }
+                        context.SaveChanges();
                     }
                 }
-            }
-
+           }
+           
         }
     }
 }

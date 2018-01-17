@@ -20,23 +20,7 @@ namespace Project.DAL.Mappings
             Property(entity => entity.NumberOfApplyHours).IsRequired();
             Property(entity => entity.GradeAverage).IsRequired();
             Property(entity => entity.ApplyStatus).IsRequired();
-
-            //relationship
-            /*
-            HasMany(entity => entity.Selections)
-                .WithMany(entity => entity.Applications)
-                .Map(entity =>
-                {
-                    entity.MapLeftKey("ApplicationRefId");
-                    entity.MapRightKey("SelectionRefId");
-                    entity.ToTable("ApplicationSelection");
-                });
-                */
-
-            HasRequired<ApplicationUser>(s => s.Student)
-                .WithMany(g => g.Applications);
-            //table
-            ToTable("Applications");
+            Property(entity => entity.StudentID);
         }
     }
 }

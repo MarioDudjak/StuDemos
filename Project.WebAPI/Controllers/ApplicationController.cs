@@ -12,6 +12,8 @@ using System.Web.Http.Description;
 using Project.DAL;
 using Project.DAL.Entities;
 using AutoMapper;
+using System.Data.Entity.Migrations;
+using System.Data.Entity.Validation;
 
 namespace Project.WebAPI.Controllers
 {
@@ -95,18 +97,31 @@ namespace Project.WebAPI.Controllers
         [ResponseType(typeof(Apply))]
         [HttpPost]
         [Authorize(Roles = "Student")]
-        [Route("create")]
+        [Route("create", Name = "CreateApply")]
         public async Task<IHttpActionResult> PostApply(Apply apply)
         {
+            apply.ApplyDate = DateTime.UtcNow;
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
             db.Applications.Add(apply);
-            await db.SaveChangesAsync();
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch (DbEntityValidationException e)
+            {
 
-            return CreatedAtRoute("DefaultApi", new { id = apply.ApplyID }, apply);
+            }
+    
+            var student = db.Users.Find(apply.StudentID);
+            student.Applies.ToList().Add(apply);
+            db.Users.AddOrUpdate(user => user.UserName, student);
+            await db.SaveChangesAsync();
+            
+            return CreatedAtRoute("CreateApply", new { id = apply.ApplyID }, apply);
         }
 
         // DELETE: api/Application/5

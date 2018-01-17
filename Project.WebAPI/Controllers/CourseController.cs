@@ -35,11 +35,11 @@ namespace Project.WebAPI.Controllers
       
         [HttpGet]
         [Route("get")]
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         // GET: api/Course
         public IQueryable<Course> GetCourses()
         {
-            return db.Courses;
+            return db.Courses; //Ovo kasnije smisliti na koji način sve dohvatiti
         }
 
         // GET: api/Course/5
