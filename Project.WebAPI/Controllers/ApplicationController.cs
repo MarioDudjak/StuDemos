@@ -116,8 +116,16 @@ namespace Project.WebAPI.Controllers
 
             }
     
-            var student = db.Users.Find(apply.StudentID);
-            student.Applies.ToList().Add(apply);
+            var student = db.Users.Find(apply.StudentID.ToString());
+            if (student.Applies == null)
+            {
+                Apply[] applies = new Apply[] { apply };
+                student.Applies = applies;
+            }
+            else
+            {
+                student.Applies.ToList().Add(apply);
+            }
             db.Users.AddOrUpdate(user => user.UserName, student);
             await db.SaveChangesAsync();
             

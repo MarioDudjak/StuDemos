@@ -9,16 +9,16 @@ export class Apply {
     public NumberOfApplyHours:number;
     public ApplyStatus:number;
     public Selections:Selection[];
-    public Student:User;
+    public StudentID:string;
 
-constructor(firstName:string,lastName:string,gradeAverage:number,numberOfApplyHours:number,applyStatus:number,selections:Selection[],student:User){
+constructor(firstName:string,lastName:string,gradeAverage:number,numberOfApplyHours:number,applyStatus:number,selections:Selection[],studentID:string){
     this.FirstName=firstName;
     this.LastName=lastName;
     this.GradeAverage=gradeAverage;
     this.NumberOfApplyHours=numberOfApplyHours;
     this.ApplyStatus=applyStatus;
     this.Selections=selections;
-    this.Student=student;
+    this.StudentID=studentID;
     }
 
 }
@@ -27,12 +27,14 @@ export class Selection{
     public SelectionID:string;
     public Priority:number;
     public CourseGrade:number;
-    public Course:Course;
+    public CourseID:string;
+    public CourseName:string;
 
-constructor(priority:number,courseGrade:number,course:Course){
+constructor(priority:number,courseGrade:number,courseID:string,courseName:string){
     this.Priority=priority;
     this.CourseGrade=courseGrade;
-    this.Course=course;
+    this.CourseID=courseID;
+    this.CourseName=courseName;
     }   
 }
 

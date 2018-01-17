@@ -20,7 +20,6 @@ export class StudentApplyComponent implements OnInit {
   private academicYear:string;
   private semester:string;
   private courses:Course[];
-  private student:User;
 
   constructor(private studentService:StudentService,
   private applicationService:ApplicationService,
@@ -29,8 +28,6 @@ export class StudentApplyComponent implements OnInit {
 
   async ngOnInit() {    
     this.courses= await this.courseService.getAllCourses();
-    this.student= await this.studentService.getStudentByIdAsync(localStorage.getItem('userId'));
-    console.log(this.student);
     console.log(this.courses);
     //Set courseSelected and disableSelect array on false at the beginning because courses are not selected
     for(let i=0;i<this.courses.length;i++) {
@@ -100,11 +97,10 @@ export class StudentApplyComponent implements OnInit {
     var selections = new Array(selectionsSize); 
     //tu bi trebalo pokupit podatke iz forme 
     for(var i=0;i<selectionsSize;i++){
-      var selection = new Selection(1,4,this.checkedCourses[0]); //tu za svaki predmet prioritet i ocjenu
-      selections[i]=selection;      
+      var selection = new Selection(1,4,this.checkedCourses[i]["courseID"],this.checkedCourses[i]["courseName"]); //tu za svaki predmet prioritet i ocjenu
+      selections[i]=selection; 
     }
-    
-    var apply= new Apply("FirstName","SecondName",3.4,60,0,selections,this.student); //tu podatke o studentu
+    var apply= new Apply("FirstName","SecondName",3.4,60,0,selections,localStorage.getItem('userId')); //tu podatke o studentu
     let response = await this.applicationService.CreateApplication(apply);
     console.log(response); 
   }

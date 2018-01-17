@@ -50,6 +50,7 @@ export class RegisterService {
     public async AssingUserToRole(userId:string,role:string){
         var roles=["Student"];
         let response = await this.httpService.put(roles,"accounts/user/"+userId+"/roles");
+        console.log(response);
         this.router.navigate(["/login"]);
     }
     

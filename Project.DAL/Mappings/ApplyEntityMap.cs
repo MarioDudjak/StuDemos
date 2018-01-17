@@ -13,7 +13,7 @@ namespace Project.DAL.Mappings
             Property(entity => entity.ApplyID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             //properties
-            Property(entity => entity.ApplyDate).IsRequired().HasDatabaseGeneratedOption(DatabaseGeneratedOption.Computed);
+            Property(entity => entity.ApplyDate).IsRequired();
             //Generate value in migrations 
             Property(entity => entity.FirstName).IsRequired();
             Property(entity => entity.LastName).IsRequired();

@@ -4,7 +4,8 @@ export class Course {
     public Semester:string;
     public CourseName:string;
     public StudyLevel:string;
-
+    public professors:string[];
+    public students:string[];
 
 constructor(courseName:string,semester:string){
     this.CourseName=courseName;
