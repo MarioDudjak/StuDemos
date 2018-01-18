@@ -25,17 +25,17 @@
             <td><input type="checkbox" name="select" title="Odaberi" #One [checked]="checkedApplications[i]" (change)="select(One.checked,i)">
                 <label for="select"></label>
             </td>
-            <td>Ivica Ivic</td>
-            <td>30.12.2017.</td>
-            <td>3.5</td>
-            <td>60</td>    
+            <td>{{apply?.firstName}} {{apply?.lastName}}</td>
+            <td>{{apply?.applyDate | date: 'dd/MM/yyyy'}}</td>
+            <td>{{apply?.gradeAverage}}</td>
+            <td>{{apply?.numberOfApplyHours}}</td>    
             <td style="text-align:left;">
-                <p style="display:inline"><span>1. Fizika 1 </span><span href="" style="float:right" (click)="collapse(i)">&#9660;</span></p><br>
+                <p style="display:inline"><span>1. {{apply?.selections[0].courseName}}</span><span *ngIf="apply?.selections.length>1" href="" style="float:right" (click)="collapse(i)">&#9660;</span></p><br>
                 <div  [hidden]="hiddenCourses[i]" class="hiddenCourses">
-                    <hr><p style="display:inline"><span>2. Matematika 1 </span> <span style="float:right; margin-right:15%"><span>&#9651;</span>  <span>&#9661;</span></span></p><br><br> 
-                    <hr><p style="display:inline"><span>3. Računarstvo usluga i analiza podataka </span> <span style="float:right; margin-right:15%"><span>&#9651;</span>  <span>&#9661;</span></span></p><br><br> 
-                    <hr><p style="display:inline"><span>4. Programiranje 1</span> <span style="float:right; margin-right:15%"><span>&#9651;</span>  <span>&#9661;</span></span></p><br><br> 
-                    <hr><p style="display:inline"><span>5. Osnove energetike i ekologije </span> <span style="float:right; margin-right:15%"><span>&#9651;</span>  <span>&#9661;</span></span></p><br><br> 
+                    <div *ngIf="apply?.selections.length>1"><hr><p style="display:inline"><span>2. {{apply?.selections[1].courseName}} </span> <span style="float:right; margin-right:15%"><span>&#9651;</span>  <span>&#9661;</span></span></p><br><br></div> 
+                    <div *ngIf="apply?.selections.length>2"><hr><p  style="display:inline"><span>3. {{apply?.selections[2].courseName}}</span> <span style="float:right; margin-right:15%"><span>&#9651;</span>  <span>&#9661;</span></span></p><br><br></div>
+                    <div *ngIf="apply?.selections.length>3"><hr><p  style="display:inline"><span>4. {{apply?.selections[3].courseName}}</span> <span style="float:right; margin-right:15%"><span>&#9651;</span>  <span>&#9661;</span></span></p><br><br></div>
+                    <div *ngIf="apply?.selections.length>4"><hr><p  style="display:inline"><span>5. {{apply?.selections[4].courseName}} </span> <span style="float:right; margin-right:15%"><span>&#9651;</span>  <span>&#9661;</span></span></p><br><br></div>
                 </div>
             </td>    
             <td>

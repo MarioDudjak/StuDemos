@@ -18,7 +18,6 @@ namespace Project.DAL.Mappings
             Property(entity => entity.StudyLevel).IsRequired();
             Property(entity => entity.CourseCode).IsRequired();
             Property(entity => entity.Semester).IsRequired();
-
             //table
             ToTable("Courses");
         }

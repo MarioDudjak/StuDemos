@@ -1,4 +1,5 @@
 import {Component,ViewEncapsulation, OnInit} from '@angular/core';
+import {ApplicationService} from '../application/shared';
 
 @Component({
     selector: 'admin-apply-list',
@@ -11,12 +12,12 @@ export class AdminApplyListComponent implements OnInit{
     applications:any[] =[];
     hiddenCourses:boolean[]=[]
     checkedApplications:boolean[]=[]
-    constructor(){
+    constructor(private applicationService:ApplicationService){
         
     }
 
     async ngOnInit():Promise<void>{
-        this.applications=new Array(4);
+        this.applications=await this.applicationService.getAllApplications();
         this.hiddenCourses=new Array(this.applications.length);
         this.checkedApplications=new Array(this.applications.length);
         this.hiddenCourses.fill(true);

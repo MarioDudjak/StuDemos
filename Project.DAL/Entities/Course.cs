@@ -14,7 +14,9 @@ namespace Project.DAL.Entities
         public string CourseName { get; set; }
         public string StudyLevel { get; set; }
         public Guid[] Professors { get; set; }
+        public string[] ProfessorsNames { get; set; }
         public Guid[] Students { get; set; }
+        public string[] StudentsNames { get; set; }
 
 
     }

@@ -1,4 +1,5 @@
 import {Component,ViewEncapsulation, OnInit} from '@angular/core';
+import {ProfessorService} from '../professor/shared';
 
 @Component({
     selector: 'admin-professor-list',
@@ -11,12 +12,12 @@ export class AdminProfessorListComponent implements OnInit{
     professors:any[] =[];
     hiddenCourses:boolean[]=[]
     checkedProfessors:boolean[]=[]
-    constructor(){
+    constructor(private professorService:ProfessorService ){
         
     }
 
     async ngOnInit():Promise<void>{
-        this.professors=new Array(4);
+        this.professors=await this.professorService.GetAllProfessors();
         this.hiddenCourses=new Array(this.professors.length);
         this.checkedProfessors=new Array(this.professors.length);
         this.hiddenCourses.fill(true);

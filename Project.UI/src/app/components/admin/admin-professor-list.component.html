@@ -22,15 +22,15 @@
             <td><input type="checkbox" name="select" title="Odaberi" #One [checked]="checkedProfessors[i]" (change)="select(One.checked,i)">
                 <label for="select"></label>
             </td>
-            <td>Ivica Ivic</td>
-            <td>30.12.2017.</td>    
+            <td>{{professor?.firstName}} {{professor?.lastName}}</td>
+            <td>{{professor?.joinDate | date: 'dd/MM/yyyy'}}</td>    
             <td style="text-align:left;">
-                <p style="display:inline"><span>Fizika 1 </span><span href="" style="float:right" (click)="collapse(i)">&#9660;</span></p><br>
+                <p *ngIf="professor?.courses.length>0" style="display:inline"><span>{{professor?.courses[i].courseName}} </span><span *ngIf="professor?.courses.length>1" href="" style="float:right" (click)="collapse(i)">&#9660;</span></p><br>
                 <div  [hidden]="hiddenCourses[i]" class="hiddenCourses">
-                    <hr><p style="display:inline"><span>Matematika 1 </span></p><br><br> 
-                    <hr><p style="display:inline"><span>Računarstvo usluga i analiza podataka </span> </p><br><br> 
-                    <hr><p style="display:inline"><span>Programiranje 1</span> </p><br><br> 
-                    <hr><p style="display:inline"><span>Osnove energetike i ekologije </span> </p><br><br> 
+                    <div *ngIf="professor?.courses.length>1"><hr><p style="display:inline"><span>Matematika 1 </span></p><br><br></div>
+                    <div *ngIf="professor?.courses.length>2"><hr><p style="display:inline"><span>Računarstvo usluga i analiza podataka </span> </p><br><br> </div>
+                    <div *ngIf="professor?.courses.length>3"><hr><p style="display:inline"><span>Programiranje 1</span> </p><br><br></div> 
+                    <div *ngIf="professor?.courses.length>4"><hr><p style="display:inline"><span>Osnove energetike i ekologije </span> </p><br><br></div> 
                 </div>
             </td>    
             <td>

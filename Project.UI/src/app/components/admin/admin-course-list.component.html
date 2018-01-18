@@ -24,21 +24,25 @@
                 <td><input type="checkbox" name="select" title="Odaberi" #One [checked]="checkedCourses[i]" (change)="select(One.checked,i)">
                     <label for="select"></label>
                 </td>
-                <td>Osnove elektrotehnike</td>
-                <td>DR1-4214</td> 
-                <td>Ljetni</td>   
+                <td>{{course?.courseName}}</td>
+                <td>{{course?.courseCode}}</td> 
+                <td>{{course?.semester}}.</td>   
                 <td style="text-align:left;">
-                    <p style="display:inline"><span>Iva Ivic</span><span href="" style="float:right" (click)="collapse(i)">&#9660;</span></p><br>
+                    <div *ngIf="course?.professorNames"><p  style="display:inline"><span>{{course?.professorNames[0]}}</span><span *ngIf="course?.professorNames.length>1" href="" style="float:right" (click)="collapse(i)">&#9660;</span></p><br>
                     <div  [hidden]="hiddenCourses[i]" class="hiddenCourses">
-                        <hr><p style="display:inline"><span>Ivica Ivica </span></p><br><br> 
-                        <hr><p style="display:inline"><span>Marko Maric </span> </p><br><br> 
-                        <hr><p style="display:inline"><span>Mirko Lukić</span> </p><br><br> 
-                        <hr><p style="display:inline"><span>Juraj Dobrila </span> </p><br><br> 
+                        <div *ngIf="course?.professorNames.length>1"><hr><p style="display:inline"><span>{{course?.professorNames[1]}}</span></p><br><br></div>
+                        <div *ngIf="course?.professorNames.length>2"><hr><p style="display:inline"><span>{{course?.professorNames[2]}} </span> </p><br><br> </div>
+                        <div *ngIf="course?.professorNames.length>3"><hr><p style="display:inline"><span>{{course?.professorNames[3]}}</span> </p><br><br> </div>
+                        <div *ngIf="course?.professorNames.length>4"><hr><p style="display:inline"><span>{{course?.professorNames[4]}} </span> </p><br><br> </div>
                     </div>
+                </div>
                 </td>   
                 <td style="text-align:left;">
-                        <p style="display:inline"><span>Marko Marulic</span></p><br>
-                        <hr><p style="display:inline"><span>Luka Lukić</span></p><br><br> 
+                    <div *ngIf="course?.studentsNames">
+                        <div *ngIf="course?.studentsNames.length>0"><p *ngIf="course?.studentsNames.length>0" style="display:inline"><span>{{course?.studentsNames[0]}}</span></p><br></div>
+                        <div *ngIf="course?.studentsNames.length>1"><hr><p style="display:inline"><span>{{course?.studentsNames[1]}}</span></p><br><br></div>
+                        <div *ngIf="course?.studentsNames.length>2"><hr><p style="display:inline"><span>{{course?.studentsNames[2]}}</span></p><br><br></div>                        
+                    </div>
                 </td>    
                 <td>
                     <button class="btn accept" style="margin-bottom:5px">Izmijeni</button>
@@ -47,5 +51,5 @@
             </tr>
         </ng-container>
     </table>
-    <button class="btn prof-add">Dodaj novi kolegij</button>
+    <button (click)="createCourse()" class="btn prof-add">Dodaj novi kolegij</button>
     

@@ -35,6 +35,7 @@ namespace Project.WebAPI.Controllers
         // GET: api/Application
         [HttpGet]
         [Route("get")]
+        [Authorize(Roles="Admin")]
         public IQueryable<Apply> GetApplications()
         {
             return db.Applications;

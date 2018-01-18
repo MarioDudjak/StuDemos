@@ -6,5 +6,8 @@ import { HttpService } from '../../../shared/';
 export class ProfessorService {
 	
     constructor(private httpService: HttpService) { }
-	
+    
+    async GetAllProfessors():Promise<any>{
+        return await this.httpService.getAll("accounts/professors");
+    }
 }

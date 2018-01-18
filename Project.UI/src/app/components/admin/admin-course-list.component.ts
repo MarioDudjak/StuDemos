@@ -16,8 +16,7 @@ export class AdminCourseListComponent implements OnInit{
     }
 
     async ngOnInit():Promise<void>{
-        console.log(await this.courseService.getAllCourses());
-        this.courses=new Array(4);
+        this.courses=await this.courseService.getAllCourses()
         this.hiddenCourses=new Array(this.courses.length);
         this.checkedCourses=new Array(this.courses.length);
         this.hiddenCourses.fill(true);

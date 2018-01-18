@@ -96,11 +96,14 @@ namespace Project.DAL.Migrations
                             if (course.Professors == null)
                             {
                                 Guid[] professorIds = new Guid[] { new Guid(professor.Id) };
+                                string[] professorNames = new string[] { String.Concat(professor.FirstName," ",professor.LastName)};
                                 course.Professors = professorIds;
+                                course.ProfessorsNames = professorNames;
                             }
                             else
                             {
                                 course.Professors.ToList().Add(new Guid(professor.Id));
+                                course.ProfessorsNames.ToList().Add(String.Concat(professor.FirstName, " ", professor.LastName));
                             }
                             context.Courses.AddOrUpdate(c => c.CourseName, course);
                         }
