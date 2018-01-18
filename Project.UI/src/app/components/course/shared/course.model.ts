@@ -4,13 +4,16 @@ export class Course {
     public Semester:string;
     public CourseName:string;
     public StudyLevel:string;
-    public professors:string[];
-    public students:string[];
+    public ProfessorsCodes:string;
 
-constructor(courseName:string,semester:string){
+constructor(courseName:string,semester:string,studyLevel:string,courseCode:string,professorsCodes:string){
     this.CourseName=courseName;
     this.Semester = semester;
+    this.StudyLevel=studyLevel;
+    this.CourseCode=courseCode;
+    this.ProfessorsCodes=professorsCodes;
 }
+
     
 }
 

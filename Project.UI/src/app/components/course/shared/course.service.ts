@@ -25,7 +25,7 @@ export class CourseService {
    }
 
    async DeleteCourse(courseID:string):Promise<any>{
-       return await this.httpService.delete("course/delete"+courseID);
+       return await this.httpService.delete("course/delete/"+courseID);
    }
 
 

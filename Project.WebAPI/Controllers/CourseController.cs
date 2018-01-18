@@ -12,6 +12,8 @@ using System.Web.Http.Description;
 using Project.DAL;
 using Project.DAL.Entities;
 using AutoMapper;
+using System.Data.Entity.Validation;
+using System.Data.Entity.Migrations;
 
 namespace Project.WebAPI.Controllers
 {
@@ -39,7 +41,7 @@ namespace Project.WebAPI.Controllers
         // GET: api/Course
         public IQueryable<Course> GetCourses()
         {
-            return db.Courses; //Ovo kasnije smisliti na koji način sve dohvatiti
+            return db.Courses; 
         }
 
         // GET: api/Course/5
@@ -99,18 +101,44 @@ namespace Project.WebAPI.Controllers
         [ResponseType(typeof(Course))]
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        [Route("create")]
+        [Route("create", Name = "CreateCourse")]
         public async Task<IHttpActionResult> PostCourse(Course course)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+            var professorsCodes = course.ProfessorsCodes;
+            string[] courseProfessors = professorsCodes.Split(',');
+            foreach (var item in courseProfessors)
+            {
+                var users = db.Users.Where(c => c.IdentificationNumber == item);
+                ApplicationUser professor = null;
+                if (users.Count() != 0) {
+                    professor = db.Users.Where(c => c.IdentificationNumber == item).First();
+                }
 
+                if (professor != null)
+                {
+                    if (course.Professors == null)
+                    {
+                        course.Professors = professor.Id;
+                        course.ProfessorsNames = String.Concat(professor.FirstName, " ", professor.LastName);
+                    }
+                    else
+                    {
+                        course.Professors = String.Concat(course.Professors, ",", professor.Id);
+                        course.ProfessorsNames =String.Concat(course.ProfessorsNames,',',professor.FirstName, " ", professor.LastName);
+                    }
+
+                    professor.Courses.ToList().Add(course);
+                    db.Users.AddOrUpdate(user => user.UserName, professor);
+                }
+                
+            }
             db.Courses.Add(course);
             await db.SaveChangesAsync();
-
-            return CreatedAtRoute("DefaultApi", new { id = course.CourseID }, course);
+            return CreatedAtRoute("CreateCourse", new { id = course.CourseID }, course);
         }
 
         // DELETE: api/Course/5

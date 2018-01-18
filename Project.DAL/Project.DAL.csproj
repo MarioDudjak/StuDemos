@@ -111,6 +111,14 @@
     <Compile Include="Migrations\201801172037540_CourseProfessorNames.Designer.cs">
       <DependentUpon>201801172037540_CourseProfessorNames.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801182017451_CourseChanged.cs" />
+    <Compile Include="Migrations\201801182017451_CourseChanged.Designer.cs">
+      <DependentUpon>201801182017451_CourseChanged.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801182052381_StringsArray.cs" />
+    <Compile Include="Migrations\201801182052381_StringsArray.Designer.cs">
+      <DependentUpon>201801182052381_StringsArray.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StuDemosDbContext.cs" />
@@ -128,6 +136,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801172037540_CourseProfessorNames.resx">
       <DependentUpon>201801172037540_CourseProfessorNames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801182017451_CourseChanged.resx">
+      <DependentUpon>201801182017451_CourseChanged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801182052381_StringsArray.resx">
+      <DependentUpon>201801182052381_StringsArray.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\courses.xlsx" />
     <EmbeddedResource Include="Migrations\courses.csv" />
