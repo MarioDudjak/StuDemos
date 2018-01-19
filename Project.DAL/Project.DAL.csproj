@@ -88,12 +88,14 @@
     <Compile Include="Entities\ApplicationUser.cs" />
     <Compile Include="Entities\Apply.cs" />
     <Compile Include="Entities\Course.cs" />
+    <Compile Include="Entities\CourseTerm.cs" />
     <Compile Include="Entities\Selection.cs" />
     <Compile Include="IDbContext.cs" />
     <Compile Include="Identity\ApplicationUserManager.cs" />
     <Compile Include="Identity\RoleManager.cs" />
     <Compile Include="Mappings\ApplyEntityMap.cs" />
     <Compile Include="Mappings\CourseEntityMap.cs" />
+    <Compile Include="Mappings\CourseTermEntityMap.cs" />
     <Compile Include="Mappings\SelectionEntityMap.cs" />
     <Compile Include="Migrations\201801162028165_init.cs" />
     <Compile Include="Migrations\201801162028165_init.Designer.cs">
@@ -119,6 +121,26 @@
     <Compile Include="Migrations\201801182052381_StringsArray.Designer.cs">
       <DependentUpon>201801182052381_StringsArray.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801191919375_Apply.cs" />
+    <Compile Include="Migrations\201801191919375_Apply.Designer.cs">
+      <DependentUpon>201801191919375_Apply.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801192002274_Branch.cs" />
+    <Compile Include="Migrations\201801192002274_Branch.Designer.cs">
+      <DependentUpon>201801192002274_Branch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801192042533_CourseTerm.cs" />
+    <Compile Include="Migrations\201801192042533_CourseTerm.Designer.cs">
+      <DependentUpon>201801192042533_CourseTerm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801192051418_CourseTermStudentID.cs" />
+    <Compile Include="Migrations\201801192051418_CourseTermStudentID.Designer.cs">
+      <DependentUpon>201801192051418_CourseTermStudentID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801192146116_courseTermChanged.cs" />
+    <Compile Include="Migrations\201801192146116_courseTermChanged.Designer.cs">
+      <DependentUpon>201801192146116_courseTermChanged.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StuDemosDbContext.cs" />
@@ -142,6 +164,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801182052381_StringsArray.resx">
       <DependentUpon>201801182052381_StringsArray.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801191919375_Apply.resx">
+      <DependentUpon>201801191919375_Apply.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801192002274_Branch.resx">
+      <DependentUpon>201801192002274_Branch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801192042533_CourseTerm.resx">
+      <DependentUpon>201801192042533_CourseTerm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801192051418_CourseTermStudentID.resx">
+      <DependentUpon>201801192051418_CourseTermStudentID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801192146116_courseTermChanged.resx">
+      <DependentUpon>201801192146116_courseTermChanged.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\courses.xlsx" />
     <EmbeddedResource Include="Migrations\courses.csv" />

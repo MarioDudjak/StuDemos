@@ -32,9 +32,11 @@ namespace Project.DAL.Entities
             return userIdentity;
         }
 
-        public virtual ICollection<Apply> Applies { get; set; }
+        public  ICollection<Apply> Applies { get; set; }
 
-        public virtual ICollection<Course> Courses { get; set; }
+        public  ICollection<Course> Courses { get; set; }
+
+        public string Branch { get; set; }
 
 
     }

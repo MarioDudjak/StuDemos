@@ -103,7 +103,7 @@ namespace Project.WebAPI.Controllers
                     }
                     else
                     {
-                        professor.Courses.ToList().Add(course);
+                        professor.Courses.Add(course);
                     }
                     db.Users.AddOrUpdate(user => user.UserName, professor);
                 }
@@ -170,7 +170,7 @@ namespace Project.WebAPI.Controllers
                         course.ProfessorsNames =String.Concat(course.ProfessorsNames,',',professor.FirstName, " ", professor.LastName);
                     }
 
-                    professor.Courses.ToList().Add(course);
+                    professor.Courses.Add(course);
                     db.Users.AddOrUpdate(user => user.UserName, professor);
                 }
                 

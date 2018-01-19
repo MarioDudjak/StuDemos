@@ -20,6 +20,7 @@ namespace Project.DAL.Migrations
 
         protected override void Seed(Project.DAL.StuDemosDbContext context)
         {
+            
             //  This method will be called after migrating to the latest version.
            
             var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new StuDemosDbContext()));
@@ -109,7 +110,7 @@ namespace Project.DAL.Migrations
                         context.SaveChanges();
                     }
                 }
-           }
+           } 
            
         }
     }

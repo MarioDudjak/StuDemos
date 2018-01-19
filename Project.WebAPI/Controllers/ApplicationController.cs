@@ -56,6 +56,20 @@ namespace Project.WebAPI.Controllers
             return Ok(apply);
         }
 
+        [ResponseType(typeof(Apply))]
+        [HttpGet]
+        [Route("getbystudentid/{id}")]
+        public async Task<IHttpActionResult> GetStudentApply(string id)
+        {
+            Apply apply = await db.Applications.Where(a => a.StudentID == id).FirstAsync();
+            if (apply == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(apply);
+        }
+
         // PUT: api/Application/5
         [ResponseType(typeof(void))]
         [HttpPut]
@@ -108,25 +122,19 @@ namespace Project.WebAPI.Controllers
             }
 
             db.Applications.Add(apply);
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbEntityValidationException e)
-            {
+            await db.SaveChangesAsync();
 
-            }
-    
-            var student = db.Users.Find(apply.StudentID.ToString());
+            var student = db.Users.Where(u => u.Id == apply.StudentID.ToString()).First();
             if (student.Applies == null)
             {
-                Apply[] applies = new Apply[] { apply };
+                ICollection<Apply> applies = new Apply[] { apply };
                 student.Applies = applies;
             }
             else
             {
-                student.Applies.ToList().Add(apply);
+                student.Applies.Add(apply);
             }
+
             db.Users.AddOrUpdate(user => user.UserName, student);
             await db.SaveChangesAsync();
             

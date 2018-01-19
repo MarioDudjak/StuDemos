@@ -19,7 +19,7 @@ namespace Project.DAL.Entities
         public int ApplyStatus { get; set; }
         public DateTime ApplyDate { get; set; }
         public virtual ICollection<Selection> Selections { get; set; }
-        public Guid StudentID { get; set; }
+        public string StudentID { get; set; }
 
     }
 }
