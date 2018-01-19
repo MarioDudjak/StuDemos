@@ -1,6 +1,8 @@
 import {Component,ViewEncapsulation, OnInit} from '@angular/core';
 import {CourseService,Course} from '../course/shared';
 import { NgForm } from '@angular/forms';
+import {Router} from '@angular/router';
+import {UtilityService} from '../../shared';
 
 @Component({
     selector: 'admin-course-list',
@@ -13,9 +15,11 @@ export class AdminCourseListComponent implements OnInit{
     courses:any[];
     hiddenCourses:boolean[]=[];
     checkedCourses:boolean[]=[];
-    newCourse: any = {};    
     loading = false;
-    constructor(private courseService:CourseService){
+    sortAsc ={};
+    constructor(private courseService:CourseService,
+    private router:Router,
+    private utilityService: UtilityService){
         
     }
 
@@ -26,11 +30,17 @@ export class AdminCourseListComponent implements OnInit{
             this.courses[i]["professorsNames"]=this.courses[i]["professorsNames"].split(',');
             }
         }
-        
+        this.courses=this.utilityService.sortArray(this.courses,"courseName",true);
         this.hiddenCourses=new Array(this.courses.length);
         this.checkedCourses=new Array(this.courses.length);
         this.hiddenCourses.fill(true);
         this.checkedCourses.fill(false);
+        this.sortAsc ={
+            "courseName":true,
+            "courseCode":true,
+            "semester":true,
+            "studyLevel":true,
+        };
     }
 
     private collapse(i){
@@ -45,18 +55,19 @@ export class AdminCourseListComponent implements OnInit{
         this.checkedCourses[index]=value;
     }
     
-    public async createCourse(f:NgForm):Promise<any>{
-        this.loading = true;
-        let newCourse = new Course(this.newCourse.courseName,this.newCourse.semester,this.newCourse.studyLevel,this.newCourse.courseCode, this.newCourse.professors);
-        let course = await this.courseService.CreateCourse(newCourse);
-        f.resetForm();
-        this.ngOnInit();
-        this.loading=false;
+    public async CreateCourse():Promise<any>{
+        this.courseService.changeCourse({});        
+        this.router.navigate(["/course/create/"]);        
     }
 
     public async DeleteCourse(course:any):Promise<any>{
         await this.courseService.DeleteCourse(course.courseID);
         this.ngOnInit();
+    }
+
+    public async EditCourse(course:any):Promise<any>{
+        this.courseService.changeCourse(course);
+        this.router.navigate(["/course/create/"]);
     }
 
     public async DeleteCheckedCourses():Promise<any>{
@@ -66,6 +77,13 @@ export class AdminCourseListComponent implements OnInit{
             }
         }
         this.ngOnInit();
+    }
+
+    public sortCourses(key:string){
+        this.hiddenCourses.fill(true);
+        this.checkedCourses.fill(false);
+        this.courses = this.utilityService.sortArray(this.courses,key,this.sortAsc[key]);
+        this.sortAsc[key] = !this.sortAsc[key];
     }
 }
 

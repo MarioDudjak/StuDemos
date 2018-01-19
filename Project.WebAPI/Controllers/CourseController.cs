@@ -70,7 +70,46 @@ namespace Project.WebAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
+            course.Professors = null;
+            course.ProfessorsNames = null;
+            var professorsCodes = course.ProfessorsCodes;
+            string[] courseProfessors = professorsCodes.Split(',');
+            foreach (var item in courseProfessors)
+            {
+                var users = db.Users.Where(c => c.IdentificationNumber == item);
+                ApplicationUser professor = null;
+                if (users.Count() != 0)
+                {
+                    professor = db.Users.Where(c => c.IdentificationNumber == item).First();
+                }
 
+                if (professor != null)
+                {
+                    if (course.Professors == null)
+                    {
+                        course.Professors = professor.Id;
+                        course.ProfessorsNames = String.Concat(professor.FirstName, " ", professor.LastName);
+                    }
+                    else
+                    {
+                        course.Professors = String.Concat(course.Professors, ",", professor.Id);
+                        course.ProfessorsNames = String.Concat(course.ProfessorsNames, ',', professor.FirstName, " ", professor.LastName);
+                    }
+
+                    if (professor.Courses.ToList().Contains(course))
+                    {
+                        var i = professor.Courses.ToList().FindIndex(c => c.CourseID == course.CourseID);
+                        professor.Courses.ToList()[i] = course; 
+                    }
+                    else
+                    {
+                        professor.Courses.ToList().Add(course);
+                    }
+                    db.Users.AddOrUpdate(user => user.UserName, professor);
+                }
+
+            }
+           
             if (id != course.CourseID)
             {
                 return BadRequest();
@@ -159,6 +198,8 @@ namespace Project.WebAPI.Controllers
 
             return Ok(course);
         }
+
+        
 
         protected override void Dispose(bool disposing)
         {
