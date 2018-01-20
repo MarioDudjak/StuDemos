@@ -147,6 +147,7 @@ namespace Project.WebAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
+
             var professorsCodes = course.ProfessorsCodes;
             string[] courseProfessors = professorsCodes.Split(',');
             foreach (var item in courseProfessors)

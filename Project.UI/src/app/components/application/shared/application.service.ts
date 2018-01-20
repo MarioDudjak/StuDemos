@@ -17,7 +17,7 @@ export class ApplicationService {
    }
 
    async UpdateApplication(apply:Apply):Promise<any>{
-       return await this.httpService.put(apply,"apply/update/"+apply.ApplyID);
+       return await this.httpService.put(apply,"apply/update/"+apply["applyID"]);
    }
 
    async CreateSelection(selection:any):Promise<any>{
@@ -27,8 +27,8 @@ export class ApplicationService {
        return await this.httpService.post(apply,"apply/create");
    }
 
-   async DeleteCourse(courseID:string):Promise<any>{
-       return await this.httpService.delete("course/delete"+courseID);
+   async DeleteApplication(applyID:string):Promise<any>{
+       return await this.httpService.delete("apply/delete/"+applyID);
    }
 
 

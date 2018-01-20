@@ -38,3 +38,6 @@ tr:nth-child(even) {
     margin-left:5%;    
 }
 
+.accepted{
+    background-color: #81F781;
+}

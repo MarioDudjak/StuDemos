@@ -5,11 +5,17 @@ import { Student } from "../../student/shared/student.model";
 import { Professor } from "../../professor/shared/professor.model";
 import { HttpService } from '../../../shared/';
 import { parseString } from "xml2js";
+import {StudentService} from '../../student/shared';
+import {CourseService} from '../../course/shared';
 
 @Injectable()
 export class ScheduleService {
-	private apiUrl = "http://localhost:50968/api/student";
-    constructor(private httpService: HttpService, private http:Http) { }
+    private apiUrl = "http://localhost:50968/api/student";
+    courseID:string;
+    constructor(private httpService: HttpService, 
+        private http:Http,
+        private studentService:StudentService,
+        private courseService:CourseService) { }
     
     //Get schedule data
     public async getSchedule(scheduleUrl:string) : Promise<Object> {
@@ -28,22 +34,45 @@ export class ScheduleService {
 
     //Get professor id
     public async getProfessorId(): Promise<string> {
-        return "259";
-    }
-
-    //Get this student details
-    public async getStudentDetails() : Promise<Object> {
-        return {"branch":"DRC","semester":"3","demonstrationCode":"P301","already-chosen":[{"date":"10.01.2018.","time":"15:00","student":"st21"}]};
+        return localStorage.getItem("userId");
     }
 
     //Get this student id
     public async getStudentId() : Promise<string> {
-        return "st12";
+        return localStorage.getItem("userId");
     }
 
+    //Get this student details
+    public async getStudentDetails() : Promise<Object> {
+        let studentID= localStorage.getItem("userId");
+        let student = await this.getStudentByIdAsync(studentID);
+        let studentApply = await this.studentService.getStudentApply(studentID);
+        let course = await this.courseService.getCourseById(studentApply["selections"][0]["courseID"]);
+        this.courseID = studentApply["selections"][0]["courseID"];
+        let courseTerm = await this.httpService.getById(studentID,"courseTerm/getbystudentid");
+
+        return {"branch":student["branch"],
+        "semester":course["semester"],
+        "demonstrationCode":course["courseCode"],
+        "already-chosen":[
+            {"date":courseTerm["date"],
+            "time":courseTerm["time"],
+            "student":studentID}]
+    };
+    }
+
+
     //Set student as demonstrator
-    public setMyDemoCourse(courseCode:string, courseDate:string, timeStart:string) {
-        console.log(courseCode, courseDate, timeStart);
+    public async setMyDemoCourse(courseCode:string, courseDate:string, timeStart:string) {
+        let courseTerm = {
+            "courseCode":courseCode,
+            "date":courseDate,
+            "time":timeStart,
+            "courseID":this.courseID,
+            "studentID":localStorage.getItem("userId")
+        }
+        let response = await this.httpService.post(courseTerm,"courseTerm/create");
+        return response;
     }
 
     public async getStudentByIdAsync(id:string):Promise<any>{

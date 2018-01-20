@@ -141,6 +141,10 @@
     <Compile Include="Migrations\201801192146116_courseTermChanged.Designer.cs">
       <DependentUpon>201801192146116_courseTermChanged.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801201004435_ApplyUserRelation.cs" />
+    <Compile Include="Migrations\201801201004435_ApplyUserRelation.Designer.cs">
+      <DependentUpon>201801201004435_ApplyUserRelation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StuDemosDbContext.cs" />
@@ -179,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801192146116_courseTermChanged.resx">
       <DependentUpon>201801192146116_courseTermChanged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801201004435_ApplyUserRelation.resx">
+      <DependentUpon>201801201004435_ApplyUserRelation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\courses.xlsx" />
     <EmbeddedResource Include="Migrations\courses.csv" />

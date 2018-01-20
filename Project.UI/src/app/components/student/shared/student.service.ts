@@ -8,6 +8,8 @@ import {CourseService} from '../../course/shared';
 
 @Injectable()
 export class StudentService {
+    courseID:string;
+    
     constructor(private httpService: HttpService, 
         private http:Http,
         private courseService:CourseService) 
@@ -34,6 +36,7 @@ export class StudentService {
         let student = await this.getStudentByIdAsync(studentID);
         let studentApply = await this.getStudentApply(studentID);
         let course = await this.courseService.getCourseById(studentApply["selections"][0]["courseID"]);
+        this.courseID= studentApply["selections"][0]["courseID"];
         let courseTerm = await this.httpService.getById(studentID,"courseTerm/getbystudentid");
 
         return {"branch":student["branch"],
@@ -52,12 +55,12 @@ export class StudentService {
     }
 
     //Set student as demonstrator
-    public async setMyDemoCourse(courseCode:string, courseID:string, courseDate:string, timeStart:string) {
+    public async setMyDemoCourse(courseCode:string, courseDate:string, timeStart:string) {
         let courseTerm = {
             "courseCode":courseCode,
             "date":courseDate,
             "time":timeStart,
-            "courseID":courseID,
+            "courseID":this.courseID,
             "studentID":localStorage.getItem("userId")
         }
         let response = await this.httpService.post(courseTerm,"courseTerm/create");

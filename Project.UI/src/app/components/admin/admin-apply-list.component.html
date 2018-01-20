@@ -1,35 +1,36 @@
-<form class="bulkActions" display="block">
+<form *ngIf="applications" class="bulkActions" display="block">
     
-    <select display="block">
-        <option value="accept" selected>Prihvati</option>
-        <option value="decline" >Odbij</option>
-        <option value="delete" >Obriši</option>        
+    <select  (change)="onSelect($event.target.value)" display="block">
+        <option [ngValue]="selectedValue" value="accept" selected>Prihvati</option>
+        <option [ngValue]="selectedValue" value="decline" >Odbij</option>
     </select>
-    <button style="margin-left:5px">Primijeni</button>
+    <button (click)="ApplySelected()" style="margin-left:5px">Primijeni</button>
 </form>
 <table>
     <tr>
         <th width="2%" style="font-size:12px"><input type="checkbox" #All (click)="selectAll(All.checked)" name="select" title="Odaberi sve" >
             <label for="select">Odaberi sve</label>
         </th>
-        <th>Ime i prezime studenta</th>
-        <th>Datum prijave</th>
-        <th>Prosjek ocjena</th>
-        <th width="10%">Željeni broj sati demonstrature</th>     
+        <th><a (click)="sortApplies('firstName')" href="javascript:void(0)">Ime i prezime studenta</a></th>
+        <th><a (click)="sortApplies('applyDate')" href="javascript:void(0)">Datum prijave</a></th>
+        <th><a (click)="sortApplies('gradeAverage')" href="javascript:void(0)">Prosjek ocjena</a></th>
+        <th width="10%"><a (click)="sortApplies('numberOfApplyHours')" href="javascript:void(0)">Željeni broj sati demonstrature</a></th>     
         <th>Prioritet kolegija</th>   
         <th>Opcije</th>
         
     </tr>
     <ng-container *ngFor="let apply of applications;  let i = index" [attr.data-index]="i">
         <tr>
-            <td><input type="checkbox" name="select" title="Odaberi" #One [checked]="checkedApplications[i]" (change)="select(One.checked,i)">
+            <td  [ngClass]="apply?.applyStatus == 0 ? 'pending': 'accepted'">
+                <input  type="checkbox" name="select" title="Odaberi" #One [checked]="checkedApplications[i]" (change)="select(One.checked,i)">
                 <label for="select"></label>
             </td>
-            <td>{{apply?.firstName}} {{apply?.lastName}}</td>
-            <td>{{apply?.applyDate | date: 'dd/MM/yyyy'}}</td>
-            <td>{{apply?.gradeAverage}}</td>
-            <td>{{apply?.numberOfApplyHours}}</td>    
-            <td style="text-align:left;">
+            
+            <td [ngClass]="apply?.applyStatus == 0 ? 'pending': 'accepted'">{{apply?.firstName}} {{apply?.lastName}}</td>
+            <td [ngClass]="apply?.applyStatus == 0 ? 'pending': 'accepted'">{{apply?.applyDate | date: 'dd/MM/yyyy'}}</td>
+            <td [ngClass]="apply?.applyStatus == 0 ? 'pending': 'accepted'">{{apply?.gradeAverage}}</td>
+            <td [ngClass]="apply?.applyStatus == 0 ? 'pending': 'accepted'">{{apply?.numberOfApplyHours}}</td>    
+            <td style="text-align:left;" [ngClass]="apply?.applyStatus == 0 ? 'pending': 'accepted'">
                 <p style="display:inline"><span>1. {{apply?.selections[0].courseName}}</span><span *ngIf="apply?.selections.length>1" href="" style="float:right" (click)="collapse(i)">&#9660;</span></p><br>
                 <div  [hidden]="hiddenCourses[i]" class="hiddenCourses">
                     <div *ngIf="apply?.selections.length>1"><hr><p style="display:inline"><span>2. {{apply?.selections[1].courseName}} </span> <span style="float:right; margin-right:15%"><span>&#9651;</span>  <span>&#9661;</span></span></p><br><br></div> 
@@ -38,9 +39,11 @@
                     <div *ngIf="apply?.selections.length>4"><hr><p  style="display:inline"><span>5. {{apply?.selections[4].courseName}} </span> <span style="float:right; margin-right:15%"><span>&#9651;</span>  <span>&#9661;</span></span></p><br><br></div>
                 </div>
             </td>    
-            <td>
-                <button class="btn accept" style="margin-bottom:5px">Potvrdi</button>
-                <button class="btn decline">Odbij</button>
+            <td [ngClass]="apply?.applyStatus == 0 ? 'pending': 'accepted'">
+                <button *ngIf="apply?.applyStatus==0" (click)="AcceptApply(apply)" class="btn accept" style="margin-bottom:5px">Potvrdi</button>
+                <button *ngIf="apply?.applyStatus==0" (click)="DeclineApply(apply)" class="btn decline">Odbij</button>
+                <button *ngIf="apply?.applyStatus==1" (click)="DeclineApply(apply)" class="btn decline">Odbij</button>
+                
             </td>
         </tr>
     </ng-container>

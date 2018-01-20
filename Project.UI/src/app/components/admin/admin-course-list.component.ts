@@ -29,6 +29,9 @@ export class AdminCourseListComponent implements OnInit{
             if(this.courses[i]["professorsNames"]){
             this.courses[i]["professorsNames"]=this.courses[i]["professorsNames"].split(',');
             }
+            if(this.courses[i]["studentsNames"]){
+                this.courses[i]["studentsNames"]=this.courses[i]["studentsNames"].split(',');
+                }
         }
         this.courses=this.utilityService.sortArray(this.courses,"courseName",true);
         this.hiddenCourses=new Array(this.courses.length);

@@ -26,7 +26,6 @@ namespace Project.DAL
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ApplicationUser>().HasMany(p => p.Courses).WithOptional();
-            modelBuilder.Entity<ApplicationUser>().HasMany(p => p.Applies).WithOptional();
 
             modelBuilder.Configurations.Add(new ApplyEntityMap());
             modelBuilder.Configurations.Add(new SelectionEntityMap());

@@ -65,7 +65,7 @@ export class ScheduleComponent implements OnInit {
 
   //Set student details
   private setStudentData(student:Object, id:string) {
-    this.studentGroup = student["branch"];
+    this.studentGroup = student["branch"]; //ovo još nije ubačeno u Register formu, pa si hardkodiraj za probu, to Tomić mora
     this.demoCode = student["demonstrationCode"];
     if (this.firstYearSemesters.includes(student["semester" ])) {
       this.studentSemester = this.firstYearSemesters;
