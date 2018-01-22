@@ -1,6 +1,8 @@
 import {Component,ViewEncapsulation, OnInit} from '@angular/core';
 import {ApplicationService} from '../application/shared';
 import {UtilityService} from '../../shared';
+import {Router} from '@angular/router';
+
 @Component({
     selector: 'admin-apply-list',
     templateUrl: './admin-apply-list.component.html',
@@ -14,14 +16,24 @@ export class AdminApplyListComponent implements OnInit{
     checkedApplications:boolean[]=[]
     sortAsc ={};
     selectedValue:string="accept";
-    
+    loadingMessage="Dohvaćanje studentskih prijava...";
+    loading=true;
     constructor(private applicationService:ApplicationService,
-    private utilityService:UtilityService){
+    private utilityService:UtilityService,
+    private router:Router){
         
     }
 
     async ngOnInit():Promise<void>{
-        this.applications=await this.applicationService.getAllApplications();
+        
+        try{
+            this.applications=await this.applicationService.getAllApplications();
+            this.loading=false;
+        }catch(e){
+            this.loadingMessage=e;
+            this.loading=false;
+        }
+        
         this.hiddenCourses=new Array(this.applications.length);
         this.checkedApplications=new Array(this.applications.length);
         this.hiddenCourses.fill(true);
@@ -48,16 +60,15 @@ export class AdminApplyListComponent implements OnInit{
     }
 
     public async AcceptApply(apply){
-        if(confirm("Jeste li sigurni da želite prihvatiti demonstraturu za studenta: "+apply["firstName"]+" "+ apply["lastName"])){
-            apply["applyStatus"]=1;
-            await this.applicationService.UpdateApplication(apply);
-            this.ngOnInit();
-        }
-
+        this.applicationService.changeCourse(apply);
+        this.router.navigate(["/apply/confirm/"]);
+    
     }
 
     public async DeclineApply(apply){
         if(confirm("Jeste li sigurni da želite odbiti demonstraturu za studenta: "+apply["firstName"]+" "+ apply["lastName"])){
+            this.loadingMessage="U tijeku odbijanje demonstrature...";
+            this.loading=true;
             await this.applicationService.DeleteApplication(apply["applyID"]);
             this.ngOnInit();
         }
@@ -75,22 +86,42 @@ export class AdminApplyListComponent implements OnInit{
     }
     private async ApplySelected(){
         if(this.selectedValue=="accept"){
-            for(var i =0;i<this.checkedApplications.length;i++){
-                if(this.checkedApplications[i]){
-                    this.applications[i]["applyStatus"]=1;
-                    await this.applicationService.UpdateApplication(this.applications[i]);
+            if (confirm("Jeste li sigurni da želite potvrditi odabrane prijave?")) {
+                this.loadingMessage="U tijeku prihvaćenje odabranih prijava...";
+                this.loading=true;
+                for(var i =0;i<this.checkedApplications.length;i++){
+                    if(this.checkedApplications[i]){
+                        this.applications[i]["applyStatus"]=1;
+                        await this.applicationService.UpdateApplication(this.applications[i]);
+                    }
                 }
-            }
+            } 
         }
         else{
+            if (confirm("Jeste li sigurni da želite ukloniti odabrane prijave?")) {  
+            this.loadingMessage="U tijeku odbijanje odabranih prijava...";
+            this.loading=true;              
             for(var i =0;i<this.checkedApplications.length;i++){
                 if(this.checkedApplications[i]){
                     await this.applicationService.DeleteApplication(this.applications[i]["applyID"]);
                 }
             }
         }
-        this.ngOnInit();
-        
+        }
+        this.ngOnInit();      
+    }
+
+    private changePriority(applyIndex,selectionIndex,up){
+        if(up){
+            var temp= this.applications[applyIndex]["selections"][selectionIndex];
+            this.applications[applyIndex]["selections"][selectionIndex] = this.applications[applyIndex]["selections"][selectionIndex-1];
+            this.applications[applyIndex]["selections"][selectionIndex-1]=temp;
+        }
+        else{
+            var temp= this.applications[applyIndex]["selections"][selectionIndex];
+            this.applications[applyIndex]["selections"][selectionIndex] = this.applications[applyIndex]["selections"][selectionIndex+1];
+            this.applications[applyIndex]["selections"][selectionIndex+1]=temp;
+        }
     }
 }
 

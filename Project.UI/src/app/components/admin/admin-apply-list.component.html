@@ -1,3 +1,8 @@
+<div align="center" *ngIf="loading" class="loading">
+    <img  src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />        
+    <p>{{loadingMessage}}</p>
+</div>
+
 <form *ngIf="applications" class="bulkActions" display="block">
     
     <select  (change)="onSelect($event.target.value)" display="block">
@@ -6,7 +11,7 @@
     </select>
     <button (click)="ApplySelected()" style="margin-left:5px">Primijeni</button>
 </form>
-<table>
+<table *ngIf="applications">
     <tr>
         <th width="2%" style="font-size:12px"><input type="checkbox" #All (click)="selectAll(All.checked)" name="select" title="Odaberi sve" >
             <label for="select">Odaberi sve</label>
@@ -33,10 +38,10 @@
             <td style="text-align:left;" [ngClass]="apply?.applyStatus == 0 ? 'pending': 'accepted'">
                 <p style="display:inline"><span>1. {{apply?.selections[0].courseName}}</span><span *ngIf="apply?.selections.length>1" href="" style="float:right" (click)="collapse(i)">&#9660;</span></p><br>
                 <div  [hidden]="hiddenCourses[i]" class="hiddenCourses">
-                    <div *ngIf="apply?.selections.length>1"><hr><p style="display:inline"><span>2. {{apply?.selections[1].courseName}} </span> <span style="float:right; margin-right:15%"><span>&#9651;</span>  <span>&#9661;</span></span></p><br><br></div> 
-                    <div *ngIf="apply?.selections.length>2"><hr><p  style="display:inline"><span>3. {{apply?.selections[2].courseName}}</span> <span style="float:right; margin-right:15%"><span>&#9651;</span>  <span>&#9661;</span></span></p><br><br></div>
-                    <div *ngIf="apply?.selections.length>3"><hr><p  style="display:inline"><span>4. {{apply?.selections[3].courseName}}</span> <span style="float:right; margin-right:15%"><span>&#9651;</span>  <span>&#9661;</span></span></p><br><br></div>
-                    <div *ngIf="apply?.selections.length>4"><hr><p  style="display:inline"><span>5. {{apply?.selections[4].courseName}} </span> <span style="float:right; margin-right:15%"><span>&#9651;</span>  <span>&#9661;</span></span></p><br><br></div>
+                    <div *ngIf="apply?.selections.length>1"><hr><p style="display:inline"><span>2. {{apply?.selections[1].courseName}} </span> <span style="float:right; margin-right:15%"><span (click)="changePriority(i,1,true)">&#9651;</span>  <span (click)="changePriority(i,1,false)">&#9661;</span></span></p><br><br></div> 
+                    <div *ngIf="apply?.selections.length>2"><hr><p  style="display:inline"><span>3. {{apply?.selections[2].courseName}}</span> <span style="float:right; margin-right:15%"><span (click)="changePriority(i,2,true)">&#9651;</span>  <span (click)="changePriority(i,1,false)">&#9661;</span></span></p><br><br></div>
+                    <div *ngIf="apply?.selections.length>3"><hr><p  style="display:inline"><span>4. {{apply?.selections[3].courseName}}</span> <span style="float:right; margin-right:15%"><span (click)="changePriority(i,3,true)">&#9651;</span>  <span (click)="changePriority(i,1,false)">&#9661;</span></span></p><br><br></div>
+                    <div *ngIf="apply?.selections.length>4"><hr><p  style="display:inline"><span>5. {{apply?.selections[4].courseName}} </span> <span style="float:right; margin-right:15%"><span (click)="changePriority(i,4,true)">&#9651;</span>  <span (click)="changePriority(i,1,false)">&#9661;</span></span></p><br><br></div>
                 </div>
             </td>    
             <td [ngClass]="apply?.applyStatus == 0 ? 'pending': 'accepted'">

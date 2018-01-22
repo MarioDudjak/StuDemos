@@ -25,7 +25,7 @@
                 </div>
                 <div  style="margin:2%" [ngClass]="{ 'has-error': f.submitted && !professors.valid }">
                         <label for="professors">Šifre profesora na kolegiju:</label>
-                        <input style="margin-left:1%" type="text" class="form-control" name="professors" [(ngModel)]="newCourse.professorsCodes" #professors="ngModel" required />
+                        <input style="margin-left:1%" type="text" class="form-control" name="professors" [(ngModel)]="newCourse.professorsCodes" #professors="ngModel" placeholder="Npr. 312,38,122" required />
                         <div *ngIf="f.submitted && !professors.valid" class="help-block">Obavezno je unijeti barem jednog profesora.</div>
                     </div>
                     

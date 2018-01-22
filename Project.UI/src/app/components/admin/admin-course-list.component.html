@@ -1,3 +1,8 @@
+<div align="center" *ngIf="loading" class="loading">
+        <img  src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />        
+        <p>{{loadingMessage}}</p>
+    </div>
+
 <form *ngIf="courses" class="bulkActions" display="block">
     
     <select display="block">
@@ -36,7 +41,8 @@
                     <div *ngIf="course?.professorsNames.length>3"><hr><p style="display:inline"><span>{{course?.professorsNames[3]}}</span> </p><br><br> </div>
                     <div *ngIf="course?.professorsNames.length>4"><hr><p style="display:inline"><span>{{course?.professorsNames[4]}} </span> </p><br><br> </div>
                 </div>
-            </div>
+            </div>            
+                <div *ngIf="!course?.professorsNames"><p  style="display:inline">Za ovaj kolegij nisu uneseni profesori</p><br></div>          
             </td>   
             <td style="text-align:left;">
                 <div *ngIf="course?.studentsNames">
@@ -44,6 +50,7 @@
                     <div *ngIf="course?.studentsNames.length>1"><hr><p style="display:inline"><span>{{course?.studentsNames[1]}}</span></p><br><br></div>
                     <div *ngIf="course?.studentsNames.length>2"><hr><p style="display:inline"><span>{{course?.studentsNames[2]}}</span></p><br><br></div>                        
                 </div>
+                <div *ngIf="!course?.studentsNames"><p *ngIf="!course?.studentsNames" style="display:inline"><span>Ovaj kolegij nema demonstratora</span></p><br></div>                                        
             </td>    
             <td>
                 <button  (click) = "EditCourse(course)" class="btn accept" style="margin-bottom:5px">Izmijeni</button>

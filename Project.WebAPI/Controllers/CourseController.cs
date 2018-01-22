@@ -70,6 +70,10 @@ namespace Project.WebAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
+            if (id != course.CourseID)
+            {
+                return BadRequest();
+            }
             course.Professors = null;
             course.ProfessorsNames = null;
             var professorsCodes = course.ProfessorsCodes;
@@ -96,24 +100,37 @@ namespace Project.WebAPI.Controllers
                         course.ProfessorsNames = String.Concat(course.ProfessorsNames, ',', professor.FirstName, " ", professor.LastName);
                     }
 
-                    if (professor.Courses.ToList().Contains(course))
+                    if (professor.Courses == null)
                     {
-                        var i = professor.Courses.ToList().FindIndex(c => c.CourseID == course.CourseID);
-                        professor.Courses.ToList()[i] = course; 
+                        professor.Courses = new Course[] { course };
                     }
-                    else
+                    else 
                     {
-                        professor.Courses.Add(course);
+                        var i = -1;
+                        try
+                        {
+                            i = professor.Courses.ToList().FindIndex(c => c.CourseID == course.CourseID);
+                        }
+                        catch(Exception e)
+                        {
+                            i = -1;
+                        }
+                        if (i!=-1)
+                        {
+                            professor.Courses.ToList()[i] = course;
+                        }
+                        else
+                        {
+                            professor.Courses = new Course[] { course };
+                        }
                     }
+
                     db.Users.AddOrUpdate(user => user.UserName, professor);
                 }
 
             }
            
-            if (id != course.CourseID)
-            {
-                return BadRequest();
-            }
+            
 
             db.Entry(course).State = EntityState.Modified;
 

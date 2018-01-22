@@ -183,6 +183,28 @@ namespace Project.WebAPI.Controllers
             {
                 db.Selections.Remove(item);
             }
+
+            Guid courseID = apply.Selections.ElementAt(0).CourseID;
+            Course selectedCourse = db.Courses.Where(c => c.CourseID == courseID).First();
+
+            if (selectedCourse.Students != null)
+            {
+                string[] students = selectedCourse.Students.Split(',');
+                selectedCourse.Students = "";
+                selectedCourse.StudentsNames = "";
+                var user = db.Users.Where(u => u.Id == apply.StudentID).First();
+                foreach (var item in students)
+                {
+                    if (item != apply.StudentID)
+                    {
+                        selectedCourse.Students = String.Concat(selectedCourse.Students, ",", apply.StudentID);
+                        selectedCourse.StudentsNames = String.Concat(selectedCourse.StudentsNames, ",", user.FirstName, " ", user.LastName);
+                    }
+                }
+               
+            }
+
+            db.Courses.AddOrUpdate(course => course.CourseID, selectedCourse);
             apply.Selections = null;
             db.Applications.Remove(apply);
             await db.SaveChangesAsync();

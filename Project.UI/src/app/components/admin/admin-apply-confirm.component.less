@@ -1,3 +1,23 @@
+
+.content{
+    float:left;
+    margin-left:26%;
+    width:74%;
+    height:100%;
+}
+
+
+input[type=text] {
+    width: 130px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+/* When the input field gets focus, change its width to 100% */
+input[type=text]:focus {
+    width: 60%;
+}
+
 table {
     margin-left:5%;
     font-family: arial, sans-serif;
@@ -76,7 +96,4 @@ tr:nth-child(even) {
 .help-block{
     color:red;
 }
-.loading{
-    color:#0e1e59;
-    font-size: 20px;
-}
+

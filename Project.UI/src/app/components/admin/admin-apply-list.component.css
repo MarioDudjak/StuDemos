@@ -41,3 +41,8 @@ tr:nth-child(even) {
 .accepted{
     background-color: #81F781;
 }
+
+.loading{
+    color:#0e1e59;
+    font-size: 20px;
+}

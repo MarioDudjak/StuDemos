@@ -15,7 +15,8 @@ export class AdminCourseListComponent implements OnInit{
     courses:any[];
     hiddenCourses:boolean[]=[];
     checkedCourses:boolean[]=[];
-    loading = false;
+    loading = true;
+    loadingMessage="Dohvaćanje kolegija...";
     sortAsc ={};
     constructor(private courseService:CourseService,
     private router:Router,
@@ -24,7 +25,14 @@ export class AdminCourseListComponent implements OnInit{
     }
 
     async ngOnInit():Promise<void>{
-        this.courses=await this.courseService.getAllCourses();
+        try{
+            this.courses=await this.courseService.getAllCourses();
+            this.loading=false;
+        }
+        catch(e){
+            this.loadingMessage=e;
+            this.loading=false;
+        }
         for(var i =0; i<this.courses.length;i++){
             if(this.courses[i]["professorsNames"]){
             this.courses[i]["professorsNames"]=this.courses[i]["professorsNames"].split(',');
@@ -64,8 +72,18 @@ export class AdminCourseListComponent implements OnInit{
     }
 
     public async DeleteCourse(course:any):Promise<any>{
-        await this.courseService.DeleteCourse(course.courseID);
+        if (confirm("Jeste li sigurni da želite obrisati odabrane kolegije?")) {                        
+        try{
+            this.loading=true;
+            this.loadingMessage="Brisanje odabranog kolegija...";
+            await this.courseService.DeleteCourse(course.courseID);
+        }
+        catch(e){
+            this.loading=true;            
+            this.loadingMessage=e;
+        }
         this.ngOnInit();
+    }
     }
 
     public async EditCourse(course:any):Promise<any>{
@@ -74,12 +92,21 @@ export class AdminCourseListComponent implements OnInit{
     }
 
     public async DeleteCheckedCourses():Promise<any>{
+        if (confirm("Jeste li sigurni da želite obrisati odabrane kolegije?")) {            
+        this.loading=true;
+        this.loadingMessage="Brisanje odabranih kolegija...";
         for(var i =0;i<this.checkedCourses.length;i++){
             if(this.checkedCourses[i]){
-                await this.courseService.DeleteCourse(this.courses[i].courseID);
+                try{
+                    await this.courseService.DeleteCourse(this.courses[i].courseID);
+                }
+                catch(e){
+                    this.loadingMessage=e;
+                }
             }
         }
         this.ngOnInit();
+    }
     }
 
     public sortCourses(key:string){
