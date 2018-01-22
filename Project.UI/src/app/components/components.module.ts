@@ -12,7 +12,7 @@ import {StudentSidebarComponent} from './student/shared';
 import {ProfessorService} from './professor/shared';
 import {ProfessorScheduleComponent} from './professor';
 import {ProfessorSidebarComponent} from './professor/shared';
-import {AdminApplyListComponent,AdminProfessorListComponent,AdminCourseListComponent, AdminCourseCreateComponent, AdminApplyConfirmComponent} from './admin';
+import {AdminApplyListComponent,AdminProfessorListComponent,AdminCourseListComponent, AdminCourseCreateComponent, AdminApplyConfirmComponent,AdminProfessorCreateComponent} from './admin';
 import {AdminSidebarComponent} from './admin/shared';
 import { RegisterComponent, LoginComponent } from './membership';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -43,7 +43,8 @@ import {ApplicationService} from './application/shared';
         LoginComponent,
         AdminCourseListComponent,
         AdminCourseCreateComponent,
-        AdminApplyConfirmComponent
+        AdminApplyConfirmComponent,
+        AdminProfessorCreateComponent
     ],
     exports: [
        ScheduleComponent,
@@ -59,7 +60,8 @@ import {ApplicationService} from './application/shared';
        LoginComponent,
        AdminCourseListComponent,
        AdminCourseCreateComponent,
-       AdminApplyConfirmComponent
+       AdminApplyConfirmComponent,
+       AdminProfessorCreateComponent
     ],
     providers: [
        ScheduleService,

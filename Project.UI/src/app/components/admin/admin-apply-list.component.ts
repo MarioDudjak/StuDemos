@@ -33,6 +33,7 @@ export class AdminApplyListComponent implements OnInit{
             this.loadingMessage=e;
             this.loading=false;
         }
+        this.applications=this.utilityService.sortArray(this.applications,"applyDate",true);
         
         this.hiddenCourses=new Array(this.applications.length);
         this.checkedApplications=new Array(this.applications.length);
@@ -40,7 +41,7 @@ export class AdminApplyListComponent implements OnInit{
         this.checkedApplications.fill(false);
 
         this.sortAsc ={
-            "firstName":true,
+            "lastName":true,
             "applyDate":true,
             "gradeAverage":true,
             "numberOfApplyHours":true,

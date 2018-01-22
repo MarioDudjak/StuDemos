@@ -72,7 +72,7 @@ export class AdminCourseListComponent implements OnInit{
     }
 
     public async DeleteCourse(course:any):Promise<any>{
-        if (confirm("Jeste li sigurni da želite obrisati odabrane kolegije?")) {                        
+        if (confirm("Jeste li sigurni da želite obrisati odabrani kolegij?")) {                        
         try{
             this.loading=true;
             this.loadingMessage="Brisanje odabranog kolegija...";

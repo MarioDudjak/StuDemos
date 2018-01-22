@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using Project.DAL;
 using Project.DAL.Entities;
 using Project.DAL.Identity;
 using Project.WebAPI.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -45,7 +47,7 @@ namespace Project.WebAPI.Controllers
         private readonly IMapper Mapper;
         private ApplicationUserManager _AppUserManager = null;
         private ApplicationRoleManager _AppRoleManager = null;
-
+        private StuDemosDbContext db = new StuDemosDbContext();
         #endregion Fields
 
         [Authorize]
@@ -62,7 +64,17 @@ namespace Project.WebAPI.Controllers
         [Route("professors", Name = "GetProfessors")]
         public IHttpActionResult GetProfessors()
         {
-            return Ok(this.AppUserManager.Users.Where(u => u.RoleName == "Professor").ToList());
+            var users = this.AppUserManager.Users.Where(u => u.RoleName == "Professor").ToList();
+            var newUsers = this.AppUserManager.Users.Where(u => u.RoleName == "Professor").ToList();
+            int i = 0;
+            foreach (var item in users)
+            {
+                var courses = db.Courses.Where(c => c.Professors.Contains(item.Id)).ToList();
+                newUsers[i].Courses = courses;
+                i++;
+            }
+
+            return Ok(users);
         }
 
         [Authorize]
