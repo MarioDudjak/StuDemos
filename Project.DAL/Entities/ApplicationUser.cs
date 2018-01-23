@@ -37,6 +37,10 @@ namespace Project.DAL.Entities
         public  ICollection<Course> Courses { get; set; }
 
         public string Branch { get; set; }
+        public string Studies{ get; set; }
+        public string Year { get; set; }
+
+
 
 
     }

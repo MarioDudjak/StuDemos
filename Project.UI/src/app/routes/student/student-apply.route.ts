@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {StudentService} from '../../components/student/shared';
 
 @Component({
   selector: 'student-apply-route',
@@ -7,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./student-apply.route.less'],
 })
 
-export class StudentApplyRoute {
+export class StudentApplyRoute implements OnInit{
 
 
-  constructor() { }
+  constructor(private studentService: StudentService) { }
 
-  
+  async ngOnInit(){
+  }
 }

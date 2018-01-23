@@ -178,11 +178,7 @@ namespace Project.WebAPI.Controllers
             {
                 return NotFound();
             }
-            Selection[] selections = apply.Selections.ToArray();
-            foreach (var item in selections)
-            {
-                db.Selections.Remove(item);
-            }
+            
 
             Guid courseID = apply.Selections.ElementAt(0).CourseID;
             Course selectedCourse = db.Courses.Where(c => c.CourseID == courseID).First();
@@ -205,7 +201,7 @@ namespace Project.WebAPI.Controllers
             }
 
             db.Courses.AddOrUpdate(course => course.CourseID, selectedCourse);
-            apply.Selections = null;
+
             db.Applications.Remove(apply);
             await db.SaveChangesAsync();
 

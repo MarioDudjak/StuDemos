@@ -30,9 +30,11 @@ export class LoginComponent implements OnInit {
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
-    login() {
+    async login() {
         this.loading = true;
-        this.loginService.LoginUserAsync(this.model.username,this.model.password);
+        var response;
+        await this.loginService.LoginUserAsync(this.model.username,this.model.password);
+        this.loginService.currentMessage.subscribe(message=> this.message = message);            
         this.loading = false;
  
     };

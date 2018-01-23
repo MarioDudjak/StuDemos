@@ -7,7 +7,7 @@ export class User {
     private Password:string;
     private id:string;
     private Studies:string;
-    private ModuleName:string;
+    private Branch:string;
     private Year:string;
     
 constructor(email:string,userName:string,firstName:string,lastName:string,roleName:string,password:string,
@@ -19,7 +19,7 @@ studies:string,moduleName:string,year:string){
     this.RoleName=roleName;
     this.Password=password;
     this.Studies=studies;
-    this.ModuleName=moduleName;
+    this.Branch=moduleName;
     this.Year=year;
 }
 

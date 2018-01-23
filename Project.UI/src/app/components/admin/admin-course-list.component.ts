@@ -28,24 +28,27 @@ export class AdminCourseListComponent implements OnInit{
         try{
             this.courses=await this.courseService.getAllCourses();
             this.loading=false;
+            this.courses=this.utilityService.sortArray(this.courses,"courseName",true);  
+            this.hiddenCourses=new Array(this.courses.length);
+            this.checkedCourses=new Array(this.courses.length);
+            this.hiddenCourses.fill(true);
+            this.checkedCourses.fill(false);  
+            
+            for(var i =0; i<this.courses.length;i++){
+                if(this.courses[i]["professorsNames"]){
+                this.courses[i]["professorsNames"]=this.courses[i]["professorsNames"].split(',');
+                }
+                if(this.courses[i]["studentsNames"]){
+                    this.courses[i]["studentsNames"]=this.courses[i]["studentsNames"].split(',');
+                    }
+            }
         }
         catch(e){
             this.loadingMessage=e;
             this.loading=false;
         }
-        for(var i =0; i<this.courses.length;i++){
-            if(this.courses[i]["professorsNames"]){
-            this.courses[i]["professorsNames"]=this.courses[i]["professorsNames"].split(',');
-            }
-            if(this.courses[i]["studentsNames"]){
-                this.courses[i]["studentsNames"]=this.courses[i]["studentsNames"].split(',');
-                }
-        }
-        this.courses=this.utilityService.sortArray(this.courses,"courseName",true);
-        this.hiddenCourses=new Array(this.courses.length);
-        this.checkedCourses=new Array(this.courses.length);
-        this.hiddenCourses.fill(true);
-        this.checkedCourses.fill(false);
+        
+        
         this.sortAsc ={
             "courseName":true,
             "courseCode":true,

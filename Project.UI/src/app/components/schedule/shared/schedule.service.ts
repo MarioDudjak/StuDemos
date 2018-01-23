@@ -49,7 +49,12 @@ export class ScheduleService {
         let studentApply = await this.studentService.getStudentApply(studentID);
         let course = await this.courseService.getCourseById(studentApply["selections"][0]["courseID"]);
         this.courseID = studentApply["selections"][0]["courseID"];
-        let courseTerm = await this.httpService.getById(studentID,"courseTerm/getbystudentid");
+        
+        try{
+            var courseTerm = await this.httpService.getById(studentID,"courseTerm/getbystudentid");
+        }
+        catch(e){
+        }
 
         return {"branch":student["branch"],
         "semester":course["semester"],
@@ -76,7 +81,7 @@ export class ScheduleService {
     }
 
     public async getStudentByIdAsync(id:string):Promise<any>{
-        return await this.httpService.getById(id,"user/getById");
+        return await this.httpService.getById(id,"accounts/user");
     }
     
 }

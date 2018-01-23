@@ -25,8 +25,14 @@ export class RegisterComponent {
         this.loading = true;
         this.user=new User(this.model.email,this.model.username,this.model.firstName,this.model.lastName,"Student",this.model.password,
         this.model.studies,this.model.moduleName,this.model.year);
-        await this.registerService.createStudentAsync(this.user);
-        this.loading = false;
+        try{
+            await this.registerService.createStudentAsync(this.user);
+            this.loading = false;
+        }
+        catch(e){
+            this.loading = false;            
+        }
+        this.registerService.currentMessage.subscribe(message=> this.message = message);                    
 
     };
         

@@ -26,18 +26,18 @@ export class AdminProfessorListComponent implements OnInit{
     async ngOnInit():Promise<void>{
         try{   
             this.professors=await this.professorService.GetAllProfessors();
-            console.log(this.professors);
+            this.professors=this.utilityService.sortArray(this.professors,"lastName",true); 
+            this.hiddenCourses=new Array(this.professors.length);
+            this.checkedProfessors=new Array(this.professors.length);
+            this.hiddenCourses.fill(true);
+            this.checkedProfessors.fill(false);       
             this.loading=false;
         }
         catch(e){
             this.loadingMessage;
             this.loading=false;
         }
-        this.professors=this.utilityService.sortArray(this.professors,"lastName",true);        
-        this.hiddenCourses=new Array(this.professors.length);
-        this.checkedProfessors=new Array(this.professors.length);
-        this.hiddenCourses.fill(true);
-        this.checkedProfessors.fill(false);
+        
         this.sortAsc ={
             "lastName":true,
             "joinDate":true,
