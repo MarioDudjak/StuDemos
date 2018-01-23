@@ -10,6 +10,7 @@ import {Router} from '@angular/router';
 
 @Injectable()
 export class LoginService {
+    message:string;
     constructor(private http:Http,
         private httpService:HttpService,
         private router:Router) { }
@@ -30,8 +31,8 @@ export class LoginService {
             this.getUserData(username);     
             return response["access_token"];
         } catch (error) {
-            console.log(error);
-        }        
+                this.message=this.handleError(error);        
+            }        
     }
 
     public async getUserData(username:string){
@@ -66,4 +67,9 @@ export class LoginService {
                     break;           
             }
     }
+    handleError(error) {
+		console.log(error);
+		error = JSON.parse(error);
+		return error.json(["error_description"]);
+	}
 }

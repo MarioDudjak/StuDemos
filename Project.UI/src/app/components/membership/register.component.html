@@ -1,4 +1,5 @@
 <div class="col-md-6 col-md-offset-3">
+    <div > {{message}} </div> 
     <h5 style="text-align: center">Registracija korisnika</h5>
     <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
@@ -10,6 +11,21 @@
             <label for="lastName">Last Name</label>
             <input type="text" class="form-control" name="lastName" [(ngModel)]="model.lastName" #lastName="ngModel" required />
             <div *ngIf="f.submitted && !lastName.valid" class="help-block">Last Name is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !studies.valid }">
+            <label for="studies">Studies</label>
+            <input type="text" class="form-control" name="course" [(ngModel)]="model.studies" #studies="ngModel" required />
+            <div *ngIf="f.submitted && !studies.valid" class="help-block">Studies is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !moduleName.valid }">
+            <label for="moduleName">Module name</label>
+            <input type="text" class="form-control" name="moduleName" [(ngModel)]="model.moduleName" #moduleName="ngModel" required />
+            <div *ngIf="f.submitted && !moduleName.valid" class="help-block">Module name is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !year.valid }">
+            <label for="year">Year</label>
+            <input type="text" class="form-control" name="year" [(ngModel)]="model.year" #year="ngModel" required />
+            <div *ngIf="f.submitted && !year.valid" class="help-block">Year is required</div>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
             <label for="username">Username</label>

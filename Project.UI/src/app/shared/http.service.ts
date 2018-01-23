@@ -7,6 +7,7 @@ import "rxjs/add/observable/throw";
 export class HttpService {
 	apiUrl = "http://localhost:50968/api/";
 	accessToken:string;
+	message:string;
 	constructor(private http: Http) {
 	 }
     
@@ -17,11 +18,10 @@ export class HttpService {
 		let options = new RequestOptions({ headers: headers });
 
 		try{
-			let response = await this.http.get(query,options)
-			.toPromise();
+			let response = JSON.parse((await this.http.get(query,options).toPromise())["_body"]);
 			return response.json();
 			} catch (error) {
-				this.handleError(error);
+				this.message=this.handleError(error);
 			}
 	}
 
@@ -36,7 +36,7 @@ export class HttpService {
 			.toPromise();
 			return response.json();
 			} catch (error) {
-				this.handleError(error);
+				this.message=this.handleError(error);
 			}
 	}
 
@@ -52,7 +52,7 @@ export class HttpService {
 		.toPromise();
 		return response;
 		} catch (error) {
-			this.handleError(error);
+			this.message=this.handleError(error);
 		}
 		
 	}
@@ -68,7 +68,8 @@ export class HttpService {
 		.toPromise();
 		return response.json();
 		} catch (error) {
-			this.handleError(error);
+			this.message=this.handleError(error);
+			
 		}
 		
 	}
@@ -84,11 +85,18 @@ export class HttpService {
 			.toPromise();
 			return response.json();
 			} catch (error) {
-				this.handleError(error);
+				this.message=this.handleError(error);
 			}
 	}
 
-	handleError(error) {
+	/*handlePromiseError(error:Response) {
+        console.error(error);
+        throw (error);}
+*/
+		handleError(error) {
 		console.log(error);
+		error = JSON.parse(error);
+		return error.json(["error_description"]);
 	}
-}
+    }
+	

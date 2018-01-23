@@ -13,13 +13,22 @@ export class RegisterComponent {
     model: any = {};
     loading = false;
     user:User;
+    message: string;
+
+
     constructor(
         private router: Router,
         private alertService: AlertService,
         private registerService:RegisterService) { }
 
     async register() :Promise<void> {
-        this.user=new User(this.model.email,this.model.username,this.model.firstName,this.model.lastName,"Student",this.model.password);
+        this.loading = true;
+        this.user=new User(this.model.email,this.model.username,this.model.firstName,this.model.lastName,"Student",this.model.password,
+        this.model.studies,this.model.moduleName,this.model.year);
         await this.registerService.createStudentAsync(this.user);
-       }
+        this.loading = false;
+
+    };
+        
+
 }
