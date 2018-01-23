@@ -1,27 +1,44 @@
-ul {
-    list-style-type: none;
-    margin: 0;
+@import url('https://fonts.googleapis.com/css?family=ABeeZee|Acme|Fjalla+One|Ranga|Righteous');
+.demo-list {
+    margin: 20px auto;
     padding: 0;
-    width: 21.3vw;
-    background-color: #f1f1f1;
-    position: absolute;
-    height: 100%;
-    overflow: auto;
+    width: 90%;
+    background-color: #ffffff;
+    height: auto;
 }
 
-li {
+.demo-title {
+    font-family: 'Acme', sans-serif;
+    padding: 15px;
+    background-color: rgba(0,141,143, 0.35);
+    color: #151515;
+    margin: 0;
+}
+
+.demo-course {
+    padding-left: 7px;
+    color: rgba(0,141,143, 0.7);
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.demo-items {
+    list-style-type: none;
+    overflow: auto;
+    margin-top: 0;
+}
+
+.demo-items > li {
     display: block;
     color: #000;
-    padding: 12px 18px;
+    padding: 12px 20px;
     text-decoration: none;
-}
-
-li.active {
-    background-color: #c65a01;
-    color: #fff;;
-}
-
-li:hover:not(.active) {
-    background-color: #0e1e59;
-    color: #fff;
+    &:active {
+        background-color: #c65a01;
+        color: #fff;
+    }  
+    &:hover:not(.active) {
+        background-color: #0e1e59;
+        color: #fff;
+    }  
 }
