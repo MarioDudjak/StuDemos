@@ -12,7 +12,9 @@ export class ProfessorScheduleComponent implements OnInit {
 
   constructor(private professorService:ProfessorService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    let response = await this.professorService.getDemonstrators();
+    console.log(response);
   }
 
 }
