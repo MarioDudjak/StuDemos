@@ -1,18 +1,21 @@
-<form class="bulkActions" display="block">
+<div align="center" *ngIf="loading" class="loading">
+        <img  src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />        
+        <p>{{loadingMessage}}</p>
+    </div>
+<form *ngIf="professors" class="bulkActions" display="block">
     
     <select display="block">
-        <option value="change" selected>Izmijeni</option>               
-        <option value="remove" >Ukloni</option>   
+        <option value="remove" selected >Ukloni</option>   
     </select>
-    <button style="margin-left:5px">Primijeni</button>
+    <button (click)="DeleteCheckedProfessors()" style="margin-left:5px">Primijeni</button>
 </form>
-<table>
+<table *ngIf="professors">
     <tr>
         <th width="2%" style="font-size:12px"><input type="checkbox" #All (click)="selectAll(All.checked)" name="select" title="Odaberi sve" >
             <label for="select">Odaberi sve</label>
         </th>
-        <th>Ime i prezime profesora</th>
-        <th>Datum prijave</th>     
+        <th><a (click)="sortProfessors('lastName')" href="javascript:void(0)" >Ime i prezime profesora</a></th>
+        <th><a (click)="sortProfessors('joinDate')" href="javascript:void(0)" >Datum prijave</a></th>     
         <th>Popis kolegija</th>   
         <th>Opcije</th>
         
@@ -22,22 +25,24 @@
             <td><input type="checkbox" name="select" title="Odaberi" #One [checked]="checkedProfessors[i]" (change)="select(One.checked,i)">
                 <label for="select"></label>
             </td>
-            <td>Ivica Ivic</td>
-            <td>30.12.2017.</td>    
+            <td>{{professor?.firstName}} {{professor?.lastName}}</td>
+            <td>{{professor?.joinDate | date: 'dd/MM/yyyy'}}</td>    
             <td style="text-align:left;">
-                <p style="display:inline"><span>Fizika 1 </span><span href="" style="float:right" (click)="collapse(i)">&#9660;</span></p><br>
+                <div *ngIf="professor?.courses.length==0"><p style="display:inline">Ovaj profesor trenutno nema unesenih kolegija</p></div>                                    
+                <p *ngIf="professor?.courses?.length>0" style="display:inline"><span>{{professor?.courses[0].courseName}} </span><span *ngIf="professor?.courses.length>1" href="" style="float:right" (click)="collapse(i)">&#9660;</span></p><br>
                 <div  [hidden]="hiddenCourses[i]" class="hiddenCourses">
-                    <hr><p style="display:inline"><span>Matematika 1 </span></p><br><br> 
-                    <hr><p style="display:inline"><span>Računarstvo usluga i analiza podataka </span> </p><br><br> 
-                    <hr><p style="display:inline"><span>Programiranje 1</span> </p><br><br> 
-                    <hr><p style="display:inline"><span>Osnove energetike i ekologije </span> </p><br><br> 
+                    <div *ngIf="professor?.courses.length>1"><hr><p style="display:inline"><span>{{professor?.courses[1].courseName}} </span></p><br><br></div>
+                    <div *ngIf="professor?.courses.length>2"><hr><p style="display:inline"><span>{{professor?.courses[2].courseName}} </span> </p><br><br> </div>
+                    <div *ngIf="professor?.courses.length>3"><hr><p style="display:inline"><span>{{professor?.courses[3].courseName}} </span> </p><br><br></div> 
+                    <div *ngIf="professor?.courses.length>4"><hr><p style="display:inline"><span>{{professor?.courses[4].courseName}} </span> </p><br><br></div> 
+                    <div *ngIf="professor?.courses.length>5"><hr><p style="display:inline"><span>{{professor?.courses[5].courseName}} </span> </p><br><br></div>                     
                 </div>
             </td>    
             <td>
-                <button class="btn accept" style="margin-bottom:5px">Izmijeni</button>
-                <button class="btn decline">Ukloni</button>
+                <button (click) = "EditProfessor(professor)" class="btn accept" style="margin-bottom:5px">Izmijeni</button>
+                <button (click) = "DeleteProfessor(professor)" class="btn decline">Ukloni</button>
             </td>
         </tr>
     </ng-container>
 </table>
-<button class="btn prof-add">Dodaj novog profesora</button>
+<button (click)="CreateProfessor()" class="btn prof-add">Dodaj novog profesora</button>    

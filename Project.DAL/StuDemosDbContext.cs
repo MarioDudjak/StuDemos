@@ -20,14 +20,17 @@ namespace Project.DAL
 
         public DbSet<Course> Courses { get; set; }
 
+        public DbSet<CourseTerm> CourseTerms { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            
+            modelBuilder.Entity<ApplicationUser>().HasMany(p => p.Courses).WithOptional();
+
             modelBuilder.Configurations.Add(new ApplyEntityMap());
             modelBuilder.Configurations.Add(new SelectionEntityMap());
-            modelBuilder.Configurations.Add(new CourseEntityMap()); 
+            modelBuilder.Configurations.Add(new CourseEntityMap());
+            modelBuilder.Configurations.Add(new CourseTermEntityMap());
             base.OnModelCreating(modelBuilder);
         }
     }

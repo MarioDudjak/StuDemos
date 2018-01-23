@@ -100,7 +100,7 @@ export class StudentApplyComponent implements OnInit {
       var selection = new Selection(1,4,this.checkedCourses[i]["courseID"],this.checkedCourses[i]["courseName"]); //tu za svaki predmet prioritet i ocjenu
       selections[i]=selection; 
     }
-    var apply= new Apply("FirstName","SecondName",3.4,60,0,selections,localStorage.getItem('userId')); //tu podatke o studentu
+    var apply= new Apply("Mario","Dudjak",5.0,60,0,selections,localStorage.getItem('userId')); //tu podatke o studentu
     let response = await this.applicationService.CreateApplication(apply);
     console.log(response); 
   }

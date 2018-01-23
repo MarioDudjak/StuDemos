@@ -10,6 +10,7 @@ namespace Project.DAL.Mappings
         {
             //Configure primary key
             HasKey(entity => entity.ApplyID);
+           
             Property(entity => entity.ApplyID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             //properties
@@ -20,7 +21,7 @@ namespace Project.DAL.Mappings
             Property(entity => entity.NumberOfApplyHours).IsRequired();
             Property(entity => entity.GradeAverage).IsRequired();
             Property(entity => entity.ApplyStatus).IsRequired();
-            Property(entity => entity.StudentID);
+
         }
     }
 }

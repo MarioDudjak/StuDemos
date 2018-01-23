@@ -1,0 +1,40 @@
+<admin-sidebar></admin-sidebar>
+<div class="content">        
+<div style="margin-left:30%" >
+        <h2 style="margin:2%">Dodaj novi kolegij</h2>
+        <form name="createCourseForm" #f="ngForm" (ngSubmit)="f.form.valid && createCourse(f)"  novalidate>
+                <div style="margin:2%;" [ngClass]="{ 'has-error': f.submitted && !courseName.valid }">
+                    <label for="courseName">Naziv kolegija:</label>
+                    <input style="margin-left:8%" type="text" class="form-control" name="courseName" [(ngModel)]="newCourse.courseName" #courseName="ngModel" required />
+                    <div *ngIf="f.submitted && !courseName.valid" class="help-block">Naziv kolegija je obavezan.</div>
+                </div>
+                <div  style="margin:2%;" [ngClass]="{ 'has-error': f.submitted && !courseCode.valid }">
+                    <label for="courseCode">Šifra kolegija:</label>
+                    <input style="margin-left:9%" type="text" class="form-control" name="courseCode" [(ngModel)]="newCourse.courseCode" #courseCode="ngModel" required />
+                    <div *ngIf="f.submitted && !courseCode.valid" class="help-block">Šifra kolegija je obavezna.</div>
+                </div>
+                <div  style="margin:2%" [ngClass]="{ 'has-error': f.submitted && !semester.valid }">
+                    <label for="semester">Semestar izvođenja:</label>
+                    <input style="margin-left:2%" type="text" class="form-control" name="semester" [(ngModel)]="newCourse.semester" #semester="ngModel" required />
+                    <div *ngIf="f.submitted && !semester.valid" class="help-block">Semestar izvođenja je obavezan.</div>
+                </div>
+                <div  style="margin:2%" [ngClass]="{ 'has-error': f.submitted && !studyLevel.valid }">
+                        <label for="studyLevel">Razina studija: </label>
+                        <input style="margin-left:8%" type="text" class="form-control" name="studyLevel" [(ngModel)]="newCourse.studyLevel" #studyLevel="ngModel" required />
+                        <div *ngIf="f.submitted && !studyLevel.valid" class="help-block">Razina studija je obavezna.</div>
+                </div>
+                <div  style="margin:2%" [ngClass]="{ 'has-error': f.submitted && !professors.valid }">
+                        <label for="professors">Šifre profesora na kolegiju:</label>
+                        <input style="margin-left:1%" type="text" class="form-control" name="professors" [(ngModel)]="newCourse.professorsCodes" #professors="ngModel" placeholder="Npr. 312,38,122" required />
+                        <div *ngIf="f.submitted && !professors.valid" class="help-block">Obavezno je unijeti barem jednog profesora.</div>
+                    </div>
+                    
+                <div>
+                    <button *ngIf="create" [disabled]="loading" class="btn accept" style="width:25%; ">Dodaj kolegij</button>
+                    <button  *ngIf="!create" [disabled]="loading" class="btn accept" style="width:25%; ">Izmijeni kolegij</button>                    
+                    <img *ngIf="loading"  src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                    <button  (click)="Cancel()" class="btn decline" style="width:25%;">Odustani</button>
+                </div>
+            </form>
+        </div>
+</div> 

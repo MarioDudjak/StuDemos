@@ -4,3 +4,4 @@ export * from './login.service';
 export * from './user.model';
 export * from './register.service';
 export * from './alert.service';
+export * from './utility.service';

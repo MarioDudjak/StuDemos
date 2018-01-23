@@ -5,6 +5,7 @@ namespace Project.DAL.Migrations
     using Microsoft.AspNet.Identity.EntityFramework;
     using Project.DAL.Entities;
     using System;
+    using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.IO;
     using System.Linq;
@@ -21,7 +22,7 @@ namespace Project.DAL.Migrations
         protected override void Seed(Project.DAL.StuDemosDbContext context)
         {
             //  This method will be called after migrating to the latest version.
-           
+
             var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new StuDemosDbContext()));
 
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new StuDemosDbContext()));
@@ -61,8 +62,10 @@ namespace Project.DAL.Migrations
                     csvReader.Configuration.HeaderValidated = null;
                     csvReader.Configuration.MissingFieldFound = null;
                     var courses = csvReader.GetRecords<Course>().ToArray();
-               
-                    context.Courses.AddOrUpdate(c => c.CourseName, courses);
+                    foreach (var item in courses)
+                    {
+                        context.Courses.AddOrUpdate(c => c.CourseName, item);
+                    }
                     context.SaveChanges();
                 }
             }
@@ -95,19 +98,21 @@ namespace Project.DAL.Migrations
                             Course course = context.Courses.Find(item.CourseID);
                             if (course.Professors == null)
                             {
-                                Guid[] professorIds = new Guid[] { new Guid(professor.Id) };
-                                course.Professors = professorIds;
+                                course.Professors = professor.Id;
+                                course.ProfessorsNames = String.Concat(professor.FirstName, " ", professor.LastName);
                             }
                             else
                             {
-                                course.Professors.ToList().Add(new Guid(professor.Id));
+                                course.Professors = String.Concat(course.Professors, ",", professor.Id);
+                                course.ProfessorsNames = String.Concat(course.ProfessorsNames, ',', professor.FirstName, " ", professor.LastName);
                             }
-                            context.Courses.AddOrUpdate(c => c.CourseName, course);
+
+                             context.Entry(course).State = EntityState.Modified;
                         }
                         context.SaveChanges();
                     }
                 }
-           }
+           } 
            
         }
     }

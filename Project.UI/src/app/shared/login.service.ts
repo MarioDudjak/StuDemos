@@ -51,7 +51,6 @@ export class LoginService {
     }
 
     private redirectUser(roleName:string){
-        console.log(roleName);
             switch(roleName){
                 case "Student":
                     this.router.navigate(["/student/apply"]);

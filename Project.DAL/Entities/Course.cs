@@ -13,8 +13,11 @@ namespace Project.DAL.Entities
         public string Semester { get; set; }
         public string CourseName { get; set; }
         public string StudyLevel { get; set; }
-        public Guid[] Professors { get; set; }
-        public Guid[] Students { get; set; }
+        public string Professors { get; set; }
+        public string ProfessorsNames { get; set; }
+        public string Students { get; set; }
+        public string StudentsNames { get; set; }
+        public string ProfessorsCodes { get; set; }
 
 
     }

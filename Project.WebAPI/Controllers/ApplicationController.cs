@@ -35,6 +35,7 @@ namespace Project.WebAPI.Controllers
         // GET: api/Application
         [HttpGet]
         [Route("get")]
+        [Authorize(Roles="Admin")]
         public IQueryable<Apply> GetApplications()
         {
             return db.Applications;
@@ -47,6 +48,20 @@ namespace Project.WebAPI.Controllers
         public async Task<IHttpActionResult> GetApply(Guid id)
         {
             Apply apply = await db.Applications.FindAsync(id);
+            if (apply == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(apply);
+        }
+
+        [ResponseType(typeof(Apply))]
+        [HttpGet]
+        [Route("getbystudentid/{id}")]
+        public async Task<IHttpActionResult> GetStudentApply(string id)
+        {
+            Apply apply = await db.Applications.Where(a => a.StudentID == id).FirstAsync();
             if (apply == null)
             {
                 return NotFound();
@@ -72,6 +87,31 @@ namespace Project.WebAPI.Controllers
                 return BadRequest();
             }
 
+
+            if (apply.ApplyStatus == 1)
+            {
+                Selection[] selections = new Selection[] { apply.Selections.ElementAt(0) };
+                apply.Selections = selections;
+
+                Guid courseID = apply.Selections.ElementAt(0).CourseID;
+                Course selectedCourse = db.Courses.Where(c => c.CourseID == courseID).First();
+
+                if (selectedCourse.Students == null)
+                {
+                    selectedCourse.Students = apply.StudentID;
+                    var user = db.Users.Where(u => u.Id == apply.StudentID).First();
+                    selectedCourse.StudentsNames = String.Concat(user.FirstName, " ", user.LastName);
+                }
+                else
+                {
+                    selectedCourse.Students = String.Concat(selectedCourse.Students, ",", apply.StudentID);
+                    var user = db.Users.Where(u => u.Id == apply.StudentID).First();
+                    selectedCourse.StudentsNames = String.Concat(selectedCourse.StudentsNames,",",user.FirstName, " ", user.LastName);
+                }
+                db.Courses.AddOrUpdate(course => course.CourseID, selectedCourse);
+
+            }
+           
             db.Entry(apply).State = EntityState.Modified;
 
             try
@@ -107,25 +147,19 @@ namespace Project.WebAPI.Controllers
             }
 
             db.Applications.Add(apply);
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbEntityValidationException e)
-            {
+            await db.SaveChangesAsync();
 
-            }
-    
-            var student = db.Users.Find(apply.StudentID.ToString());
+            var student = db.Users.Where(u => u.Id == apply.StudentID.ToString()).First();
             if (student.Applies == null)
             {
-                Apply[] applies = new Apply[] { apply };
+                ICollection<Apply> applies = new Apply[] { apply };
                 student.Applies = applies;
             }
             else
             {
-                student.Applies.ToList().Add(apply);
+                student.Applies.Add(apply);
             }
+
             db.Users.AddOrUpdate(user => user.UserName, student);
             await db.SaveChangesAsync();
             
@@ -144,7 +178,34 @@ namespace Project.WebAPI.Controllers
             {
                 return NotFound();
             }
+            Selection[] selections = apply.Selections.ToArray();
+            foreach (var item in selections)
+            {
+                db.Selections.Remove(item);
+            }
 
+            Guid courseID = apply.Selections.ElementAt(0).CourseID;
+            Course selectedCourse = db.Courses.Where(c => c.CourseID == courseID).First();
+
+            if (selectedCourse.Students != null)
+            {
+                string[] students = selectedCourse.Students.Split(',');
+                selectedCourse.Students = "";
+                selectedCourse.StudentsNames = "";
+                var user = db.Users.Where(u => u.Id == apply.StudentID).First();
+                foreach (var item in students)
+                {
+                    if (item != apply.StudentID)
+                    {
+                        selectedCourse.Students = String.Concat(selectedCourse.Students, ",", apply.StudentID);
+                        selectedCourse.StudentsNames = String.Concat(selectedCourse.StudentsNames, ",", user.FirstName, " ", user.LastName);
+                    }
+                }
+               
+            }
+
+            db.Courses.AddOrUpdate(course => course.CourseID, selectedCourse);
+            apply.Selections = null;
             db.Applications.Remove(apply);
             await db.SaveChangesAsync();
 

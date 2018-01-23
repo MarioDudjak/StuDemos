@@ -1,0 +1,35 @@
+<admin-sidebar></admin-sidebar>
+<div *ngIf="newApply" class="content">        
+<div style="margin-left:30%" >
+        <h2 style="margin:2%">Prihvati demonstraturu za studenta {{newApply.firstName}} {{newApply.lastName}}</h2>
+        <form name="createApplyForm" #f="ngForm" (ngSubmit)="f.form.valid && createApply(f)"  novalidate>
+                <div style="margin:2%;">
+                    <label for="studentName">Ime i prezime studenta:</label>
+                    <label name="studentName" >{{newApply.firstName}} {{newApply.lastName}}</label>                    
+                </div>
+                <div  style="margin:2%;" >
+                    <label for="applyDate">Datum prijave:</label>
+                    <label name="applyDate" >{{newApply.applyDate | date: 'dd/MM/yyyy'}}</label>                                        
+                </div>
+                <div  style="margin:2%" >
+                    <label for="gradeAverage">Prosjek ocjena:</label>
+                    <label name="studentName">{{newApply.gradeAverage}}</label>
+                </div>
+                <div  style="margin:2%" [ngClass]="{ 'has-error': f.submitted && !numberOfApplyHours.valid }">
+                        <label for="numberOfApplyHours">Broj sati demonstrature: </label>
+                        <input style="margin-left:8%" type="text" class="form-control" name="numberOfApplyHours" [(ngModel)]="apply.numberOfApplyHours" #numberOfApplyHours="ngModel" placeholder="{{newApply.numberOfApplyHours}}" required />
+                        <div *ngIf="f.submitted && !numberOfApplyHours.valid" class="help-block">Broj sati demonstrature je obavezan.</div>
+                </div>
+                <div  style="margin:2%" >
+                        <label for="selections">Odabrani kolegij:</label>
+                        <label name="selections">{{newApply.selections[0].courseName}}</label>                        
+                </div>
+                    
+                <div>
+                    <button  [disabled]="loading" class="btn accept" style="width:35%; ">Potvrdi demonstraturu</button>                    
+                    <img *ngIf="loading"  src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                    <button  (click)="Cancel()" class="btn decline" style="width:35%;">Odustani</button>
+                </div>
+            </form>
+        </div>
+</div> 

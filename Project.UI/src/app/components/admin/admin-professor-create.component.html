@@ -1,0 +1,34 @@
+<admin-sidebar></admin-sidebar>
+<div class="content">        
+<div style="margin-left:30%" >
+        <h2 style="margin:2%">Dodaj novog profesora</h2>
+        <form name="createProfessorForm" #f="ngForm" (ngSubmit)="f.form.valid && createProfessor(f)"  novalidate>
+                <div style="margin:2%;" [ngClass]="{ 'has-error': f.submitted && !firstName.valid }">
+                    <label for="firstName">Ime profesora:</label>
+                    <input style="margin-left:9%" type="text" class="form-control" name="firstName" [(ngModel)]="newProfessor.firstName" #firstName="ngModel" required />
+                    <div *ngIf="f.submitted && !firstName.valid" class="help-block">Ime profesora je obavezno.</div>
+                </div>
+                <div  style="margin:2%;" [ngClass]="{ 'has-error': f.submitted && !lastName.valid }">
+                    <label for="lastName">Prezime profesora:</label>
+                    <input style="margin-left:4%" type="text" class="form-control" name="lastName" [(ngModel)]="newProfessor.lastName" #lastName="ngModel" required />
+                    <div *ngIf="f.submitted && !lastName.valid" class="help-block">Prezime profesora je obavezno.</div>
+                </div>
+                <div  style="margin:2%" [ngClass]="{ 'has-error': f.submitted && !identificationNumber.valid }">
+                    <label for="identificationNumber">Identifikacijski broj:</label>
+                    <input style="margin-left:4%" type="text" class="form-control" name="identificationNumber" [(ngModel)]="newProfessor.identificationNumber" #identificationNumber="ngModel" required />
+                    <div *ngIf="f.submitted && !identificationNumber.valid" class="help-block">Identifikacijski broj je obavezan.</div>
+                </div>
+                <div  style="margin:2%" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+                        <label for="email">Email: </label>
+                        <input style="margin-left:19%" type="text" class="form-control" name="email" [(ngModel)]="newProfessor.email" #email="ngModel" required />
+                        <div *ngIf="f.submitted && !email.valid" class="help-block">Email je obavezan.</div>
+                </div>                   
+                <div>
+                    <button *ngIf="create" [disabled]="loading" class="btn accept" style="width:25%; ">Dodaj profesora</button>
+                    <button  *ngIf="!create" [disabled]="loading" class="btn accept" style="width:25%; ">Izmijeni profesora</button>                    
+                    <img *ngIf="loading"  src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                    <button  (click)="Cancel()" class="btn decline" style="width:25%;">Odustani</button>
+                </div>
+            </form>
+        </div>
+</div> 

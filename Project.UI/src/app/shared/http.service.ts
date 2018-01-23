@@ -50,7 +50,7 @@ export class HttpService {
 		try{
 		let response = await this.http.put(query, body, options)
 		.toPromise();
-		return response;
+		return response.json();
 		} catch (error) {
 			this.message=this.handleError(error);
 		}
