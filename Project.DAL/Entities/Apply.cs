@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Project.DAL.Entities
 {
     public class Apply
     {
+       
         public Guid ApplyID { get; set; }
         public string FirstName { get; set; }
 
@@ -13,10 +16,10 @@ namespace Project.DAL.Entities
         public double GradeAverage { get; set; }
 
         public int NumberOfApplyHours { get; set; }
-        public ApplyStatus ApplyStatus { get; set; }
+        public int ApplyStatus { get; set; }
         public DateTime ApplyDate { get; set; }
         public virtual ICollection<Selection> Selections { get; set; }
-        public virtual ApplicationUser Student { get; set; }
+        public string StudentID { get; set; }
 
     }
 }

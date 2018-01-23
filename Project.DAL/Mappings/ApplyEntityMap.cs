@@ -10,10 +10,11 @@ namespace Project.DAL.Mappings
         {
             //Configure primary key
             HasKey(entity => entity.ApplyID);
+           
             Property(entity => entity.ApplyID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             //properties
-            Property(entity => entity.ApplyDate).IsRequired().HasDatabaseGeneratedOption(DatabaseGeneratedOption.Computed);
+            Property(entity => entity.ApplyDate).IsRequired();
             //Generate value in migrations 
             Property(entity => entity.FirstName).IsRequired();
             Property(entity => entity.LastName).IsRequired();
@@ -21,22 +22,6 @@ namespace Project.DAL.Mappings
             Property(entity => entity.GradeAverage).IsRequired();
             Property(entity => entity.ApplyStatus).IsRequired();
 
-            //relationship
-            /*
-            HasMany(entity => entity.Selections)
-                .WithMany(entity => entity.Applications)
-                .Map(entity =>
-                {
-                    entity.MapLeftKey("ApplicationRefId");
-                    entity.MapRightKey("SelectionRefId");
-                    entity.ToTable("ApplicationSelection");
-                });
-                */
-
-            HasRequired<ApplicationUser>(s => s.Student)
-                .WithMany(g => g.Applications);
-            //table
-            ToTable("Applications");
         }
     }
 }

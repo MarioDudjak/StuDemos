@@ -13,13 +13,12 @@ export class HttpService {
     async getAll(route:string): Promise<any> {
 		this.accessToken=localStorage.getItem("access_token");		
         let query = this.apiUrl+route;
-        let headers = new Headers({ "Content-Type": "application/json" , "Accept":"application/json", "Authorization": "Bearer "+this.accessToken});
+        let headers = new Headers({ "Authorization": "Bearer "+this.accessToken, "Content-Type": "application/json" , "Accept":"application/json"});
 		let options = new RequestOptions({ headers: headers });
 
 		try{
 			let response = await this.http.get(query,options)
 			.toPromise();
-			console.log(response.json());
 			return response.json();
 			} catch (error) {
 				this.handleError(error);
@@ -45,13 +44,13 @@ export class HttpService {
 		this.accessToken=localStorage.getItem("access_token");		
         let query = this.apiUrl+route;        
 		let body = JSON.stringify(data);
-		let headers = new Headers({ "Content-Type": "application/json" , "Accept":"application/json", "Authorization": "Bearer "+this.accessToken});
+		let headers = new Headers({"Authorization": "Bearer "+this.accessToken ,"Content-Type": "application/json" , "Accept":"application/json"});
 		let options = new RequestOptions({ headers: headers });
 		
 		try{
 		let response = await this.http.put(query, body, options)
 		.toPromise();
-		return response;
+		return response.json();
 		} catch (error) {
 			this.handleError(error);
 		}
@@ -62,7 +61,7 @@ export class HttpService {
 		this.accessToken=localStorage.getItem("access_token");		
         let query = this.apiUrl+route;        
 		let body = JSON.stringify(data);
-		let headers = new Headers({ "Content-Type": "application/json" , "Accept":"application/json", "Authorization": "Bearer "+this.accessToken});
+		let headers = new Headers({  "Authorization": "Bearer "+this.accessToken, "Content-Type": "application/json" , "Accept":"application/json"});
 		let options = new RequestOptions({ headers: headers });
 		try{
 		let response = await this.http.post(query, body, options)
@@ -77,7 +76,7 @@ export class HttpService {
 	async delete(route:string): Promise<any>	{
 		this.accessToken=localStorage.getItem("access_token");		
 		let query = this.apiUrl+route;    
-		let headers = new Headers({ "Content-Type": "application/json" , "Accept":"application/json", "Authorization": "Bearer "+this.accessToken});
+		let headers = new Headers({ "Authorization": "Bearer "+this.accessToken,"Content-Type": "application/json" , "Accept":"application/json"});
 		let options = new RequestOptions({ headers: headers });    
 		
 		try{

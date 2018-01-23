@@ -3,12 +3,12 @@ namespace Project.DAL.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class init : DbMigration
     {
         public override void Up()
         {
             CreateTable(
-                "dbo.Applications",
+                "dbo.Applies",
                 c => new
                     {
                         ApplyID = c.Guid(nullable: false, identity: true),
@@ -18,11 +18,12 @@ namespace Project.DAL.Migrations
                         NumberOfApplyHours = c.Int(nullable: false),
                         ApplyStatus = c.Int(nullable: false),
                         ApplyDate = c.DateTime(nullable: false),
-                        Student_Id = c.String(nullable: false, maxLength: 128),
+                        StudentID = c.Guid(nullable: false),
+                        ApplicationUser_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.ApplyID)
-                .ForeignKey("dbo.AspNetUsers", t => t.Student_Id, cascadeDelete: true)
-                .Index(t => t.Student_Id);
+                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUser_Id)
+                .Index(t => t.ApplicationUser_Id);
             
             CreateTable(
                 "dbo.Selections",
@@ -31,13 +32,11 @@ namespace Project.DAL.Migrations
                         SelectionID = c.Guid(nullable: false, identity: true),
                         Priority = c.Int(nullable: false),
                         CourseGrade = c.Int(nullable: false),
-                        Course_CourseID = c.Guid(),
+                        CourseID = c.Guid(nullable: false),
                         Apply_ApplyID = c.Guid(),
                     })
                 .PrimaryKey(t => t.SelectionID)
-                .ForeignKey("dbo.Courses", t => t.Course_CourseID)
-                .ForeignKey("dbo.Applications", t => t.Apply_ApplyID)
-                .Index(t => t.Course_CourseID)
+                .ForeignKey("dbo.Applies", t => t.Apply_ApplyID)
                 .Index(t => t.Apply_ApplyID);
             
             CreateTable(
@@ -45,10 +44,38 @@ namespace Project.DAL.Migrations
                 c => new
                     {
                         CourseID = c.Guid(nullable: false, identity: true),
+                        CourseCode = c.String(nullable: false),
+                        Semester = c.String(nullable: false),
                         CourseName = c.String(nullable: false),
                         StudyLevel = c.String(nullable: false),
+                        ApplicationUser_Id = c.String(maxLength: 128),
                     })
-                .PrimaryKey(t => t.CourseID);
+                .PrimaryKey(t => t.CourseID)
+                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUser_Id)
+                .Index(t => t.ApplicationUser_Id);
+            
+            CreateTable(
+                "dbo.AspNetRoles",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        Name = c.String(nullable: false, maxLength: 256),
+                    })
+                .PrimaryKey(t => t.Id)
+                .Index(t => t.Name, unique: true, name: "RoleNameIndex");
+            
+            CreateTable(
+                "dbo.AspNetUserRoles",
+                c => new
+                    {
+                        UserId = c.String(nullable: false, maxLength: 128),
+                        RoleId = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => new { t.UserId, t.RoleId })
+                .ForeignKey("dbo.AspNetRoles", t => t.RoleId, cascadeDelete: true)
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
+                .Index(t => t.UserId)
+                .Index(t => t.RoleId);
             
             CreateTable(
                 "dbo.AspNetUsers",
@@ -57,6 +84,8 @@ namespace Project.DAL.Migrations
                         Id = c.String(nullable: false, maxLength: 128),
                         FirstName = c.String(nullable: false, maxLength: 100),
                         LastName = c.String(nullable: false, maxLength: 100),
+                        RoleName = c.String(),
+                        IdentificationNumber = c.String(),
                         JoinDate = c.DateTime(nullable: false),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
@@ -98,57 +127,34 @@ namespace Project.DAL.Migrations
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
             
-            CreateTable(
-                "dbo.AspNetUserRoles",
-                c => new
-                    {
-                        UserId = c.String(nullable: false, maxLength: 128),
-                        RoleId = c.String(nullable: false, maxLength: 128),
-                    })
-                .PrimaryKey(t => new { t.UserId, t.RoleId })
-                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
-                .ForeignKey("dbo.AspNetRoles", t => t.RoleId, cascadeDelete: true)
-                .Index(t => t.UserId)
-                .Index(t => t.RoleId);
-            
-            CreateTable(
-                "dbo.AspNetRoles",
-                c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 128),
-                        Name = c.String(nullable: false, maxLength: 256),
-                    })
-                .PrimaryKey(t => t.Id)
-                .Index(t => t.Name, unique: true, name: "RoleNameIndex");
-            
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.Applications", "Student_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.Courses", "ApplicationUser_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.Selections", "Apply_ApplyID", "dbo.Applications");
-            DropForeignKey("dbo.Selections", "Course_CourseID", "dbo.Courses");
-            DropIndex("dbo.AspNetRoles", "RoleNameIndex");
-            DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
-            DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
+            DropForeignKey("dbo.Applies", "ApplicationUser_Id", "dbo.AspNetUsers");
+            DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.Selections", "Apply_ApplyID", "dbo.Applies");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
+            DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
+            DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
+            DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.Courses", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.Selections", new[] { "Apply_ApplyID" });
-            DropIndex("dbo.Selections", new[] { "Course_CourseID" });
-            DropIndex("dbo.Applications", new[] { "Student_Id" });
-            DropTable("dbo.AspNetRoles");
-            DropTable("dbo.AspNetUserRoles");
+            DropIndex("dbo.Applies", new[] { "ApplicationUser_Id" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
+            DropTable("dbo.AspNetUserRoles");
+            DropTable("dbo.AspNetRoles");
             DropTable("dbo.Courses");
             DropTable("dbo.Selections");
-            DropTable("dbo.Applications");
+            DropTable("dbo.Applies");
         }
     }
 }

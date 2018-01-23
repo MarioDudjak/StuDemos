@@ -15,7 +15,7 @@ namespace Project.DAL.Mappings
             //properties
             Property(entity => entity.CourseGrade).IsRequired();
             Property(entity => entity.Priority).IsRequired();
-
+            Property(entity => entity.CourseName).IsRequired();
             //relationship
             
 

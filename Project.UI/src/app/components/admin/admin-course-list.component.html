@@ -1,51 +1,64 @@
-<form class="bulkActions" display="block">
-        
-        <select display="block">
-            <option value="change" selected>Izmijeni</option>               
-            <option value="remove" >Ukloni</option>   
-        </select>
-        <button style="margin-left:5px">Primijeni</button>
-    </form>
-    <table>
-        <tr>
-            <th width="2%" style="font-size:12px"><input type="checkbox" #All (click)="selectAll(All.checked)" name="select" title="Odaberi sve" >
-                <label for="select">Odaberi sve</label>
-            </th>
-            <th>Naziv kolegija</th>
-            <th>Šifra kolegija</th>      
-            <th>Semestar izvođenja</th>                        
-            <th>Popis profesora</th>  
-            <th>Popis demonstratora</th>               
-            <th>Opcije</th>
-            
-        </tr>
-        <ng-container *ngFor="let course of courses;  let i = index" [attr.data-index]="i">
-            <tr>
-                <td><input type="checkbox" name="select" title="Odaberi" #One [checked]="checkedCourses[i]" (change)="select(One.checked,i)">
-                    <label for="select"></label>
-                </td>
-                <td>Osnove elektrotehnike</td>
-                <td>DR1-4214</td> 
-                <td>Ljetni</td>   
-                <td style="text-align:left;">
-                    <p style="display:inline"><span>Iva Ivic</span><span href="" style="float:right" (click)="collapse(i)">&#9660;</span></p><br>
-                    <div  [hidden]="hiddenCourses[i]" class="hiddenCourses">
-                        <hr><p style="display:inline"><span>Ivica Ivica </span></p><br><br> 
-                        <hr><p style="display:inline"><span>Marko Maric </span> </p><br><br> 
-                        <hr><p style="display:inline"><span>Mirko Lukić</span> </p><br><br> 
-                        <hr><p style="display:inline"><span>Juraj Dobrila </span> </p><br><br> 
-                    </div>
-                </td>   
-                <td style="text-align:left;">
-                        <p style="display:inline"><span>Marko Marulic</span></p><br>
-                        <hr><p style="display:inline"><span>Luka Lukić</span></p><br><br> 
-                </td>    
-                <td>
-                    <button class="btn accept" style="margin-bottom:5px">Izmijeni</button>
-                    <button class="btn decline">Ukloni</button>
-                </td>
-            </tr>
-        </ng-container>
-    </table>
-    <button class="btn prof-add">Dodaj novi kolegij</button>
+<div align="center" *ngIf="loading" class="loading">
+        <img  src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />        
+        <p>{{loadingMessage}}</p>
+    </div>
+
+<form *ngIf="courses" class="bulkActions" display="block">
     
+    <select display="block">
+        <option value="remove" selected >Ukloni</option>   
+    </select>
+    <button (click)="DeleteCheckedCourses()" style="margin-left:5px">Primijeni</button>
+</form>
+<table *ngIf="courses">
+    <tr>
+        <th width="2%" style="font-size:12px"><input type="checkbox" #All (click)="selectAll(All.checked)" name="select" title="Odaberi sve" >
+            <label for="select">Odaberi sve</label>
+        </th>
+        <th><a (click)="sortCourses('courseName')" href="javascript:void(0)" >Naziv kolegija</a></th>
+        <th><a (click)="sortCourses('courseCode')" href="javascript:void(0)" >Šifra kolegija</a></th>      
+        <th><a (click)="sortCourses('semester')" href="javascript:void(0)" >Semestar izvođenja</a></th>  
+        <th><a (click)="sortCourses('studyLevel')" href="javascript:void(0)" >Razina studija</a></th>                                
+        <th>Popis profesora</th>  
+        <th>Popis demonstratora</th>               
+        <th>Opcije</th>
+        
+    </tr>
+    <ng-container *ngFor="let course of courses;  let i = index" [attr.data-index]="i">
+        <tr>
+            <td><input type="checkbox" name="select" title="Odaberi" #One [checked]="checkedCourses[i]" (change)="select(One.checked,i)">
+                <label for="select"></label>
+            </td>
+            <td>{{course?.courseName}}</td>
+            <td>{{course?.courseCode}}</td> 
+            <td>{{course?.semester}}.</td>  
+            <td>{{course?.studyLevel}}.</td>               
+            <td style="text-align:left;">
+                <div *ngIf="course?.professorsNames"><p  style="display:inline"><span>{{course?.professorsNames[0]}}</span><span *ngIf="course?.professorsNames.length>1" href="" style="float:right" (click)="collapse(i)">&#9660;</span></p><br>
+                <div  [hidden]="hiddenCourses[i]" class="hiddenCourses">
+                    <div *ngIf="course?.professorsNames.length>1"><hr><p style="display:inline"><span>{{course?.professorsNames[1]}}</span></p><br><br></div>
+                    <div *ngIf="course?.professorsNames.length>2"><hr><p style="display:inline"><span>{{course?.professorsNames[2]}} </span> </p><br><br> </div>
+                    <div *ngIf="course?.professorsNames.length>3"><hr><p style="display:inline"><span>{{course?.professorsNames[3]}}</span> </p><br><br> </div>
+                    <div *ngIf="course?.professorsNames.length>4"><hr><p style="display:inline"><span>{{course?.professorsNames[4]}} </span> </p><br><br> </div>
+                </div>
+            </div>            
+                <div *ngIf="!course?.professorsNames"><p  style="display:inline">Za ovaj kolegij nisu uneseni profesori</p><br></div>          
+            </td>   
+            <td style="text-align:left;">
+                <div *ngIf="course?.studentsNames">
+                    <div *ngIf="course?.studentsNames.length>0"><p *ngIf="course?.studentsNames.length>0" style="display:inline"><span>{{course?.studentsNames[0]}}</span></p><br></div>
+                    <div *ngIf="course?.studentsNames.length>1"><hr><p style="display:inline"><span>{{course?.studentsNames[1]}}</span></p><br><br></div>
+                    <div *ngIf="course?.studentsNames.length>2"><hr><p style="display:inline"><span>{{course?.studentsNames[2]}}</span></p><br><br></div>                        
+                </div>
+                <div *ngIf="!course?.studentsNames"><p *ngIf="!course?.studentsNames" style="display:inline"><span>Ovaj kolegij nema demonstratora</span></p><br></div>                                        
+            </td>    
+            <td>
+                <button  (click) = "EditCourse(course)" class="btn accept" style="margin-bottom:5px">Izmijeni</button>
+                <button  (click) = "DeleteCourse(course)" class="btn decline">Ukloni</button>
+            </td>
+        </tr>
+    </ng-container>
+</table>
+
+
+<button (click)="CreateCourse()" class="btn prof-add">Dodaj novi kolegij</button>

@@ -6,14 +6,21 @@ export class User {
     private RoleName:string;
     private Password:string;
     private id:string;
+    private Studies:string;
+    private Branch:string;
+    private Year:string;
     
-constructor(email:string,userName:string,firstName:string,lastName:string,roleName:string,password:string){
+constructor(email:string,userName:string,firstName:string,lastName:string,roleName:string,password:string,
+studies:string,moduleName:string,year:string){
     this.Email=email;
     this.Username=userName;
     this.FirstName=firstName;
     this.LastName=lastName;
     this.RoleName=roleName;
     this.Password=password;
+    this.Studies=studies;
+    this.Branch=moduleName;
+    this.Year=year;
 }
 
 public getID():string{

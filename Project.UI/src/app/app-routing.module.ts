@@ -10,6 +10,9 @@ import {ProfessorScheduleRoute} from './routes/professor';
 import {AdminApplyListRoute, AdminProfessorListRoute,AdminCourseListRoute} from './routes/admin';
 import {RegisterRoute,LoginRoute} from './routes/membership';
 import {AuthGuard} from './shared/guards';
+import {AdminCourseCreateComponent, AdminApplyConfirmComponent,AdminProfessorCreateComponent
+} from './components/admin';
+
   @NgModule({
     imports: [
       RouterModule.forRoot([
@@ -27,6 +30,9 @@ import {AuthGuard} from './shared/guards';
                 { path: 'admin/course/list', component: AdminCourseListRoute, canActivate: [AuthGuard]},
                 { path: 'register', component: RegisterRoute },
                 { path: 'login', component: LoginRoute },
+                { path: 'course/create', component: AdminCourseCreateComponent},
+                { path: 'apply/confirm', component: AdminApplyConfirmComponent},   
+                { path: 'professor/create', component: AdminProfessorCreateComponent},             
                 { path: '', redirectTo: '/main', pathMatch: 'full' },
                 { path: '**', component: NoContentRoute }
             ]

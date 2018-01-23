@@ -32,7 +32,7 @@
                 <input name="demonstrationHours" id="demonstrationHours" type="number" class="validate"
                     [(ngModel)]="model.demonstrationHours" #demonstrationHours="ngModel" required>
                 <label class="active" for="demonstrationHours">
-                    Željeni broj sati demonstrature u {{semester.toLowerCase().substring(0,5)}}om semestru
+                    Željeni broj sati demonstrature u {{semester?.toLowerCase().substring(0,5)}}om semestru
                 </label>
                 <div *ngIf="myForm.submitted && !demonstrationHours.valid" class="help-block">Ovo polje je obavezno</div>
             </div>
@@ -51,10 +51,10 @@
                 </label>
                 <div class="row">
                     <div class="col s4 course-name">
-                        {{course.name}}
+                        {{course?.courseName}}
                     </div>
                     <div class="col s4 course-study-programme">
-                        {{course.programme}}
+                        {{course?.studyLevel}}
                     </div>
                     <div class="input-field col s3 course-grade" [ngClass]="{ 'has-error': myForm.submitted && !courseGrade.valid }">
                         <input name="courseGrade[{{course}}]" type="number" class="validate"
@@ -91,10 +91,10 @@
                 name="courseSelected[{{i}}]" (change)="checkboxChanged()" [disabled]="disableSelect[i]">
                 <label for="{{i}}" class="col s11 course-checkbox">
                     <div class="col s6">
-                        {{course.name}}
+                        {{course?.courseName}}
                     </div>
                     <div class="col s6">
-                        {{course.programme}}
+                        {{course?.studyLevel}}
                     </div>
                 </label>
             </div>

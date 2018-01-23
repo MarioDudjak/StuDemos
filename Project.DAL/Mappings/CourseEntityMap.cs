@@ -12,10 +12,12 @@ namespace Project.DAL.Mappings
             HasKey(entity => entity.CourseID);
             Property(entity => entity.CourseID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
+
             //properties
             Property(entity => entity.CourseName).IsRequired();
             Property(entity => entity.StudyLevel).IsRequired();
-
+            Property(entity => entity.CourseCode).IsRequired();
+            Property(entity => entity.Semester).IsRequired();
             //table
             ToTable("Courses");
         }
