@@ -24,7 +24,6 @@ export class RegisterService {
         student["RoleName"]="Student";
         try{
         let response= await this.httpService.post(student,"accounts/create");
-        console.log(response);
         this.AssingUserToRole(response["id"],"Student");
         return response["id"];
         }

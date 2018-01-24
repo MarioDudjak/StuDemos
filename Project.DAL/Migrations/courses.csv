@@ -1,196 +1,196 @@
 CourseCode,Semester,CourseName,StudyLevel
 SR102,1,Programiranje 1,Strucni studij elektrotehnike
 SAE101,1,Osnove elektrotehnike I,Strucni studij elektrotehnike
-P103,1,Osnove elektrotehnike I,Sveu?ilišni preddiplomski studij elektrotehnike
-P202,2,Osnove elektrotehnike II,Sveu?ilišni preddiplomski studij elektrotehnike
-PE104,1,Fizika 1,Sveu?ilišni preddiplomski studij elektrotehnike
-S103,1,Fizika,Stru?ni studij elektrotehnike
+P103,1,Osnove elektrotehnike I,Sveucilisni preddiplomski studij elektrotehnike
+P202,2,Osnove elektrotehnike II,Sveucilisni preddiplomski studij elektrotehnike
+PE104,1,Fizika 1,Sveucilisni preddiplomski studij elektrotehnike
+S103,1,Fizika,Strucni studij elektrotehnike
 RZ102,1,Fizika,Razlikovne obveze
-P203,2,Fizika 2,Sveu?ilišni preddiplomski studij elektrotehnike
-P204,2,Elektronika I,Sveu?ilišni preddiplomski studij elektrotehnike
-SR201,2,Programiranje ,Stru?ni studij elektrotehnike
+P203,2,Fizika 2,Sveucilisni preddiplomski studij elektrotehnike
+P204,2,Elektronika I,Sveucilisni preddiplomski studij elektrotehnike
+SR201,2,Programiranje ,Strucni studij elektrotehnike
 RZ204,2,Programiranje razlika,Razlikovne obveze
-P205,2,Programiranje II,Sveu?ilišni preddiplomski studij ra?unarstva
-PE302,3,Materijali u elektrotehnici,Sveu?ilišni preddiplomski studij elektrotehnike
-PE303-17,3,Osnove energetike i ekologije,Sveu?ilišni preddiplomski studij elektrotehnike
-PEK301,3,Osnove mjerenja,Sveu?ilišni preddiplomski studij elektrotehnike
-SAR301,3,Digitalna elektronika,Stru?ni studij elektrotehnike
-PRK301,3,Digitalna elektronika,Sveu?ilišni preddiplomski studij ra?unarstva
-PK301,3,Elektronika II,Sveu?ilišni preddiplomski studij elektrotehnike
-PRK302-17,3,Razvoj programske podrške objektno orijentiranim na?elima,Sveu?ilišni preddiplomski studij elektrotehnike
-P401,4,Komunikacijske mreže,Sveu?ilišni preddiplomski studij ra?unarstva
-P403,4,Signali i sustavi,Sveu?ilišni preddiplomski studij elektrotehnike
-PE401,4,Osnove elektri?nih strojeva,Sveu?ilišni preddiplomski studij elektrotehnike
-PRK401,4, Teorija informacije,Sveu?ilišni preddiplomski studij ra?unarstva
-PE501,5,Osnove elektri?nih pogona,Sveu?ilišni preddiplomski studij elektrotehnike
-PE502-17,5,Osnove elektroenergetskog sustava,Sveu?ilišni preddiplomski studij elektrotehnike
-PE503,5,Osnove energetske elektronike,Sveu?ilišni preddiplomski studij elektrotehnike
-PER501,5,Osnove automatskog upravljanja,Sveu?ilišni preddiplomski studij ra?unarstva
-PRK501,5,Baze podataka,Sveu?ilišni preddiplomski studij ra?unarstva
-PRK503,5,Arhitektura ra?unala,Sveu?ilišni preddiplomski studij ra?unarstva
-PK501,5,Komunikacijski sustavi,Sveu?ilišni preddiplomski studij elektrotehnike
-PR101,1,Matemati?ke osnove ra?unarstva,Sveu?ilišni preddiplomski studij ra?unarstva
-PR301,1,Objektno orijentirano programiranje,Sveu?ilišni preddiplomski studij ra?unarstva
-PRK302-17,3,Razvoj programske podrške objektno orijentiranim na?elima,Sveu?ilišni preddiplomski studij ra?unarstva
-PR302,3,Algoritmi i strukture podataka,Sveu?ilišni preddiplomski studij ra?unarstva
-SR401,4,Operacijski sustavi,Stru?ni studij elektrotehnike
-PR401,4,Operacijski sustavi,Sveu?ilišni preddiplomski studij ra?unarstva
-PRK502,5,Modeliranje i simulacija,Sveu?ilišni preddiplomski studij ra?unarstva
-SR101,1,Osnove elektrotehnike,Stru?ni studij elektrotehnike
-S203,2,Osnove elektronike,Stru?ni studij elektrotehnike
-SARIE301,3,Arhitektura ra?unalnih sustava,Stru?ni studij elektrotehnike
-SR303-17,3,Programiranje u Javi,Stru?ni studij elektrotehnike
-SR402-15,4,Baze podataka,Stru?ni studij elektrotehnike
-SAR401-17,4,Informacijski sustavi i ra?unalne mreže,Stru?ni studij elektrotehnike
-SR404-17,4,Algoritmi i strukture podataka,Stru?ni studij elektrotehnike
-SAR503-17,5,Programsko inženjerstvo,Stru?ni studij elektrotehnike
-SR501-17,5,Web programiranje,Stru?ni studij elektrotehnike
-SR502-17,5,Digitalne komunikacije,Stru?ni studij elektrotehnike
-SR601,6,Multimedijska tehnika,Stru?ni studij elektrotehnike
-SR603-17,6,Razvoj mobilnih aplikacija,Stru?ni studij elektrotehnike
-SAIE301-17,3,Osnove automatske regulacije ,Stru?ni studij elektrotehnike
-SA401-15,4,Elektri?ni pogoni i strojevi,Stru?ni studij elektrotehnike
-SAE401,4,Materijali i tehnološki postupci,Stru?ni studij elektrotehnike
-SAE402-15,4,Mjerenja u elektrotehnici,Stru?ni studij elektrotehnike
-SA501,5,Automatsko upravljanje,Stru?ni studij elektrotehnike
-SA502-16,5,Mikrora?unala u automatizaciji,Stru?ni studij elektrotehnike
-SA601-15,6,"Procesna mjerenja, senzori i aktori",Stru?ni studij elektrotehnike
-SA602-17,6,Programiranje FPGA,Stru?ni studij elektrotehnike
-SAIR601-17,6,Industrijska informatika i automatizacija,Stru?ni studij elektrotehnike
-SE302,3,Elektri?ne instalacije i rasvjeta,Stru?ni studij elektrotehnike
-SEIA301-17,3,Osnove energetike ,Stru?ni studij elektrotehnike
-SEA401-15,4,Transformatori i elektri?ni rotacijski strojevi,Stru?ni studij elektrotehnike
-SEIA401-15,4,Energetska elektronika,Stru?ni studij elektrotehnike
-SE502,5,Elektroenergetske mreže i vodovi,Stru?ni studij elektrotehnike
-SE503-17,5,Elektrane i elektroenergetski sustav,Stru?ni studij elektrotehnike
-SE601,6,Elektromotorni pogoni,Stru?ni studij elektrotehnike
-SE603-17,6,Tehnologije obnovljivih izvora energije,Stru?ni studij elektrotehnike
-SE604-17,6,Prijenos i distribucija elektri?ne energije,Stru?ni studij elektrotehnike
+P205,2,Programiranje II,Sveucilisni preddiplomski studij racunarstva
+PE302,3,Materijali u elektrotehnici,Sveucilisni preddiplomski studij elektrotehnike
+PE303-17,3,Osnove energetike i ekologije,Sveucilisni preddiplomski studij elektrotehnike
+PEK301,3,Osnove mjerenja,Sveucilisni preddiplomski studij elektrotehnike
+SAR301,3,Digitalna elektronika,Strucni studij elektrotehnike
+PRK301,3,Digitalna elektronika,Sveucilisni preddiplomski studij racunarstva
+PK301,3,Elektronika II,Sveucilisni preddiplomski studij elektrotehnike
+PRK302-17,3,Razvoj programske podrske objektno orijentiranim nacelima,Sveucilisni preddiplomski studij elektrotehnike
+P401,4,Komunikacijske mreze,Sveucilisni preddiplomski studij racunarstva
+P403,4,Signali i sustavi,Sveucilisni preddiplomski studij elektrotehnike
+PE401,4,Osnove elektricnih strojeva,Sveucilisni preddiplomski studij elektrotehnike
+PRK401,4, Teorija informacije,Sveucilisni preddiplomski studij racunarstva
+PE501,5,Osnove elektricnih pogona,Sveucilisni preddiplomski studij elektrotehnike
+PE502-17,5,Osnove elektroenergetskog sustava,Sveucilisni preddiplomski studij elektrotehnike
+PE503,5,Osnove energetske elektronike,Sveucilisni preddiplomski studij elektrotehnike
+PER501,5,Osnove automatskog upravljanja,Sveucilisni preddiplomski studij racunarstva
+PRK501,5,Baze podataka,Sveucilisni preddiplomski studij racunarstva
+PRK503,5,Arhitektura racunala,Sveucilisni preddiplomski studij racunarstva
+PK501,5,Komunikacijski sustavi,Sveucilisni preddiplomski studij elektrotehnike
+PR101,1,Matematicke osnove racunarstva,Sveucilisni preddiplomski studij racunarstva
+PR301,1,Objektno orijentirano programiranje,Sveucilisni preddiplomski studij racunarstva
+PRK302-17,3,Razvoj programske podrske objektno orijentiranim nacelima,Sveucilisni preddiplomski studij racunarstva
+PR302,3,Algoritmi i strukture podataka,Sveucilisni preddiplomski studij racunarstva
+SR401,4,Operacijski sustavi,Strucni studij elektrotehnike
+PR401,4,Operacijski sustavi,Sveucilisni preddiplomski studij racunarstva
+PRK502,5,Modeliranje i simulacija,Sveucilisni preddiplomski studij racunarstva
+SR101,1,Osnove elektrotehnike,Strucni studij elektrotehnike
+S203,2,Osnove elektronike,Strucni studij elektrotehnike
+SARIE301,3,Arhitektura racunalnih sustava,Strucni studij elektrotehnike
+SR303-17,3,Programiranje u Javi,Strucni studij elektrotehnike
+SR402-15,4,Baze podataka,Strucni studij elektrotehnike
+SAR401-17,4,Informacijski sustavi i racunalne mreze,Strucni studij elektrotehnike
+SR404-17,4,Algoritmi i strukture podataka,Strucni studij elektrotehnike
+SAR503-17,5,Programsko inzenjerstvo,Strucni studij elektrotehnike
+SR501-17,5,Web programiranje,Strucni studij elektrotehnike
+SR502-17,5,Digitalne komunikacije,Strucni studij elektrotehnike
+SR601,6,Multimedijska tehnika,Strucni studij elektrotehnike
+SR603-17,6,Razvoj mobilnih aplikacija,Strucni studij elektrotehnike
+SAIE301-17,3,Osnove automatske regulacije ,Strucni studij elektrotehnike
+SA401-15,4,Elektricni pogoni i strojevi,Strucni studij elektrotehnike
+SAE401,4,Materijali i tehnoloski postupci,Strucni studij elektrotehnike
+SAE402-15,4,Mjerenja u elektrotehnici,Strucni studij elektrotehnike
+SA501,5,Automatsko upravljanje,Strucni studij elektrotehnike
+SA502-16,5,Mikroracunala u automatizaciji,Strucni studij elektrotehnike
+SA601-15,6,"Procesna mjerenja, senzori i aktori",Strucni studij elektrotehnike
+SA602-17,6,Programiranje FPGA,Strucni studij elektrotehnike
+SAIR601-17,6,Industrijska informatika i automatizacija,Strucni studij elektrotehnike
+SE302,3,Elektricne instalacije i rasvjeta,Strucni studij elektrotehnike
+SEIA301-17,3,Osnove energetike ,Strucni studij elektrotehnike
+SEA401-15,4,Transformatori i elektricni rotacijski strojevi,Strucni studij elektrotehnike
+SEIA401-15,4,Energetska elektronika,Strucni studij elektrotehnike
+SE502,5,Elektroenergetske mreze i vodovi,Strucni studij elektrotehnike
+SE503-17,5,Elektrane i elektroenergetski sustav,Strucni studij elektrotehnike
+SE601,6,Elektromotorni pogoni,Strucni studij elektrotehnike
+SE603-17,6,Tehnologije obnovljivih izvora energije,Strucni studij elektrotehnike
+SE604-17,6,Prijenos i distribucija elektricne energije,Strucni studij elektrotehnike
 RZ103,1,Signali i sustavi (razlika),Razlikovne obveze
 RZ106,1,Osnove energetike i ekologije (razlika),Razlikovne obveze
 RZ107,1,Modeliranje i simulacija (razlika),Razlikovne obveze
-RZ108,1,Arhitektura ra?unala (razlika),Razlikovne obveze
+RZ108,1,Arhitektura racunala (razlika),Razlikovne obveze
 RZ110,1,Osnove elektrotehnike (razlika),Razlikovne obveze
 RZ206,2,Osnove automatskog upravljanja (razlika),Razlikovne obveze
 RZ216,2,Algoritmi i strukture podataka (razlika),Razlikovne obveze
 RZ109,1,Osnove mjerenja (razlika),Razlikovne obveze
 RZ212,2,Komunikacijski sustavi (razlika),Razlikovne obveze
 RZ204,2,Programiranje (razlika),Razlikovne obveze
-RZ207,2,Komunikacijske mreže,Razlikovne obveze
-RZ210,2,Elektroenergetske mreže,Razlikovne obveze
-RZ209,2,Osnove elektri?nih strojeva i pogona (razlika),Razlikovne obveze
+RZ207,2,Komunikacijske mreze,Razlikovne obveze
+RZ210,2,Elektroenergetske mreze,Razlikovne obveze
+RZ209,2,Osnove elektricnih strojeva i pogona (razlika),Razlikovne obveze
 RZ213,2,Komunikacijski sustavi (razlika),Razlikovne obveze
 RZ214,2,Teorija informacije,Razlikovne obveze
 RZ111,1,Baze podataka,Razlikovne obveze
 RZ215,2,Operacijski sustavi,Razlikovne obveze
-DAR1-01,1,Dizajn ra?unalnih sustava,Sveu?ilišni diplomski studij Ra?unarstva
-DR1-02,1,Automati i formalni jezici,Sveu?ilišni diplomski studij Ra?unarstva
-DR1A1-05,1,Algoritmi i arhitektura,Sveu?ilišni diplomski studij Ra?unarstva
-DRAB1-02,1,Upravljanje procesima,Sveu?ilišni diplomski studij Ra?unarstva
-DRABKB1-04,1,Digitalna obrada signala,Sveu?ilišni diplomski studij Ra?unarstva
-DARAB2-04-17,2,Ugradbeni ra?unalni sustavi,Sveu?ilišni diplomski studij Ra?unarstva
-DR2-01,2,Ra?unalni sustavi stvarnog vremena,Sveu?ilišni diplomski studij Ra?unarstva
-DRA2K4I-05,2,Projektiranje ra?unalnih mreža,Sveu?ilišni diplomski studij Ra?unarstva
-DRAB2-02,2,Inteligentni sustavi,Sveu?ilišni diplomski studij Ra?unarstva
-DRAB2-03,2,Meko ra?unarstvo,Sveu?ilišni diplomski studij Ra?unarstva
-DR3-01,3,Pouzdanost i dijagnostika ra?unalnih sustava,Sveu?ilišni diplomski studij Ra?unarstva
-DRAC3-03,3,Osiguranje kakvo?e programske podrške,Sveu?ilišni diplomski studij Ra?unarstva
-DRACD3-02,3,Raspodijeljeni ra?unalni sustavi,Sveu?ilišni diplomski studij Ra?unarstva
-DRB1-05,1,Raspoznavanje uzoraka i strojno u?enje,Sveu?ilišni diplomski studij Ra?unarstva
-DRB2-05,2,Osnove robotike,Sveu?ilišni diplomski studij Ra?unarstva
-DRB3-03,3,Modeliranje temeljeno na podacima,Sveu?ilišni diplomski studij Ra?unarstva
-DRB3EC1-03,3,Industrijska informatika,Sveu?ilišni diplomski studij Ra?unarstva
-DRC1-05,1,Modeliranje i dizajn programskih sustava,Sveu?ilišni diplomski studij Ra?unarstva
-DRCD2-03,2,Vizualizacija podataka,Sveu?ilišni diplomski studij Ra?unarstva
-DRCD2-04,2,Ra?unarstvo usluga i analiza podataka,Sveu?ilišni diplomski studij Ra?unarstva
-DRCDKB2-02,2,Internet programiranje,Sveu?ilišni diplomski studij Ra?unarstva
-DRCKB2-05,2,Razvoj mobilnih aplikacija,Sveu?ilišni diplomski studij Ra?unarstva
-DRD1-05,1,Obrada slike i ra?unalni vid,Sveu?ilišni diplomski studij Ra?unarstva
-DRD2-05,2,Razvoj ra?unalnih igara,Sveu?ilišni diplomski studij Ra?unarstva
-DRDKB3-03,3,Internet objekata,Sveu?ilišni diplomski studij Ra?unarstva
-DAK1-03,1,Napredno programiranje,Sveu?ilišni diplomski studij Elektrotehnike
-DK1-01,1,Elektromagnetska polja i valovi,Sveu?ilišni diplomski studij Elektrotehnike
-DK1-02,1,Mreže ra?unala,Sveu?ilišni diplomski studij Elektrotehnike
-DKA1-05,1,Mikroelektronika,Sveu?ilišni diplomski studij Elektrotehnike
-DK2-01,2,Multimedijski sustavi,Sveu?ilišni diplomski studij Elektrotehnike
-DKA2-02,2,Predajnici,Sveu?ilišni diplomski studij Elektrotehnike
-DKA2-04,2,Antene,Sveu?ilišni diplomski studij Elektrotehnike
-DKA2-05,2,Optoelektroni?ke komunikacije,Sveu?ilišni diplomski studij Elektrotehnike
-DK3-01,3,Mobilne komunikacije,Sveu?ilišni diplomski studij Elektrotehnike
-DKA3-02,3,Prijemnici,Sveu?ilišni diplomski studij Elektrotehnike
-DKA3-03,3,Primjena mikroupravlja?kih sustava,Sveu?ilišni diplomski studij Elektrotehnike
-DKB1-05,1,Kodovi i kodiranje,Sveu?ilišni diplomski studij Elektrotehnike
-DAKB2-04,2,Objektno programiranje,Sveu?ilišni diplomski studij Elektrotehnike
-DKB2-03,2,Sigurnost ra?unalnih sustava,Sveu?ilišni diplomski studij Elektrotehnike
-DKB3-02,3,Komunikacijski protokoli,Sveu?ilišni diplomski studij Elektrotehnike
-DE1-01,1,Elektri?ni strojevi,Sveu?ilišni diplomski studij Elektrotehnike
-DEA1-04-17,1,Elektroenergetski transformatori,Sveu?ilišni diplomski studij Elektrotehnike
-DEA1-05,1,Ekonomika i tržište elektri?ne energije,Sveu?ilišni diplomski studij Elektrotehnike
-DEAB1-02,1,Analiza elektroenergetskog sustava,Sveu?ilišni diplomski studij Elektrotehnike
-DEAB1C3-03,1,Elektroenergetska postrojenja,Sveu?ilišni diplomski studij Elektrotehnike
-DE2-01,2,Elektrane,Sveu?ilišni diplomski studij Elektrotehnike
-DEA2-03,2,Stabilnost i prijalzni procesi u elektroenergetskom sustavu,Sveu?ilišni diplomski studij Elektrotehnike
-DEA2-04,2,Sklopni aparati i visokonaponska tehnika,Sveu?ilišni diplomski studij Elektrotehnike
-DEA2-05,2,Kvaliteta i pouzdanost u elektroenergetskom sustavu,Sveu?ilišni diplomski studij Elektrotehnike
-DEAB2-02,2,Prijenos i distribucija elektri?ne energije,Sveu?ilišni diplomski studij Elektrotehnike
-DE3-01,3,Zaštita u elektroenergetskom sustavu,Sveu?ilišni diplomski studij Elektrotehnike
-DEA3-03,3,Koordinacija zaštete aktivnih elektroenergestkih mreža,Sveu?ilišni diplomski studij Elektrotehnike
-DEAB3-02,3,Vo?enje elektroenergetskog sustava,Sveu?ilišni diplomski studij Elektrotehnike
-DEB1-04,1,Energetska u?inkovitost,Sveu?ilišni diplomski studij Elektrotehnike
-DEB1-06-17,1,Energetska u?inkovitost elektri?nih sustava,Sveu?ilišni diplomski studij Elektrotehnike
-DAEBC2-04,2,Primijenjena energetska elektronika,Sveu?ilišni diplomski studij Elektrotehnike
-DEB2-05,2,Obnovljivi izvori elektri?ne energije,Sveu?ilišni diplomski studij Elektrotehnike
-DEBC2-03,2,"Projektiranje elektri?nih instalacija, rasvjete i postrojenja",Sveu?ilišni diplomski studij Elektrotehnike
-DEB3-03,3,Integracija OIE i napredne mreže,Sveu?ilišni diplomski studij Elektrotehnike
-DEC1-02,1,Primijenjeni elektromagnetizam u elektroenergetici,Sveu?ilišni diplomski studij Elektrotehnike
-DEC1-04,1,Elektromagnetska kompatibilnost,Sveu?ilišni diplomski studij Elektrotehnike
-DEC1-05,1,Elektromagnetska mjerenja,Sveu?ilišni diplomski studij Elektrotehnike
-DEC2-02,2,Elektri?ni pogoni,Sveu?ilišni diplomski studij Elektrotehnike
-DEC2-05,2,Industrijska mjerenja,Sveu?ilišni diplomski studij Elektrotehnike
-DEC3-03,3,Dinamika industrijskih sustava,Sveu?ilišni diplomski studij Elektrotehnike
-DA1-01,1,Pogonski sustavi i napajanje za vozila,"Sveu?ilišni diplomski studij, Automobilsko ra?unarstvo i komunikacije"
-DA1-02,1,Osiguranje kakvo?e automobilske programske podrške,"Sveu?ilišni diplomski studij, Automobilsko ra?unarstvo i komunikacije"
-DA1-03,1,Linux u ugradbenim sustavima,"Sveu?ilišni diplomski studij, Automobilsko ra?unarstvo i komunikacije"
-DA2-01,2,Ra?unalne mreže i protokoli u automobilu,"Sveu?ilišni diplomski studij, Automobilsko ra?unarstvo i komunikacije"
-DA2-02,2,Arhitekture programske podrške u sigurnosno kriti?nim sustavima upravljanja,"Sveu?ilišni diplomski studij, Automobilsko ra?unarstvo i komunikacije"
-DA3-02,3,Digitalna obrada slike i videa za autonomna vozila,"Sveu?ilišni diplomski studij, Automobilsko ra?unarstvo i komunikacije"
-DA3-03,3,Strojno u?enje u sustavima autonomnih i umreženih vozila,"Sveu?ilišni diplomski studij, Automobilsko ra?unarstvo i komunikacije"
-DA3-04,3,Metode i tehnike ispitivanje automobilske programske podrške,"Sveu?ilišni diplomski studij, Automobilsko ra?unarstvo i komunikacije"
-DA3-05,3,Sigurnost informacijskih sustava,"Sveu?ilišni diplomski studij, Automobilsko ra?unarstvo i komunikacije"
-DA4R4I-10,4,Inteligentni transportni sustavi,Sveu?ilišni diplomski studij Ra?unarstva
-DAKR4I-01,3,Digitalna videotehnika,Sveu?ilišni diplomski studij Ra?unarstva
-DER4I-05-17,3,Elementi automatike,Sveu?ilišni diplomski studij Ra?unarstva
-DI401-17,3,Projekti za društevno korisno u?enje,Sveu?ilišni diplomski studij Ra?unarstva
-DKR4I-03,3,Napredno web programiranje,Sveu?ilišni diplomski studij Ra?unarstva
-DKR4I-04,3,Zeleno ra?unarstvo,Sveu?ilišni diplomski studij Ra?unarstva
-DR4I-02,3,3D ra?unalna grafika,Sveu?ilišni diplomski studij Ra?unarstva
-DR4I-07,3,Robotski vid,Sveu?ilišni diplomski studij Ra?unarstva
-DRI4-08,3,Sonarsko ra?unarstvo,Sveu?ilišni diplomski studij Ra?unarstva
-DRI4-09,3,Šah i ra?unala,Sveu?ilišni diplomski studij Ra?unarstva
-DK4I-02,3,Biomedicinska elektronika,Sveu?ilišni diplomski studij Elektrotehnike
-DE4I-02,3,Energetski pregledi i javna rasvjeta,Sveu?ilišni diplomski studij Elektrotehnike
-DE4I-03,3,Modeliranje i upravljanje elektranama na OIE,Sveu?ilišni diplomski studij Elektrotehnike
-DE4I-04,3,Numeri?ke metode u elektromagnetizmu,Sveu?ilišni diplomski studij Elektrotehnike
-DE4I-05,3,Planiranje pogona,Sveu?ilišni diplomski studij Elektrotehnike
-DE4I-07,3,Pohrana i reverzibilnost energije,Sveu?ilišni diplomski studij Elektrotehnike
-DE4I-08,3,Sustavi neprekidnog napajanja,Sveu?ilišni diplomski studij Elektrotehnike
-DE4I-09,3,Uzemljiva?i i sustavi uzemljenja,Sveu?ilišni diplomski studij Elektrotehnike
-DA4I-01,3,Radar i LiDAR u autonomnik vozilima,"Sveu?ilišni diplomski studij, Automobilsko ra?unarstvo i komunikacije"
-SIR301-17,3,Ra?unalna grafika,Stru?ni studij smjer Informatika
-SIR302-17,3,Jezici za opisivanje sklopovlja,Stru?ni studij elektrotehnike
-SIR303-17,3,Programiranje malih Linux ra?unala,Stru?ni studij elektrotehnike
-SIR304-17,3,Osnove 3D modeliranja,Stru?ni studij elektrotehnike
-SIR601-17,6,Dizajn korisni?kog su?elja,Stru?ni studij elektrotehnike
-SIR606-17,6,Internet objekata,Stru?ni studij elektrotehnike
-SIR607-17,6,Oblikovanje baza podataka,Stru?ni studij elektrotehnike
-SI401-17,4,Projekti za društevno korisno u?enje,Stru?ni studij elektrotehnike
-SIAE401-17,4,Recikliranje elektrotehni?kih proizvoda,Stru?ni studij elektrotehnike
-SIA3402-17,4,Elektroni?ka mjerenja i instrumentacija,Stru?ni studij elektrotehnike
-SI601-17,6,Projekti za društevno korisno u?enje,Stru?ni studij elektrotehnike
-SIE301,3,Sklopni aparati,Stru?ni studij elektrotehnike
-SIAE402-17,4,Elektroni?ka mjerenja i instrumentacija,Stru?ni studij elektrotehnike
-SIE403-17,4,Programski alati u elektroenergetici,Stru?ni studij elektrotehnike
-SI601-15,6,Mali i sprecijalni elektri?ni strojevi,Stru?ni studij elektrotehnike
-SIE601,6,Zaštita u elektroenergetskom sustavu,Stru?ni studij elektrotehnike
-SIE603-15,6,Provedba energetskog pregleda,Stru?ni studij elektrotehnike
-,,,Stru?ni studij elektrotehnike
+DAR1-01,1,Dizajn racunalnih sustava,Sveucilisni diplomski studij Racunarstva
+DR1-02,1,Automati i formalni jezici,Sveucilisni diplomski studij Racunarstva
+DR1A1-05,1,Algoritmi i arhitektura,Sveucilisni diplomski studij Racunarstva
+DRAB1-02,1,Upravljanje procesima,Sveucilisni diplomski studij Racunarstva
+DRABKB1-04,1,Digitalna obrada signala,Sveucilisni diplomski studij Racunarstva
+DARAB2-04-17,2,Ugradbeni racunalni sustavi,Sveucilisni diplomski studij Racunarstva
+DR2-01,2,Racunalni sustavi stvarnog vremena,Sveucilisni diplomski studij Racunarstva
+DRA2K4I-05,2,Projektiranje racunalnih mreza,Sveucilisni diplomski studij Racunarstva
+DRAB2-02,2,Inteligentni sustavi,Sveucilisni diplomski studij Racunarstva
+DRAB2-03,2,Meko racunarstvo,Sveucilisni diplomski studij Racunarstva
+DR3-01,3,Pouzdanost i dijagnostika racunalnih sustava,Sveucilisni diplomski studij Racunarstva
+DRAC3-03,3,Osiguranje kakvoce programske podrske,Sveucilisni diplomski studij Racunarstva
+DRACD3-02,3,Raspodijeljeni racunalni sustavi,Sveucilisni diplomski studij Racunarstva
+DRB1-05,1,Raspoznavanje uzoraka i strojno ucenje,Sveucilisni diplomski studij Racunarstva
+DRB2-05,2,Osnove robotike,Sveucilisni diplomski studij Racunarstva
+DRB3-03,3,Modeliranje temeljeno na podacima,Sveucilisni diplomski studij Racunarstva
+DRB3EC1-03,3,Industrijska informatika,Sveucilisni diplomski studij Racunarstva
+DRC1-05,1,Modeliranje i dizajn programskih sustava,Sveucilisni diplomski studij Racunarstva
+DRCD2-03,2,Vizualizacija podataka,Sveucilisni diplomski studij Racunarstva
+DRCD2-04,2,Racunarstvo usluga i analiza podataka,Sveucilisni diplomski studij Racunarstva
+DRCDKB2-02,2,Internet programiranje,Sveucilisni diplomski studij Racunarstva
+DRCKB2-05,2,Razvoj mobilnih aplikacija,Sveucilisni diplomski studij Racunarstva
+DRD1-05,1,Obrada slike i racunalni vid,Sveucilisni diplomski studij Racunarstva
+DRD2-05,2,Razvoj racunalnih igara,Sveucilisni diplomski studij Racunarstva
+DRDKB3-03,3,Internet objekata,Sveucilisni diplomski studij Racunarstva
+DAK1-03,1,Napredno programiranje,Sveucilisni diplomski studij Elektrotehnike
+DK1-01,1,Elektromagnetska polja i valovi,Sveucilisni diplomski studij Elektrotehnike
+DK1-02,1,Mreze racunala,Sveucilisni diplomski studij Elektrotehnike
+DKA1-05,1,Mikroelektronika,Sveucilisni diplomski studij Elektrotehnike
+DK2-01,2,Multimedijski sustavi,Sveucilisni diplomski studij Elektrotehnike
+DKA2-02,2,Predajnici,Sveucilisni diplomski studij Elektrotehnike
+DKA2-04,2,Antene,Sveucilisni diplomski studij Elektrotehnike
+DKA2-05,2,Optoelektronicke komunikacije,Sveucilisni diplomski studij Elektrotehnike
+DK3-01,3,Mobilne komunikacije,Sveucilisni diplomski studij Elektrotehnike
+DKA3-02,3,Prijemnici,Sveucilisni diplomski studij Elektrotehnike
+DKA3-03,3,Primjena mikroupravljackih sustava,Sveucilisni diplomski studij Elektrotehnike
+DKB1-05,1,Kodovi i kodiranje,Sveucilisni diplomski studij Elektrotehnike
+DAKB2-04,2,Objektno programiranje,Sveucilisni diplomski studij Elektrotehnike
+DKB2-03,2,Sigurnost racunalnih sustava,Sveucilisni diplomski studij Elektrotehnike
+DKB3-02,3,Komunikacijski protokoli,Sveucilisni diplomski studij Elektrotehnike
+DE1-01,1,Elektricni strojevi,Sveucilisni diplomski studij Elektrotehnike
+DEA1-04-17,1,Elektroenergetski transformatori,Sveucilisni diplomski studij Elektrotehnike
+DEA1-05,1,Ekonomika i trziste elektricne energije,Sveucilisni diplomski studij Elektrotehnike
+DEAB1-02,1,Analiza elektroenergetskog sustava,Sveucilisni diplomski studij Elektrotehnike
+DEAB1C3-03,1,Elektroenergetska postrojenja,Sveucilisni diplomski studij Elektrotehnike
+DE2-01,2,Elektrane,Sveucilisni diplomski studij Elektrotehnike
+DEA2-03,2,Stabilnost i prijalzni procesi u elektroenergetskom sustavu,Sveucilisni diplomski studij Elektrotehnike
+DEA2-04,2,Sklopni aparati i visokonaponska tehnika,Sveucilisni diplomski studij Elektrotehnike
+DEA2-05,2,Kvaliteta i pouzdanost u elektroenergetskom sustavu,Sveucilisni diplomski studij Elektrotehnike
+DEAB2-02,2,Prijenos i distribucija elektricne energije,Sveucilisni diplomski studij Elektrotehnike
+DE3-01,3,Zastita u elektroenergetskom sustavu,Sveucilisni diplomski studij Elektrotehnike
+DEA3-03,3,Koordinacija zastete aktivnih elektroenergestkih mreza,Sveucilisni diplomski studij Elektrotehnike
+DEAB3-02,3,Vo?enje elektroenergetskog sustava,Sveucilisni diplomski studij Elektrotehnike
+DEB1-04,1,Energetska ucinkovitost,Sveucilisni diplomski studij Elektrotehnike
+DEB1-06-17,1,Energetska ucinkovitost elektricnih sustava,Sveucilisni diplomski studij Elektrotehnike
+DAEBC2-04,2,Primijenjena energetska elektronika,Sveucilisni diplomski studij Elektrotehnike
+DEB2-05,2,Obnovljivi izvori elektricne energije,Sveucilisni diplomski studij Elektrotehnike
+DEBC2-03,2,"Projektiranje elektricnih instalacija, rasvjete i postrojenja",Sveucilisni diplomski studij Elektrotehnike
+DEB3-03,3,Integracija OIE i napredne mreze,Sveucilisni diplomski studij Elektrotehnike
+DEC1-02,1,Primijenjeni elektromagnetizam u elektroenergetici,Sveucilisni diplomski studij Elektrotehnike
+DEC1-04,1,Elektromagnetska kompatibilnost,Sveucilisni diplomski studij Elektrotehnike
+DEC1-05,1,Elektromagnetska mjerenja,Sveucilisni diplomski studij Elektrotehnike
+DEC2-02,2,Elektricni pogoni,Sveucilisni diplomski studij Elektrotehnike
+DEC2-05,2,Industrijska mjerenja,Sveucilisni diplomski studij Elektrotehnike
+DEC3-03,3,Dinamika industrijskih sustava,Sveucilisni diplomski studij Elektrotehnike
+DA1-01,1,Pogonski sustavi i napajanje za vozila,"Sveucilisni diplomski studij, Automobilsko racunarstvo i komunikacije"
+DA1-02,1,Osiguranje kakvoce automobilske programske podrske,"Sveucilisni diplomski studij, Automobilsko racunarstvo i komunikacije"
+DA1-03,1,Linux u ugradbenim sustavima,"Sveucilisni diplomski studij, Automobilsko racunarstvo i komunikacije"
+DA2-01,2,Racunalne mreze i protokoli u automobilu,"Sveucilisni diplomski studij, Automobilsko racunarstvo i komunikacije"
+DA2-02,2,Arhitekture programske podrske u sigurnosno kriticnim sustavima upravljanja,"Sveucilisni diplomski studij, Automobilsko racunarstvo i komunikacije"
+DA3-02,3,Digitalna obrada slike i videa za autonomna vozila,"Sveucilisni diplomski studij, Automobilsko racunarstvo i komunikacije"
+DA3-03,3,Strojno ucenje u sustavima autonomnih i umrezenih vozila,"Sveucilisni diplomski studij, Automobilsko racunarstvo i komunikacije"
+DA3-04,3,Metode i tehnike ispitivanje automobilske programske podrske,"Sveucilisni diplomski studij, Automobilsko racunarstvo i komunikacije"
+DA3-05,3,Sigurnost informacijskih sustava,"Sveucilisni diplomski studij, Automobilsko racunarstvo i komunikacije"
+DA4R4I-10,4,Inteligentni transportni sustavi,Sveucilisni diplomski studij Racunarstva
+DAKR4I-01,3,Digitalna videotehnika,Sveucilisni diplomski studij Racunarstva
+DER4I-05-17,3,Elementi automatike,Sveucilisni diplomski studij Racunarstva
+DI401-17,3,Projekti za drustevno korisno ucenje,Sveucilisni diplomski studij Racunarstva
+DKR4I-03,3,Napredno web programiranje,Sveucilisni diplomski studij Racunarstva
+DKR4I-04,3,Zeleno racunarstvo,Sveucilisni diplomski studij Racunarstva
+DR4I-02,3,3D racunalna grafika,Sveucilisni diplomski studij Racunarstva
+DR4I-07,3,Robotski vid,Sveucilisni diplomski studij Racunarstva
+DRI4-08,3,Sonarsko racunarstvo,Sveucilisni diplomski studij Racunarstva
+DRI4-09,3,sah i racunala,Sveucilisni diplomski studij Racunarstva
+DK4I-02,3,Biomedicinska elektronika,Sveucilisni diplomski studij Elektrotehnike
+DE4I-02,3,Energetski pregledi i javna rasvjeta,Sveucilisni diplomski studij Elektrotehnike
+DE4I-03,3,Modeliranje i upravljanje elektranama na OIE,Sveucilisni diplomski studij Elektrotehnike
+DE4I-04,3,Numericke metode u elektromagnetizmu,Sveucilisni diplomski studij Elektrotehnike
+DE4I-05,3,Planiranje pogona,Sveucilisni diplomski studij Elektrotehnike
+DE4I-07,3,Pohrana i reverzibilnost energije,Sveucilisni diplomski studij Elektrotehnike
+DE4I-08,3,Sustavi neprekidnog napajanja,Sveucilisni diplomski studij Elektrotehnike
+DE4I-09,3,Uzemljivaci i sustavi uzemljenja,Sveucilisni diplomski studij Elektrotehnike
+DA4I-01,3,Radar i LiDAR u autonomnik vozilima,"Sveucilisni diplomski studij, Automobilsko racunarstvo i komunikacije"
+SIR301-17,3,Racunalna grafika,Strucni studij smjer Informatika
+SIR302-17,3,Jezici za opisivanje sklopovlja,Strucni studij elektrotehnike
+SIR303-17,3,Programiranje malih Linux racunala,Strucni studij elektrotehnike
+SIR304-17,3,Osnove 3D modeliranja,Strucni studij elektrotehnike
+SIR601-17,6,Dizajn korisnickog sucelja,Strucni studij elektrotehnike
+SIR606-17,6,Internet objekata,Strucni studij elektrotehnike
+SIR607-17,6,Oblikovanje baza podataka,Strucni studij elektrotehnike
+SI401-17,4,Projekti za drustevno korisno ucenje,Strucni studij elektrotehnike
+SIAE401-17,4,Recikliranje elektrotehnickih proizvoda,Strucni studij elektrotehnike
+SIA3402-17,4,Elektronicka mjerenja i instrumentacija,Strucni studij elektrotehnike
+SI601-17,6,Projekti za drustevno korisno ucenje,Strucni studij elektrotehnike
+SIE301,3,Sklopni aparati,Strucni studij elektrotehnike
+SIAE402-17,4,Elektronicka mjerenja i instrumentacija,Strucni studij elektrotehnike
+SIE403-17,4,Programski alati u elektroenergetici,Strucni studij elektrotehnike
+SI601-15,6,Mali i sprecijalni elektricni strojevi,Strucni studij elektrotehnike
+SIE601,6,Zastita u elektroenergetskom sustavu,Strucni studij elektrotehnike
+SIE603-15,6,Provedba energetskog pregleda,Strucni studij elektrotehnike
+,,,Strucni studij elektrotehnike

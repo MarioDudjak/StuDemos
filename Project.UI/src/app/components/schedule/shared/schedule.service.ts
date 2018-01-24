@@ -34,8 +34,8 @@ export class ScheduleService {
 
     //Get professor id
     public async getProfessorId(): Promise<string> {
-        //return localStorage.getItem("userId");
-        return "259";
+        let response = await this.studentService.getStudentByIdAsync(localStorage.getItem("userId"));
+        return response["identificationNumber"];
     }
 
     //Get this student id
@@ -45,42 +45,86 @@ export class ScheduleService {
 
     //Get professor details
     public async getDemoCoursesDetails() :Promise<Object[]> {
-        return [ 
-        {
-            "demonstrationCode":"P106",
-            "already-chosen":[
-                {"date": "22.01.2018",
-                "time": "11:00",
-                "student": {"id":"studentID", "name":"Lucija Lucic"}
+
+        let profId = localStorage.getItem('userId');
+        let courses = await this.courseService.getAllCourses();
+        var response = [
+            {
+                "demonstrationCode":"",
+                "already-chosen":[
+                    {"date": "",
+                    "time": "",
+                    "student": {"id":"", "name":""}
+                    }
+                ]
+            }
+        ];
+        var i=0;
+        courses.forEach(async element => {
+            if(element["professors"] && element["professors"].includes(profId)){
+                response[i]["demonstrationCode"]=element["courseCode"];
+                if(element["studentsNames"]){
+                    let studentIds = element["students"].split(",");
+                    let students = element["studentsNames"].split(",");
+                    studentIds.forEach(async element => {
+                        var studentCourseTerms = await this.httpService.getById(element,"courseTerm/getbystudentid");  
+                        var s=0;
+                        var j=0;
+                        if(studentCourseTerms){
+                        studentCourseTerms.forEach(element => {
+                            response[i]["already-chosen"][j]["date"]=element["date"];
+                            response[i]["already-chosen"][j]["time"]=element["time"];                            
+                            response[i]["already-chosen"][j]["student"]["id"]=element["studentID"];
+                            response[i]["already-chosen"][j]["student"]["name"]=students[s]["firstName"]+ " " + students[s]["lastName"];
+                            j++;
+                        }); 
+                    }
+
+                        s++;
+                    });                     
                 }
-            ]
-        }
-       ];
+                i++;                
+            }
+        });
+        return response; 
     }
 
     //Get this student details
     public async getStudentDetails() : Promise<Object> {
+        var response = {"branch":"",
+        "semester":"",
+        "demonstrationCode":"",
+        "already-chosen":[
+            {"date":"",
+            "time":"",
+            "student":""}]
+        }; 
+
         let studentID= localStorage.getItem("userId");
         let student = await this.getStudentByIdAsync(studentID);
+        response["branch"]=student["branch"];
         let studentApply = await this.studentService.getStudentApply(studentID);
+        console.log(studentApply);
         let course = await this.courseService.getCourseById(studentApply["selections"][0]["courseID"]);
+        response["semester"]=course["semester"];
+        response["demonstrationCode"]=course["courseCode"];
         this.courseID = studentApply["selections"][0]["courseID"];
         
         try{
-            var courseTerm = await this.httpService.getById(studentID,"courseTerm/getbystudentid");
+            var courseTerms= await this.httpService.getById(this.courseID,"courseTerm/getbycourseid");
+            if(courseTerms){
+                var i=0;
+                courseTerms.forEach(element => {
+                    response["already-chosen"][i]["date"]=element["date"];
+                    response["already-chosen"][i]["time"]=element["time"];
+                    response["already-chosen"][i]["student"]=element["studentID"];
+                    i++;
+                });
+            }
         }
         catch(e){
-            console.log("Error");
         }
-
-        return {"branch":student["branch"],
-        "semester":course["semester"],
-        "demonstrationCode":course["courseCode"],
-        "already-chosen":[
-            {"date":courseTerm["date"],
-            "time":courseTerm["time"],
-            "student":studentID}]
-        };
+        return response;
     }
 
 

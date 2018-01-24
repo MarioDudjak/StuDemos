@@ -27,6 +27,8 @@ namespace Project.WebAPI.ViewModels
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        
+        public string Branch { get; set; }
+        public string Studies { get; set; }
+        public string Year { get; set; }
     }
 }

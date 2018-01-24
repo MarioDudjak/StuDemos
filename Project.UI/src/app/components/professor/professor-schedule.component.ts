@@ -12,7 +12,7 @@ export class ProfessorScheduleComponent implements OnInit {
 
   constructor(private professorService:ProfessorService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
   }
 
 }
