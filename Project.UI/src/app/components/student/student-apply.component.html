@@ -5,20 +5,20 @@
         <h5 class="form-description">
             <span class="row">OBRAZAC PRIJAVE ZA DEMONSTRATURU</span>
             <span class="row">ZA {{semester}} SEMESTAR AK. GODINE {{academicYear}}</span>
-            <span class="row">
+            <!--<span class="row">
                 ZA STUDENTE KOJI PO PRVI PUT SLUŠAJU PREDMET
-            </span>
+            </span>-->
         </h5>
         <div class="row">
             <div class="input-field col s6" [ngClass]="{ 'has-error': myForm.submitted && !firstName.valid }">
-                <input name="firstName" id="firstName" type="text" class="validate"
-                    [(ngModel)]="model.firstName" #firstName="ngModel" required />
+                <input name="firstName" id="firstName" type="text" class="validate" placeholder="Ime"
+                    [(ngModel)]="model.firstName" #firstName="ngModel" [disabled]="disableFirstNameInput" required />
                 <label class="active" for="firstName">Ime</label>
                 <div *ngIf="myForm.submitted && !firstName.valid" class="help-block">Ovo polje je obavezno</div>
             </div>
             <div class="input-field col s6" [ngClass]="{ 'has-error': myForm.submitted && !lastName.valid }">
-                <input name="lastName" id="lastName" type="text" class="validate"
-                    [(ngModel)]="model.lastName" #lastName="ngModel" required>
+                <input name="lastName" id="lastName" type="text" class="validate" placeholder="Prezime"
+                    [(ngModel)]="model.lastName" #lastName="ngModel" [disabled]="disableLastNameInput" required>
                 <label class="active" for="lastName">Prezime</label>
                 <div *ngIf="myForm.submitted && !lastName.valid" class="help-block">Ovo polje je obavezno</div>
             </div>
@@ -46,7 +46,7 @@
             </a>
         </div>
         <!-- Modal Trigger End-->
-        <div ngModelGroup="selectedCourses">
+        <div ngModelGroup="selectedCourses" >
             <div *ngFor="let course of checkedCourses; let i=index">
                 <label class="col s12">
                     {{i + 1}}. odabir
@@ -58,10 +58,10 @@
                     <div class="col s4 course-study-programme">
                         {{course?.studyLevel}}
                     </div>
-                    <div class="input-field col s3 course-grade" [ngClass]="{ 'has-error': myForm.submitted && !courseGrade.valid }">
-                        <input name="courseGrade[{{course}}]" type="number" class="validate"
-                            placeholder="Ocjena iz predmeta" #courseGrade="ngModel" ngModel required>
-                        <div *ngIf="myForm.submitted && !courseGrade.valid" class="help-block">Ovo polje je obavezno</div>
+                    <div class="input-field col s3 course-grade" [ngClass]="{ 'has-error': myForm.submitted && !courseGrade[i].valid }">
+                        <input name="courseGrade[{{i}}]" type="number" class="validate"
+                            placeholder="Ocjena iz predmeta" id="courseGrade[{{i}}]" [(ngModel)]="courseGrade[i]" required>
+                        <div *ngIf="myForm.submitted && !courseGrade[i].valid" class="help-block">Ovo polje je obavezno</div>  
                     </div>
                     <div class="position-arrow">
                         <span class="arrow-upward" (click)="courseUp(i)"><i class="material-icons">arrow_upward</i></span>
