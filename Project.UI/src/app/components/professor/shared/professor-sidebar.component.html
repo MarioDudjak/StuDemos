@@ -1,3 +1,9 @@
-<ul>
-    <li></li>
-</ul>
+<div class="demo-list">
+    <h4 class="demo-title">Demonstratori</h4>
+    <div *ngFor="let course of demoCourses;">
+        <p class="demo-course">{{course.courseName}}</p>
+        <ul class="demo-items" *ngFor="let student of course.students;">
+            <li>{{student}}</li>
+        </ul>
+    </div>
+</div>

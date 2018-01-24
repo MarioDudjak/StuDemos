@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import { ProfessorService } from './professor.service';
 
 @Component({
     selector : 'professor-sidebar',
@@ -8,8 +9,12 @@ import {Component} from '@angular/core';
 
 export class ProfessorSidebarComponent{
 
-    constructor(){
-        
+    constructor(private professorService:ProfessorService){}
+
+    private demoCourses:Object;
+
+    async ngOnInit() {
+        this.demoCourses = await this.professorService.getDemonstrators();
     }
 
 }

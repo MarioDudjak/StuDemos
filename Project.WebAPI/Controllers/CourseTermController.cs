@@ -44,23 +44,34 @@ namespace Project.WebAPI.Controllers
             return Ok(courseTerm);
         }
 
-        [ResponseType(typeof(CourseTerm))]
         [HttpGet]
         [Route("getbystudentid/{id}")]
         public async Task<IHttpActionResult> GetStudentCourseTerm(string id)
         {
             var courseTerms = db.CourseTerms.Where(a => a.StudentID == id);
-            CourseTerm courseTerm = null;
-            if (courseTerms.Count() != 0)
-            {
-                courseTerm = await courseTerms.FirstAsync();
-            }
-            if (courseTerm == null)
+
+            if (courseTerms == null)
             {
                 return NotFound();
             }
 
-            return Ok(courseTerm);
+            return Ok(courseTerms.ToList());
+
+        }
+
+        [HttpGet]
+        [Route("getbycourseid/{id}")]
+        public async Task<IHttpActionResult> GetCourseCourseTerms(Guid id)
+        {
+            var courseTerms = db.CourseTerms.Where(a => a.CourseID == id);
+
+            if (courseTerms == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(courseTerms.ToList());
+
         }
 
         // PUT: api/CourseTerm/5

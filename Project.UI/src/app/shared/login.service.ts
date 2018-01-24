@@ -75,7 +75,7 @@ export class LoginService {
                 }
                     break;
                 case "Professor":
-                    this.router.navigate([""]);
+                    this.router.navigate(["/professor/schedule"]);
                     break;
                 case "Admin":
                     this.router.navigate(["/admin/apply/list"]);

@@ -23,6 +23,8 @@ export class ScheduleComponent implements OnInit {
 
   //Professor details
   private professorId:string;
+  private demoCourses:Object[];
+  private studentDemonstrator:string;
 
   //Semesters according to the year of Study
   private firstYearSemesters:string[] = ["1","2"];
@@ -45,8 +47,9 @@ export class ScheduleComponent implements OnInit {
       this.role = "professor";
     }
     if (this.role === "professor") {
+      let demoCourses:Object[] = await this.scheduleService.getDemoCoursesDetails();
       let idProfessor:string = await this.scheduleService.getProfessorId();
-      this.setProfessorData(idProfessor);
+      this.setProfessorData(idProfessor, demoCourses);
     } else {
       let student:Object = await this.scheduleService.getStudentDetails();
       let idStudent:string = await this.scheduleService.getStudentId();
@@ -59,8 +62,9 @@ export class ScheduleComponent implements OnInit {
   }
 
   //Set professor details
-  private setProfessorData(id:string) {
+  private setProfessorData(id:string, demoCourses:Object[]) {
     this.professorId = id;
+    this.demoCourses = demoCourses;
   }
 
   //Set student details
@@ -145,6 +149,7 @@ export class ScheduleComponent implements OnInit {
     let duration:number = Math.round((endTime.getTime() - new Date (new Date().toDateString() + ' ' + start).getTime())/60000)/60;
     let courseGroup:string = this.courses[i]["subject"][j]["grupastudenata"][0]["_"];
     let roomAndDuration = this.getCourseRoomAndDuration(i, j);
+    this.studentDemonstrator = "";
 
     let p = document.createElement("p");
     if (row === 0) {
@@ -160,6 +165,15 @@ export class ScheduleComponent implements OnInit {
         } else {
           p.classList.add("schedule-demo-available");
           p.style.paddingRight = "13px";
+        }
+      }
+    } else {
+     let course:Object = this.demoCourses.find(o => (o["demonstrationCode"] === courseCode));
+      if (course !== undefined) {
+        let chosenCourse:Object = course["already-chosen"].find(o => (this.weekDates[i].includes(o["date"]) && o["time"] === start));
+        if (chosenCourse !== undefined) {
+          p.classList.add("schedule-demo-chosen");
+          this.studentDemonstrator = chosenCourse["student"]["name"];
         }
       }
     }
@@ -194,9 +208,12 @@ export class ScheduleComponent implements OnInit {
     let participant:string = this.role === "student" ? courses["nastavnik"][0]["_"]:courses["grupastudenata"][0]["_"];
     let end:string = courses["kraj"][0];
     let roomAndDuration = this.getCourseRoomAndDuration(i, j);
+    let demoStudent:string = "";
+    this.studentDemonstrator === "" ? "" : 
+      demoStudent="<div><span class='yellow-detail'>Demonstrator:</span> "+this.studentDemonstrator+"</div>";
     return "<div>"+courseType+"</div><div class='yellow-detail'>"+text+" "+courseCode+"</div><div id="+start+">"
     +start+" - "+end+"</div><div class='yellow-detail' id="+courseCode+">"+participant+
-    "</div><div><span class='yellow-detail'>"+roomAndDuration[0]+"</span>"+roomAndDuration[1]+"</div>";
+    "</div><div><span class='yellow-detail'>"+roomAndDuration[0]+"</span>"+roomAndDuration[1]+demoStudent+"</div>";
   }
 
   //Get room and duration of current course

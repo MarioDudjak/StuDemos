@@ -20,7 +20,6 @@ export class StudentApplyComponent implements OnInit {
   private academicYear:string;
   private semester:string;
   private courses:Course[];
-
   constructor(private studentService:StudentService,
   private applicationService:ApplicationService,
   private courseService: CourseService,
@@ -28,7 +27,6 @@ export class StudentApplyComponent implements OnInit {
 
   async ngOnInit() {    
     this.courses= await this.courseService.getAllCourses();
-    console.log(this.courses);
     //Set courseSelected and disableSelect array on false at the beginning because courses are not selected
     for(let i=0;i<this.courses.length;i++) {
       this.courseSelected.push(false);
@@ -102,7 +100,6 @@ export class StudentApplyComponent implements OnInit {
     }
     var apply= new Apply("Mario","Dudjak",5.0,60,0,selections,localStorage.getItem('userId')); //tu podatke o studentu
     let response = await this.applicationService.CreateApplication(apply);
-    console.log(response); 
   }
   
 }

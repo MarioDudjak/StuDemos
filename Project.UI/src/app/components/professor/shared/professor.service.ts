@@ -10,7 +10,8 @@ export class ProfessorService {
 	private professorSource = new BehaviorSubject<any>("");
     currentProfessor = this.professorSource.asObservable();
 
-    constructor(private httpService: HttpService,
+    constructor(
+    private httpService: HttpService,
     private courseService:CourseService) { }
     
     changeCourse(professor: any) {
@@ -31,19 +32,28 @@ export class ProfessorService {
 
     async getDemonstrators():Promise<any>{ 
         let profId = localStorage.getItem('userId');
+        var response = [{
+            "courseName":"",
+            "courseId":"",
+            "students":[]
+        }];
         let courses = await this.courseService.getAllCourses();
-        var response = new Array({});
+        var i=0;        
         courses.forEach(element => {
             if(element["professors"]){
             if(element["professors"].includes(profId)){
+                response[i]["courseName"]=element["courseName"];
+                response[i]["courseId"]=element["courseCode"];
+            
                 if(element["studentsNames"]){
-                    let courseCode=element["courseCode"];
-                    let professorNames = element["studentsNames"].split(",");  
-                    var students={
-                        courseCode:professorNames
-                    };
-                    response.push(students);
+                    let studentNames = element["studentsNames"].split(",");  
+                    var j=0;
+                    studentNames.forEach(element => {
+                        response[i]["students"][j]=element;
+                        j++;
+                    });
                 }
+                i++;
             }
             }
     

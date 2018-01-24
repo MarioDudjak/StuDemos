@@ -129,6 +129,9 @@ namespace Project.WebAPI.Controllers
                 LastName = createUserModel.LastName,
                 JoinDate = DateTime.UtcNow,
                 RoleName = createUserModel.RoleName,
+                Branch = createUserModel.Branch,
+                Studies = createUserModel.Studies,
+                Year = createUserModel.Year,
                 EmailConfirmed =true, 
             };
             

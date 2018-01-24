@@ -20,6 +20,8 @@ namespace Project.DAL.Entities
 
         public string RoleName { get; set; }
 
+        public string Password { get; set; }
+
         public string IdentificationNumber { get; set; }
 
         [Required]

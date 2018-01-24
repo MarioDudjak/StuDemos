@@ -136,7 +136,7 @@ namespace Project.WebAPI.Controllers
         // POST: api/Application
         [ResponseType(typeof(Apply))]
         [HttpPost]
-        [Authorize(Roles = "Student")]
+        [Authorize]
         [Route("create", Name = "CreateApply")]
         public async Task<IHttpActionResult> PostApply(Apply apply)
         {

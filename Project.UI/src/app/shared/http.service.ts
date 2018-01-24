@@ -89,6 +89,5 @@ export class HttpService {
 	}
 
 	handleError(error) {
-		console.log(error);
 	}
 }
