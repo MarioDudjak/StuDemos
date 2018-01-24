@@ -17,18 +17,20 @@ export class StudentApplyComponent implements OnInit {
   private courseSelected:boolean[] = [];
   private disableSelect:boolean[] = [];
   private checkedCourses:Course[] = [];
+  private courseGrade:string[] = [];
   private academicYear:string;
   private semester:string;
   private courses:Course[];
+  private disableFirstNameInput:boolean = false;
+  private disableLastNameInput:boolean = false;
 
   constructor(private studentService:StudentService,
   private applicationService:ApplicationService,
   private courseService: CourseService,
-) { }
+  ) { }
 
-  async ngOnInit() {    
+  async ngOnInit() {   
     this.courses= await this.courseService.getAllCourses();
-    console.log(this.courses);
     //Set courseSelected and disableSelect array on false at the beginning because courses are not selected
     for(let i=0;i<this.courses.length;i++) {
       this.courseSelected.push(false);
@@ -45,6 +47,12 @@ export class StudentApplyComponent implements OnInit {
     const summerSemesterApplyForm = [11,12,1,2,3];
     const currentMonth = currentDate.getMonth()+1;
     this.semester = summerSemesterApplyForm.includes(currentMonth) ? "LJETNI" : "ZIMSKI";
+
+    //Set student name
+    this.model.firstName = localStorage.getItem('firstName');
+    this.model.lastName = localStorage.getItem('lastName');
+    if(this.model.firstName !== "" && this.model.firstName !== undefined) this.disableFirstNameInput = true;
+    if(this.model.lastName !== "" && this.model.lastName !== undefined) this.disableLastNameInput = true;
   }
 
   //Move course position up
@@ -68,6 +76,7 @@ export class StudentApplyComponent implements OnInit {
   //Change course position in checkedCourses array
   changePlace(from, to) {
       this.checkedCourses.splice(to, 0, this.checkedCourses.splice(from, 1)[0]);
+      this.courseGrade.splice(to, 0, this.courseGrade.splice(from, 1)[0]);
   }
 
   //If 5 checkboxes are checked, disable checking new courses
@@ -94,15 +103,16 @@ export class StudentApplyComponent implements OnInit {
 
   async register(myForm:NgForm){
     var selectionsSize=this.checkedCourses.length;
-    var selections = new Array(selectionsSize); 
-    //tu bi trebalo pokupit podatke iz forme 
+    var selections = new Array(selectionsSize);
     for(var i=0;i<selectionsSize;i++){
-      var selection = new Selection(1,4,this.checkedCourses[i]["courseID"],this.checkedCourses[i]["courseName"]); //tu za svaki predmet prioritet i ocjenu
-      selections[i]=selection; 
+      let grade:number = parseInt(this.courseGrade[i],10);
+      var selection = new Selection(i+1,grade,this.checkedCourses[i]["courseID"],this.checkedCourses[i]["courseName"]);
+      selections[i]=selection;
+      //console.log(selections[i]);
     }
-    var apply= new Apply("Mario","Dudjak",5.0,60,0,selections,localStorage.getItem('userId')); //tu podatke o studentu
+    var apply= new Apply(this.model.firstName,this.model.lastName,this.model.averageGrade,this.model.demonstrationHours,0,selections,localStorage.getItem('userId'));
     let response = await this.applicationService.CreateApplication(apply);
-    console.log(response); 
+    //console.log(response); 
   }
   
 }

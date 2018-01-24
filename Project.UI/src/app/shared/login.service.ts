@@ -47,6 +47,8 @@ export class LoginService {
         let response = await this.httpService.getById(username,"accounts/user");
         localStorage.setItem('userName',response["userName"]);
         localStorage.setItem('userId',response["id"]);
+        localStorage.setItem('firstName',response["firstName"]);
+        localStorage.setItem('lastName',response["lastName"]);
         localStorage.setItem('userRole',response["roleName"]);
         this.redirectUser(response["roleName"]);
     }
