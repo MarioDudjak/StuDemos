@@ -10,8 +10,7 @@ import {ProfessorScheduleRoute} from './routes/professor';
 import {AdminApplyListRoute, AdminProfessorListRoute,AdminCourseListRoute} from './routes/admin';
 import {RegisterRoute,LoginRoute} from './routes/membership';
 import {AuthGuard} from './shared/guards';
-import {AdminCourseCreateComponent, AdminApplyConfirmComponent,AdminProfessorCreateComponent
-} from './components/admin';
+import {AdminCourseCreateComponent, AdminApplyConfirmComponent,AdminProfessorCreateComponent} from './components/admin';
 
   @NgModule({
     imports: [

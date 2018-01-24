@@ -34,12 +34,28 @@ export class ScheduleService {
 
     //Get professor id
     public async getProfessorId(): Promise<string> {
-        return localStorage.getItem("userId");
+        //return localStorage.getItem("userId");
+        return "259";
     }
 
     //Get this student id
     public async getStudentId() : Promise<string> {
         return localStorage.getItem("userId");
+    }
+
+    //Get professor details
+    public async getDemoCoursesDetails() :Promise<Object[]> {
+        return [ 
+        {
+            "demonstrationCode":"P106",
+            "already-chosen":[
+                {"date": "22.01.2018",
+                "time": "11:00",
+                "student": {"id":"studentID", "name":"Lucija Lucic"}
+                }
+            ]
+        }
+       ];
     }
 
     //Get this student details
@@ -54,6 +70,7 @@ export class ScheduleService {
             var courseTerm = await this.httpService.getById(studentID,"courseTerm/getbystudentid");
         }
         catch(e){
+            console.log("Error");
         }
 
         return {"branch":student["branch"],
@@ -63,7 +80,7 @@ export class ScheduleService {
             {"date":courseTerm["date"],
             "time":courseTerm["time"],
             "student":studentID}]
-    };
+        };
     }
 
 
