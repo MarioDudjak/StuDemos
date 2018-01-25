@@ -3,9 +3,11 @@ body, html {
   height: 100%;
 }
 /*Login form*/
-.login-form {
-    width: 500px;
-    margin: 0 auto;
+.login-form{
+  margin:0 20%;
+}
+.register-form{
+  margin:0 20%;
 }
 /* Material icons */
 @font-face {

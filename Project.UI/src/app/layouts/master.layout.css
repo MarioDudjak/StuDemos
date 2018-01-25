@@ -24,3 +24,21 @@
     min-height: -moz-calc(100% - 80px); /* firefox */
     overflow: auto;
 }
+.member-btn
+{
+border-radius: 8px;
+border: none;
+background-color:#c65a01;
+color: white;
+text-align: center;
+font-size: 16px;
+height: 40px;
+width:150px;
+display: inline-block;
+
+}
+.membership{
+float: right;
+position: relative;
+top: 25%;
+}
