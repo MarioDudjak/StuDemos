@@ -48,19 +48,11 @@ export class ScheduleService {
 
         let profId = localStorage.getItem('userId');
         let courses = await this.courseService.getAllCourses();
-        var response = [
-            {
-                "demonstrationCode":"",
-                "already-chosen":[
-                    {"date": "",
-                    "time": "",
-                    "student": {"id":"", "name":""}
-                    }
-                ]
-            }
-        ];
+        var response = [];
         var i=0;
         courses.forEach(async element => {
+            response[i]=[];  
+            response[i]["already-chosen"]=[];                                                                
             if(element["professors"] && element["professors"].includes(profId)){
                 response[i]["demonstrationCode"]=element["courseCode"];
                 if(element["studentsNames"]){
@@ -72,10 +64,12 @@ export class ScheduleService {
                         var j=0;
                         if(studentCourseTerms){
                         studentCourseTerms.forEach(element => {
+                            response[i]["already-chosen"][j]=[];                            
                             response[i]["already-chosen"][j]["date"]=element["date"];
-                            response[i]["already-chosen"][j]["time"]=element["time"];                            
+                            response[i]["already-chosen"][j]["time"]=element["time"];   
+                            response[i]["already-chosen"][j]["student"]={};                     
                             response[i]["already-chosen"][j]["student"]["id"]=element["studentID"];
-                            response[i]["already-chosen"][j]["student"]["name"]=students[s]["firstName"]+ " " + students[s]["lastName"];
+                            response[i]["already-chosen"][j]["student"]["name"]=
                             j++;
                         }); 
                     }
@@ -104,12 +98,11 @@ export class ScheduleService {
         let student = await this.getStudentByIdAsync(studentID);
         response["branch"]=student["branch"];
         let studentApply = await this.studentService.getStudentApply(studentID);
-        console.log(studentApply);
         let course = await this.courseService.getCourseById(studentApply["selections"][0]["courseID"]);
         response["semester"]=course["semester"];
         response["demonstrationCode"]=course["courseCode"];
         this.courseID = studentApply["selections"][0]["courseID"];
-        
+        response["already-chosen"]=[];
         try{
             var courseTerms= await this.httpService.getById(this.courseID,"courseTerm/getbycourseid");
             if(courseTerms){
