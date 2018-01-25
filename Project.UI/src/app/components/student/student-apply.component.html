@@ -58,7 +58,6 @@
                     <div class="col s4 course-study-programme">
                         {{course?.studyLevel}}
                     </div>
-                    <div>p: {{courseGrade[i]}}</div>
                     <div class="input-field col s3 course-grade" [ngClass]="{ 'has-error': myForm.submitted && courseGrade[i]==undefined }">
                         <input name="courseGrade[{{i}}]" type="number" class="validate"
                             placeholder="Ocjena iz predmeta" id="courseGrade[{{i}}]" [(ngModel)]="courseGrade[i]" required>
@@ -88,23 +87,27 @@
                 <i class="material-icons">clear</i>
             </a>
         </div>
-        <div *ngFor="let course of courses; let i=index">
-            <div class="row"> 
-                <input class="col s1" type="checkbox" id="{{i}}" [(ngModel)]="courseSelected[i]"
-                name="courseSelected[{{i}}]" (change)="checkboxChanged()" [disabled]="disableSelect[i]">
-                <label for="{{i}}" class="col s11 course-checkbox">
-                    <div class="col s6">
-                        {{course?.courseName}}
+        <div>
+            <div class="modal-courses">
+                <div *ngFor="let course of courses; let i=index">
+                    <div class="row"> 
+                        <input class="col s1" type="checkbox" id="{{i}}" [(ngModel)]="courseSelected[i]"
+                        name="courseSelected[{{i}}]" (change)="checkboxChanged()" [disabled]="disableSelect[i]">
+                        <label for="{{i}}" class="col s11 course-checkbox">
+                            <div class="col s6">
+                                {{course?.courseName}}
+                            </div>
+                            <div class="col s6">
+                                {{course?.studyLevel}}
+                            </div>
+                        </label>
                     </div>
-                    <div class="col s6">
-                        {{course?.studyLevel}}
-                    </div>
-                </label>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="modal-footer">
-        <a class=" modal-action modal-close waves-effect btn-flat modal-button" (click)="checkboxSubmit()">Potvrdi</a>
+        <div class="modal-footer">
+            <a class=" modal-action modal-close waves-effect btn-flat modal-button" (click)="checkboxSubmit()">Potvrdi</a>
+        </div>
     </div>
 </div>
 </div>

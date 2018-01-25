@@ -49,31 +49,58 @@
     color: black;
 }
 
+.modal {
+    border-radius: 6px;
+    overflow: hidden;
+}
+
 .modal-close-button {
     padding-left: 0px;
     float: right;
     padding-right: 0px;
+    color: #001c1c;
     i{
         font-size: 1.7rem;
     }
 }
 
+.modal-content {
+    padding: 0;
+    overflow: auto;
+    height: 550px;
+}
+
 .modal-title {
     font-size: 24px;
-    margin-bottom: 25px;
+    width: 100%;
+    height: 70px;
+    padding: 15px;
+    background-color: #008d8f;
+    color: #ffffff;
+}
+
+.modal-courses {
+    padding: 24px;
 }
 
 .modal-button {
-    background-color: #195d85;
+    background-color: #008d8f;
     color: #fff;
     margin-right: 10px !important;
     margin-top: 0px !important;
     &:hover {
-        background-color: #4c81a0;
+        background-color: #007072;
     }
     &:focus {
-        background-color: #003454;
+        background-color: #007072;
     }
+}
+
+.modal-footer {
+    height: 60px;
+    border-top: 1px solid #cecece;
+    background-color: #efefef;
+    padding-top: 9px;
 }
 
 .position-arrow{

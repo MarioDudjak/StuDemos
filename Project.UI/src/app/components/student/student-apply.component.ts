@@ -21,12 +21,9 @@ export class StudentApplyComponent implements OnInit {
   private academicYear:string;
   private semester:string;
   private courses:Course[];
-<<<<<<< HEAD
-=======
   private disableFirstNameInput:boolean = false;
   private disableLastNameInput:boolean = false;
 
->>>>>>> 0f96bbf7dfe57a9b4278cb2fd19782dd23771284
   constructor(private studentService:StudentService,
   private applicationService:ApplicationService,
   private courseService: CourseService,
@@ -115,10 +112,7 @@ export class StudentApplyComponent implements OnInit {
     }
     var apply= new Apply(this.model.firstName,this.model.lastName,this.model.averageGrade,this.model.demonstrationHours,0,selections,localStorage.getItem('userId'));
     let response = await this.applicationService.CreateApplication(apply);
-<<<<<<< HEAD
-=======
-    //console.log(response); 
->>>>>>> 0f96bbf7dfe57a9b4278cb2fd19782dd23771284
+    //console.log(response);
   }
   
 }
