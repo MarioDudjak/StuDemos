@@ -32,14 +32,11 @@ export class ProfessorService {
 
     async getDemonstrators():Promise<any>{ 
         let profId = localStorage.getItem('userId');
-        var response = [{
-            "courseName":"",
-            "courseId":"",
-            "students":[]
-        }];
+        var response = [];
         let courses = await this.courseService.getAllCourses();
         var i=0;        
         courses.forEach(element => {
+            response[i]={};
             if(element["professors"]){
             if(element["professors"].includes(profId)){
                 response[i]["courseName"]=element["courseName"];
@@ -48,12 +45,13 @@ export class ProfessorService {
                 if(element["studentsNames"]){
                     let studentNames = element["studentsNames"].split(",");  
                     var j=0;
+                    response[i]["students"]=new Array(4);
                     studentNames.forEach(element => {
                         response[i]["students"][j]=element;
                         j++;
                     });
                 }
-                i++;
+            
             }
             }
     

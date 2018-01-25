@@ -108,7 +108,6 @@ export class StudentApplyComponent implements OnInit {
       let grade:number = parseInt(this.courseGrade[i],10);
       var selection = new Selection(i+1,grade,this.checkedCourses[i]["courseID"],this.checkedCourses[i]["courseName"]);
       selections[i]=selection;
-      //console.log(selections[i]);
     }
     var apply= new Apply(this.model.firstName,this.model.lastName,this.model.averageGrade,this.model.demonstrationHours,0,selections,localStorage.getItem('userId'));
     let response = await this.applicationService.CreateApplication(apply);
