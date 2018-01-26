@@ -116,7 +116,6 @@ export class ScheduleService {
         }
         catch(e){
         }
-        console.log(response);
         return response;
     }
 

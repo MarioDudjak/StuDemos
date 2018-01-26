@@ -15,10 +15,10 @@
         <th width="2%" style="font-size:12px"><input type="checkbox" #All (click)="selectAll(All.checked)" name="select" title="Odaberi sve" >
             <label for="select">Odaberi sve</label>
         </th>
-        <th><a (click)="sortCourses('courseName')" href="javascript:void(0)" >Naziv kolegija</a></th>
-        <th><a (click)="sortCourses('courseCode')" href="javascript:void(0)" >Šifra kolegija</a></th>      
-        <th><a (click)="sortCourses('semester')" href="javascript:void(0)" >Semestar izvođenja</a></th>  
-        <th><a (click)="sortCourses('studyLevel')" href="javascript:void(0)" >Razina studija</a></th>                                
+        <th><a class="sort" (click)="sortCourses('courseName')" href="javascript:void(0)" >Naziv kolegija</a></th>
+        <th><a class="sort" (click)="sortCourses('courseCode')" href="javascript:void(0)" >Šifra kolegija</a></th>      
+        <th><a class="sort" (click)="sortCourses('semester')" href="javascript:void(0)" >Semestar izvođenja</a></th>  
+        <th><a class="sort" (click)="sortCourses('studyLevel')" href="javascript:void(0)" >Razina studija</a></th>                                
         <th>Popis profesora</th>  
         <th>Popis demonstratora</th>               
         <th>Opcije</th>
