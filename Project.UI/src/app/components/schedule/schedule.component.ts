@@ -104,7 +104,7 @@ export class ScheduleComponent implements OnInit {
     let element:Element;
     let span:Element = this.createSpanElement(i, j);
     let plus:Element;
-    this.role === "student" ? plus = this.createPlusElement(i, j):"";
+    this.role === "student" ? plus = this.createPlusElement(i, j, row):"";
     let p:Element = this.createPElement(i, j, row, start, text, courseCode);
     let div:Element = this.createDivElement(i, j, row, text, courseCode, start);
     if (row === 0) {
@@ -134,9 +134,12 @@ export class ScheduleComponent implements OnInit {
   }
 
   //Plus button for selecting a course
-  private createPlusElement(i:number, j:number): Element {
+  private createPlusElement(i:number, j:number, row:number): Element {
     let plus = document.createElement("button");
     plus.className = "select-course-button";
+    if (row === 0) {
+      plus.style.top = (this.calculateHeight(i, j)+70) +"px";
+    }
     plus.addEventListener("click", this.selectDemoCourse.bind(this));
     return plus;
   }
@@ -153,7 +156,7 @@ export class ScheduleComponent implements OnInit {
 
     let p = document.createElement("p");
     if (row === 0) {
-      p.style.top = (this.calculateHeight(i, j)*69+66) +"px";
+      p.style.top = (this.calculateHeight(i, j)+76) +"px";
     }
     p.className = "schedule-element";
     if (this.role === "student") {
@@ -177,8 +180,9 @@ export class ScheduleComponent implements OnInit {
         }
       }
     }
+    if((text+courseGroup).split(/\r\n|\r|\n/).length > 3) p.style.fontSize = "64%";
     p.innerHTML = "<div>"+text+" "+courseGroup+"</div><div>"+roomAndDuration[0]+roomAndDuration[1]+"</div>";
-    p.style.height = (duration/1.5)*58 + "px";
+    p.style.height = (duration/1.5)*69 + "px";
     return p;
   }
 
@@ -187,7 +191,7 @@ export class ScheduleComponent implements OnInit {
     let div = document.createElement("div");
     if (row === 0) {
       let r:number = this.calculateHeight(i, j);
-      div.style.top = (r*69+66+15) +"px";
+      div.style.top = (r+76+14) +"px";
     }
     div.className = "schedule-details";
     div.innerHTML = this.setTextToHoverDiv(i, j, text, courseCode, start);
@@ -197,7 +201,7 @@ export class ScheduleComponent implements OnInit {
   //Calculate height of course p element
   private calculateHeight(i:number, j:number): number {
     let startTime:Date = new Date (new Date().toDateString() + ' ' + this.courses[i]["subject"][j]["pocetak"][0]);
-    return ((startTime.getHours()*60+startTime.getMinutes()) - 8*60)/105;
+    return ((startTime.getHours()*60+startTime.getMinutes()) - 8*60)*0.767;
   }
 
   //Set inner html of hover div - course details

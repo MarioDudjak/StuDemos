@@ -35,6 +35,7 @@ body, html {
 /* Schedule details */
 .schedule-element {
   background-color: lightblue;
+  overflow: hidden;
   width: 96%;
   position: absolute;
   top: 0;
@@ -43,6 +44,7 @@ body, html {
   font-size: 72%;
   font-weight: bold;
   z-index: 100;
+  border-bottom: 1px solid rgba(50, 50, 50, 0.27);
   -moz-box-shadow: 3px 3px 4px 1px rgba(50, 50, 50, 0.27);
     -webkit-box-shadow: 3px 3px 4px 1px rgba(50, 50, 50, 0.27);
     box-shadow: 3px 3px 4px 1px rgba(50, 50, 50, 0.27);
