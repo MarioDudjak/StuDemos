@@ -23,9 +23,9 @@ import {AdminCourseCreateComponent, AdminApplyConfirmComponent,AdminProfessorCre
             children: [
                 { path: 'main', component: HomeRoute },
                 { path: 'student/apply', component: StudentApplyRoute, canActivate: [AuthGuard]},
-				{ path: 'student/form/submitted', component: StudentFormSubmittedRoute, canActivate: [AuthGuard]},
-				{ path: 'student/schedule', component: StudentScheduleRoute, canActivate: [AuthGuard] },
-				{ path: 'professor/schedule', component: ProfessorScheduleRoute, canActivate: [AuthGuard]},
+				        { path: 'student/form/submitted', component: StudentFormSubmittedRoute, canActivate: [AuthGuard]},
+				        { path: 'student/schedule', component: StudentScheduleRoute, canActivate: [AuthGuard] },
+				        { path: 'professor/schedule', component: ProfessorScheduleRoute, canActivate: [AuthGuard]},
                 { path: 'admin/apply/list', component: AdminApplyListRoute, canActivate: [AuthGuard]},
                 { path: 'admin/professor/list', component: AdminProfessorListRoute, canActivate: [AuthGuard]},     
                 { path: 'admin/course/list', component: AdminCourseListRoute, canActivate: [AuthGuard]},

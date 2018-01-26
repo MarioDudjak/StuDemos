@@ -3,7 +3,7 @@ namespace Project.DAL.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class init : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -18,7 +18,7 @@ namespace Project.DAL.Migrations
                         NumberOfApplyHours = c.Int(nullable: false),
                         ApplyStatus = c.Int(nullable: false),
                         ApplyDate = c.DateTime(nullable: false),
-                        StudentID = c.Guid(nullable: false),
+                        StudentID = c.String(),
                         ApplicationUser_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.ApplyID)
@@ -32,6 +32,7 @@ namespace Project.DAL.Migrations
                         SelectionID = c.Guid(nullable: false, identity: true),
                         Priority = c.Int(nullable: false),
                         CourseGrade = c.Int(nullable: false),
+                        CourseName = c.String(nullable: false),
                         CourseID = c.Guid(nullable: false),
                         Apply_ApplyID = c.Guid(),
                     })
@@ -48,11 +49,29 @@ namespace Project.DAL.Migrations
                         Semester = c.String(nullable: false),
                         CourseName = c.String(nullable: false),
                         StudyLevel = c.String(nullable: false),
+                        Professors = c.String(),
+                        ProfessorsNames = c.String(),
+                        Students = c.String(),
+                        StudentsNames = c.String(),
+                        ProfessorsCodes = c.String(),
                         ApplicationUser_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.CourseID)
                 .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUser_Id)
                 .Index(t => t.ApplicationUser_Id);
+            
+            CreateTable(
+                "dbo.CourseTerms",
+                c => new
+                    {
+                        CourseTermID = c.Guid(nullable: false, identity: true),
+                        Date = c.String(nullable: false),
+                        Time = c.String(nullable: false),
+                        CourseCode = c.String(nullable: false),
+                        CourseID = c.Guid(nullable: false),
+                        StudentID = c.String(nullable: false),
+                    })
+                .PrimaryKey(t => t.CourseTermID);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -85,8 +104,12 @@ namespace Project.DAL.Migrations
                         FirstName = c.String(nullable: false, maxLength: 100),
                         LastName = c.String(nullable: false, maxLength: 100),
                         RoleName = c.String(),
+                        Password = c.String(),
                         IdentificationNumber = c.String(),
                         JoinDate = c.DateTime(nullable: false),
+                        Branch = c.String(),
+                        Studies = c.String(),
+                        Year = c.String(),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
@@ -152,6 +175,7 @@ namespace Project.DAL.Migrations
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.CourseTerms");
             DropTable("dbo.Courses");
             DropTable("dbo.Selections");
             DropTable("dbo.Applies");

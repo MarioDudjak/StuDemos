@@ -58,6 +58,10 @@ export class LoginService {
         localStorage.removeItem('userName');
         localStorage.removeItem('userId');
         localStorage.removeItem('userRole');
+        localStorage.removeItem('firstName');
+        localStorage.removeItem('lastName');
+        this.router.navigate(["/login"]);
+        
     }
 
     private async redirectUser(roleName:string){
@@ -65,8 +69,11 @@ export class LoginService {
                 case "Student":
                 try{
                     let studentApply = await this.httpService.getById(localStorage.getItem('userId'),"apply/getbystudentid");
+                    if(!studentApply){
+                        this.router.navigate(["/student/apply"]);
+                    }
                     if(studentApply["applyStatus"]!=1){
-                        this.router.navigate(["/student/apply"]);                        
+                        this.router.navigate(["/student/form/submitted"]);                        
                     }                   
                     else{
                         this.router.navigate(["/student/schedule"]);                        

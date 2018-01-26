@@ -7,13 +7,13 @@ namespace Project.DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class CourseNameSelection : IMigrationMetadata
+    public sealed partial class Initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CourseNameSelection));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201801171852596_CourseNameSelection"; }
+            get { return "201801261653456_Initial"; }
         }
         
         string IMigrationMetadata.Source

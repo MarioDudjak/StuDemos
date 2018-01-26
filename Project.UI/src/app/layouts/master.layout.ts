@@ -12,10 +12,14 @@ export class MasterLayout implements OnInit {
      
         isLogged:boolean = false;
         constructor(private loginService:LoginService) { }
-    ngOnInit(){
+        
+        ngOnInit(){
         if(localStorage.getItem('userId')){
             this.isLogged = true;
         }
-    
     }
+        logout(){
+            this.loginService.logout();
+        }
+    
 }

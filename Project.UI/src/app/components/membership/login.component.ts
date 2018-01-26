@@ -33,9 +33,14 @@ export class LoginComponent implements OnInit {
     async login() {
         this.loading = true;
         var response;
-        await this.loginService.LoginUserAsync(this.model.username,this.model.password);
-        this.loginService.currentMessage.subscribe(message=> this.message = message);            
-        this.loading = false;
+        try{
+            await this.loginService.LoginUserAsync(this.model.username,this.model.password);
+            this.loading = false;            
+        }
+        catch(e){
+            this.loading = false;       
+            this.loginService.currentMessage.subscribe(message=> this.message = message);               
+        }         
  
     };
 

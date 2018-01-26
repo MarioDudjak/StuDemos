@@ -4,7 +4,7 @@
             <img [routerLink]="['/main']" src="assets/images/studemos.png" class="logo-img"/>
         </div>
         <div *ngIf="isLogged" class="membership">
-          <button class="member-btn"[routerLink]="['/login']"(click)="logout()" >Odjava</button>
+          <button class="member-btn" (click)="logout()" >Odjava</button>
         </div>
         <div *ngIf="!isLogged"class="membership">
           <button  class="member-btn" [routerLink]="['/login']" >Prijava</button>

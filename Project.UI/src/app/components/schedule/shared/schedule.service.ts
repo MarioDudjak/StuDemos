@@ -88,10 +88,7 @@ export class ScheduleService {
         var response = {"branch":"",
         "semester":"",
         "demonstrationCode":"",
-        "already-chosen":[
-            {"date":"",
-            "time":"",
-            "student":""}]
+        "already-chosen":[]
         }; 
 
         let studentID= localStorage.getItem("userId");
@@ -105,9 +102,11 @@ export class ScheduleService {
         response["already-chosen"]=[];
         try{
             var courseTerms= await this.httpService.getById(this.courseID,"courseTerm/getbycourseid");
+            console.log(courseTerms);
             if(courseTerms){
                 var i=0;
                 courseTerms.forEach(element => {
+                    response["already-chosen"][i]={};                                    
                     response["already-chosen"][i]["date"]=element["date"];
                     response["already-chosen"][i]["time"]=element["time"];
                     response["already-chosen"][i]["student"]=element["studentID"];
@@ -117,6 +116,7 @@ export class ScheduleService {
         }
         catch(e){
         }
+        console.log(response);
         return response;
     }
 
@@ -130,7 +130,9 @@ export class ScheduleService {
             "courseID":this.courseID,
             "studentID":localStorage.getItem("userId")
         }
+        console.log(courseTerm);
         let response = await this.httpService.post(courseTerm,"courseTerm/create");
+        console.log(response);
         return response;
     }
 

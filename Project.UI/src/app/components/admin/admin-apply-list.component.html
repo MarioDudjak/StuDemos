@@ -21,6 +21,7 @@
         <th><a (click)="sortApplies('gradeAverage')" href="javascript:void(0)">Prosjek ocjena</a></th>
         <th width="10%"><a (click)="sortApplies('numberOfApplyHours')" href="javascript:void(0)">Željeni broj sati demonstrature</a></th>     
         <th>Prioritet kolegija</th>   
+        <th>Ocjene kolegija</th>   
         <th>Opcije</th>
         
     </tr>
@@ -43,7 +44,16 @@
                     <div *ngIf="apply?.selections.length>3"><hr><p  style="display:inline"><span>4. {{apply?.selections[3].courseName}}</span> <span style="float:right; margin-right:15%"><span (click)="changePriority(i,3,true)">&#9651;</span>  <span (click)="changePriority(i,1,false)">&#9661;</span></span></p><br><br></div>
                     <div *ngIf="apply?.selections.length>4"><hr><p  style="display:inline"><span>5. {{apply?.selections[4].courseName}} </span> <span style="float:right; margin-right:15%"><span (click)="changePriority(i,4,true)">&#9651;</span>  <span (click)="changePriority(i,1,false)">&#9661;</span></span></p><br><br></div>
                 </div>
-            </td>    
+            </td>  
+            <td style="text-align:left;" [ngClass]="apply?.applyStatus == 0 ? 'pending': 'accepted'">
+                <p style="display:inline"><span>1. {{apply?.selections[0].courseGrade}}</span><span *ngIf="apply?.selections.length>1" href="" style="float:right" (click)="collapse(i)">&#9660;</span></p><br>
+                <div  [hidden]="hiddenCourses[i]" class="hiddenCourses">
+                    <div *ngIf="apply?.selections.length>1"><hr><p style="display:inline"><span>2. {{apply?.selections[1].courseGrade}} </span> <span style="float:right; margin-right:15%"></span></p><br><br></div> 
+                    <div *ngIf="apply?.selections.length>2"><hr><p  style="display:inline"><span>3. {{apply?.selections[2].courseGrade}}</span> <span style="float:right; margin-right:15%"></span></p><br><br></div>
+                    <div *ngIf="apply?.selections.length>3"><hr><p  style="display:inline"><span>4. {{apply?.selections[3].courseGrade}}</span> <span style="float:right; margin-right:15%"></span></p><br><br></div>
+                    <div *ngIf="apply?.selections.length>4"><hr><p  style="display:inline"><span>5. {{apply?.selections[4].courseGrade}} </span> <span style="float:right; margin-right:15%"></span></p><br><br></div>
+                </div>
+            </td>   
             <td [ngClass]="apply?.applyStatus == 0 ? 'pending': 'accepted'">
                 <button *ngIf="apply?.applyStatus==0" (click)="AcceptApply(apply)" class="btn accept" style="margin-bottom:5px">Potvrdi</button>
                 <button *ngIf="apply?.applyStatus==0" (click)="DeclineApply(apply)" class="btn decline">Odbij</button>

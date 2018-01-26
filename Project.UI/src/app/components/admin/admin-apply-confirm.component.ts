@@ -29,7 +29,7 @@ export class AdminApplyConfirmComponent implements OnInit{
     public async createApply(f:NgForm):Promise<any>{
         this.loading = true;
         this.newApply["numberOfApplyHours"]=this.apply["numberOfApplyHours"];
-        this.newApply["applyStatus"]=1;     
+        this.newApply["applyStatus"]=1;    
         let apply = await this.applicationService.UpdateApplication(this.newApply);
         f.resetForm();
         this.loading=false;

@@ -5,6 +5,7 @@ import {Course} from '../course/shared';
 import {ApplicationService,Apply,Selection} from '../application/shared';
 import {CourseService} from '../course/shared';
 import {User} from '../../shared';
+import {Router} from '@angular/router';
 @Component({
   selector: 'student-apply',
   templateUrl: './student-apply.component.html',
@@ -23,10 +24,12 @@ export class StudentApplyComponent implements OnInit {
   private courses:Course[];
   private disableFirstNameInput:boolean = false;
   private disableLastNameInput:boolean = false;
+  private errorMessage="";
 
   constructor(private studentService:StudentService,
   private applicationService:ApplicationService,
   private courseService: CourseService,
+  private router:Router
   ) { }
 
   async ngOnInit() {   
@@ -110,8 +113,13 @@ export class StudentApplyComponent implements OnInit {
       selections[i]=selection;
     }
     var apply= new Apply(this.model.firstName,this.model.lastName,this.model.averageGrade,this.model.demonstrationHours,0,selections,localStorage.getItem('userId'));
-    let response = await this.applicationService.CreateApplication(apply);
-    //console.log(response);
+    try{
+      let response = await this.applicationService.CreateApplication(apply);
+      this.router.navigate(["/student/form/submitted"]);
+    }
+    catch(e){
+      this.errorMessage="Došlo je do pogreške prilikom slanja prijave za demonstraturu. Pokušajte ponovno.";
+    }
   }
   
 }

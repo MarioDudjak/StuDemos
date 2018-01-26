@@ -97,61 +97,9 @@
     <Compile Include="Mappings\CourseEntityMap.cs" />
     <Compile Include="Mappings\CourseTermEntityMap.cs" />
     <Compile Include="Mappings\SelectionEntityMap.cs" />
-    <Compile Include="Migrations\201801162028165_init.cs" />
-    <Compile Include="Migrations\201801162028165_init.Designer.cs">
-      <DependentUpon>201801162028165_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801171843514_ApplyDate.cs" />
-    <Compile Include="Migrations\201801171843514_ApplyDate.Designer.cs">
-      <DependentUpon>201801171843514_ApplyDate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801171852596_CourseNameSelection.cs" />
-    <Compile Include="Migrations\201801171852596_CourseNameSelection.Designer.cs">
-      <DependentUpon>201801171852596_CourseNameSelection.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801172037540_CourseProfessorNames.cs" />
-    <Compile Include="Migrations\201801172037540_CourseProfessorNames.Designer.cs">
-      <DependentUpon>201801172037540_CourseProfessorNames.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801182017451_CourseChanged.cs" />
-    <Compile Include="Migrations\201801182017451_CourseChanged.Designer.cs">
-      <DependentUpon>201801182017451_CourseChanged.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801182052381_StringsArray.cs" />
-    <Compile Include="Migrations\201801182052381_StringsArray.Designer.cs">
-      <DependentUpon>201801182052381_StringsArray.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801191919375_Apply.cs" />
-    <Compile Include="Migrations\201801191919375_Apply.Designer.cs">
-      <DependentUpon>201801191919375_Apply.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801192002274_Branch.cs" />
-    <Compile Include="Migrations\201801192002274_Branch.Designer.cs">
-      <DependentUpon>201801192002274_Branch.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801192042533_CourseTerm.cs" />
-    <Compile Include="Migrations\201801192042533_CourseTerm.Designer.cs">
-      <DependentUpon>201801192042533_CourseTerm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801192051418_CourseTermStudentID.cs" />
-    <Compile Include="Migrations\201801192051418_CourseTermStudentID.Designer.cs">
-      <DependentUpon>201801192051418_CourseTermStudentID.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801192146116_courseTermChanged.cs" />
-    <Compile Include="Migrations\201801192146116_courseTermChanged.Designer.cs">
-      <DependentUpon>201801192146116_courseTermChanged.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801201004435_ApplyUserRelation.cs" />
-    <Compile Include="Migrations\201801201004435_ApplyUserRelation.Designer.cs">
-      <DependentUpon>201801201004435_ApplyUserRelation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801232102563_Changed user.cs" />
-    <Compile Include="Migrations\201801232102563_Changed user.Designer.cs">
-      <DependentUpon>201801232102563_Changed user.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801241732349_ProfessorPassword.cs" />
-    <Compile Include="Migrations\201801241732349_ProfessorPassword.Designer.cs">
-      <DependentUpon>201801241732349_ProfessorPassword.cs</DependentUpon>
+    <Compile Include="Migrations\201801261653456_Initial.cs" />
+    <Compile Include="Migrations\201801261653456_Initial.Designer.cs">
+      <DependentUpon>201801261653456_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -159,52 +107,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EmbeddedResource Include="Migrations\201801162028165_init.resx">
-      <DependentUpon>201801162028165_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801171843514_ApplyDate.resx">
-      <DependentUpon>201801171843514_ApplyDate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801171852596_CourseNameSelection.resx">
-      <DependentUpon>201801171852596_CourseNameSelection.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801172037540_CourseProfessorNames.resx">
-      <DependentUpon>201801172037540_CourseProfessorNames.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801182017451_CourseChanged.resx">
-      <DependentUpon>201801182017451_CourseChanged.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801182052381_StringsArray.resx">
-      <DependentUpon>201801182052381_StringsArray.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801191919375_Apply.resx">
-      <DependentUpon>201801191919375_Apply.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801192002274_Branch.resx">
-      <DependentUpon>201801192002274_Branch.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801192042533_CourseTerm.resx">
-      <DependentUpon>201801192042533_CourseTerm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801192051418_CourseTermStudentID.resx">
-      <DependentUpon>201801192051418_CourseTermStudentID.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801192146116_courseTermChanged.resx">
-      <DependentUpon>201801192146116_courseTermChanged.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801201004435_ApplyUserRelation.resx">
-      <DependentUpon>201801201004435_ApplyUserRelation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801232102563_Changed user.resx">
-      <DependentUpon>201801232102563_Changed user.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801241732349_ProfessorPassword.resx">
-      <DependentUpon>201801241732349_ProfessorPassword.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201801261653456_Initial.resx">
+      <DependentUpon>201801261653456_Initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\courses.xlsx" />
-    <EmbeddedResource Include="Migrations\courses.csv" />
     <EmbeddedResource Include="Migrations\professors.csv" />
     <EmbeddedResource Include="Migrations\professors.xlsx" />
+    <EmbeddedResource Include="Migrations\courses.csv" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

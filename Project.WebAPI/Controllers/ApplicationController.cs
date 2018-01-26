@@ -87,11 +87,25 @@ namespace Project.WebAPI.Controllers
                 return BadRequest();
             }
 
-
+            Selection selection = null;
             if (apply.ApplyStatus == 1)
             {
-                Selection[] selections = new Selection[] { apply.Selections.ElementAt(0) };
-                apply.Selections = selections;
+                int i = 0;
+                foreach (var item in apply.Selections)
+                {
+                    if (i == 0)
+                    {
+                        selection = item;
+                    }
+                    else
+                    {
+                        Selection s  = await db.Selections.FindAsync(item.SelectionID);
+                        db.Selections.Remove(s);
+                    }
+                    i++;
+                }
+                apply.Selections = null;
+                apply.Selections = new Selection[] { selection };
 
                 Guid courseID = apply.Selections.ElementAt(0).CourseID;
                 Course selectedCourse = db.Courses.Where(c => c.CourseID == courseID).First();
@@ -111,8 +125,10 @@ namespace Project.WebAPI.Controllers
                 db.Courses.AddOrUpdate(course => course.CourseID, selectedCourse);
 
             }
-           
-            db.Entry(apply).State = EntityState.Modified;
+
+            //db.Entry(apply).State = EntityState.Modified;
+            db.Applications.AddOrUpdate(newapply => newapply.ApplyID, apply);
+
 
             try
             {

@@ -1,7 +1,8 @@
 <admin-sidebar></admin-sidebar>
 <div class="content">        
 <div style="margin-left:30%" >
-        <h2 style="margin:2%">Dodaj novog profesora</h2>
+        <h2 *ngIf="create" style="margin:2%">Dodaj novog profesora</h2>
+        <h2 *ngIf="!create" style="margin:2%">Izmijeni profesora</h2>        
         <form name="createProfessorForm" #f="ngForm" (ngSubmit)="f.form.valid && createProfessor(f)"  novalidate>
                 <div style="margin:2%;" [ngClass]="{ 'has-error': f.submitted && !firstName.valid }">
                     <label for="firstName">Ime profesora:</label>

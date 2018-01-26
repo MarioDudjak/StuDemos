@@ -16,13 +16,13 @@ namespace Project.DAL.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(Project.DAL.StuDemosDbContext context)
         {
             //  This method will be called after migrating to the latest version.
-
+          
             var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new StuDemosDbContext()));
 
            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new StuDemosDbContext()));
@@ -90,21 +90,7 @@ namespace Project.DAL.Migrations
                        professor.EmailConfirmed = true;
 
                        context.Users.AddOrUpdate(p => p.IdentificationNumber, professor);
-                        /*
-                       var createdProfessor = new ApplicationUser()
-                       {
-                           UserName = professor.UserName,
-                           Email = professor.Email,
-                           EmailConfirmed = true,
-                           FirstName = professor.FirstName,
-                           LastName = professor.LastName,
-                           RoleName = professor.RoleName,
-                           JoinDate = DateTime.UtcNow,
-                           Courses=professor.Courses,
-                           Password=professor.Password,
-                           IdentificationNumber=professor.IdentificationNumber,
-
-                       };*/
+                    
                        context.SaveChanges();
                         // manager.Create(createdProfessor, createdProfessor.Password);
                        manager.AddPassword(professor.Id, professor.Password);
@@ -131,7 +117,7 @@ namespace Project.DAL.Migrations
                    }
                }
           } 
-
+            
         }
     }
 }
