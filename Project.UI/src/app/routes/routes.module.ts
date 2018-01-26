@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import {NoContentRoute} from './no-content.route';
 import {HomeRoute} from './home';
 import {StudentApplyRoute} from './student';
+import {StudentFormSubmittedRoute} from './student';
 import {StudentScheduleRoute} from './student';
 import {ProfessorScheduleRoute} from './professor';
 import {ComponentsModule} from '../components';
@@ -17,6 +18,7 @@ import {RegisterRoute,LoginRoute} from './membership';
     declarations: [
         HomeRoute,
         StudentApplyRoute,
+		StudentFormSubmittedRoute,
 		StudentScheduleRoute,
 		ProfessorScheduleRoute,
         AdminApplyListRoute,
@@ -30,6 +32,7 @@ import {RegisterRoute,LoginRoute} from './membership';
         NoContentRoute,
         HomeRoute,    
         StudentApplyRoute,
+		StudentFormSubmittedRoute,
 		StudentScheduleRoute,
 		ProfessorScheduleRoute,
         AdminApplyListRoute,

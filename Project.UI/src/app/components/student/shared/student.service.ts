@@ -31,7 +31,6 @@ export class StudentService {
     }
 
     //Get this student details
-    //Get this student details
     public async getStudentDetails() : Promise<Object> {
         
         var response = {"branch":"",

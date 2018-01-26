@@ -7,6 +7,7 @@ import {ScheduleService} from './schedule/shared';
 import {ScheduleComponent} from './schedule';
 import {StudentService} from './student/shared';
 import {StudentApplyComponent} from './student';
+import {StudentFormSubmittedComponent} from './student';
 import {StudentScheduleComponent} from './student';
 import {StudentSidebarComponent} from './student/shared';
 import {ProfessorService} from './professor/shared';
@@ -32,6 +33,7 @@ import {ApplicationService} from './application/shared';
     declarations: [
         ScheduleComponent,
         StudentApplyComponent,
+		StudentFormSubmittedComponent,
 		StudentScheduleComponent,
         StudentSidebarComponent,
         ProfessorScheduleComponent,
@@ -49,6 +51,7 @@ import {ApplicationService} from './application/shared';
     exports: [
        ScheduleComponent,
        StudentApplyComponent,
+	   StudentFormSubmittedComponent,
 	   StudentScheduleComponent,
        StudentSidebarComponent,
        ProfessorScheduleComponent,
