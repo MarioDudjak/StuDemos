@@ -1,8 +1,8 @@
 .image-container
 {
 position:relative; 
-height:500px;
-opacity: 0.6;
+height:508px;
+
 }
 
 .footer{
@@ -15,31 +15,28 @@ opacity: 0.6;
     color: #4CAF50;
 }
 
-.login-btn{
-border-radius: 8px;
-border: none;
-background-color:#c65a01;
-color: white;
-text-align: center;
-font-size: 16px;
-position: absolute;
-height: 40px;
-width:150px;
-bottom: 30px;
-margin-left: auto;
-margin-right: auto;
-left: 0;
-right: 0; 
-}
 .app-name{
-color: #0f082d;
+ color: #0e1e59;
 text-align: center;
-font-size: 150px;
+font-size: 90px;
+font-family: "Comic Sans MS", cursive, sans-serif;
 position: absolute;
 margin-left: auto;
 margin-right: auto;
 left: 0;
 right: 0;
-top:150px; 
+top:25%;
 }
 
+.about-text{
+color: #0e1e59;
+text-align: center;
+font-size: 40px;
+font-family: "Comic Sans MS", cursive, sans-serif;
+position: absolute;
+margin-left: auto;
+margin-right: auto;
+left: 0;
+right: 0;
+top:40%;
+}
