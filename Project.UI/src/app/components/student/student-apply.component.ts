@@ -25,6 +25,7 @@ export class StudentApplyComponent implements OnInit {
   private disableFirstNameInput:boolean = false;
   private disableLastNameInput:boolean = false;
   private errorMessage="";
+  private submitted=false;
 
   constructor(private studentService:StudentService,
   private applicationService:ApplicationService,
@@ -105,6 +106,7 @@ export class StudentApplyComponent implements OnInit {
   }
 
   async register(myForm:NgForm){
+    this.submitted=true;
     var selectionsSize=this.checkedCourses.length;
     var selections = new Array(selectionsSize);
     for(var i=0;i<selectionsSize;i++){
@@ -116,8 +118,10 @@ export class StudentApplyComponent implements OnInit {
     try{
       let response = await this.applicationService.CreateApplication(apply);
       this.router.navigate(["/student/form/submitted"]);
+      this.submitted=false;      
     }
     catch(e){
+      this.submitted=false;      
       this.errorMessage="Došlo je do pogreške prilikom slanja prijave za demonstraturu. Pokušajte ponovno.";
     }
   }

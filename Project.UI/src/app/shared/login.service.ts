@@ -12,6 +12,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Injectable()
 export class LoginService {
     private messageSource = new BehaviorSubject<any>("");    
+    public isLogged=false;
     constructor(private http:Http,
         private httpService:HttpService,
         private router:Router) { }
@@ -65,6 +66,7 @@ export class LoginService {
     }
 
     private async redirectUser(roleName:string){
+        this.isLogged=true;
             switch(roleName){
                 case "Student":
                 try{

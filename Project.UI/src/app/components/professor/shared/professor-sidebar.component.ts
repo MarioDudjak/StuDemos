@@ -15,6 +15,7 @@ export class ProfessorSidebarComponent{
 
     async ngOnInit() {
         this.demoCourses = await this.professorService.getDemonstrators();
+        console.log(this.demoCourses);
     }
 
 }

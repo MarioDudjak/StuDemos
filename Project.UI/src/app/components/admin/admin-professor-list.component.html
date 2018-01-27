@@ -4,27 +4,27 @@
     </div>
 <form *ngIf="professors" class="bulkActions" display="block">
     
-    <select display="block">
-        <option value="remove" selected >Ukloni</option>   
-    </select>
-    <button (click)="DeleteCheckedProfessors()" style="margin-left:5px">Primijeni</button>
+   
+  <!--  <button (click)="DeleteCheckedProfessors()" style="margin-left:5px">Primijeni</button>-->
 </form>
 <table *ngIf="professors">
     <tr>
+        <!--
         <th width="2%" style="font-size:12px"><input type="checkbox" #All (click)="selectAll(All.checked)" name="select" title="Odaberi sve" >
             <label for="select">Odaberi sve</label>
-        </th>
+        </th> -->
         <th><a class="sort" (click)="sortProfessors('lastName')" href="javascript:void(0)" >Ime i prezime profesora</a></th>
         <th><a class="sort" (click)="sortProfessors('joinDate')" href="javascript:void(0)" >Datum prijave</a></th>     
         <th>Popis kolegija</th>   
-        <th>Opcije</th>
+       <!-- <th>Opcije</th>-->
         
     </tr>
     <ng-container *ngFor="let professor of professors;  let i = index" [attr.data-index]="i">
         <tr>
+            <!--
             <td><input type="checkbox" name="select" title="Odaberi" #One [checked]="checkedProfessors[i]" (change)="select(One.checked,i)">
                 <label for="select"></label>
-            </td>
+            </td> -->
             <td>{{professor?.firstName}} {{professor?.lastName}}</td>
             <td>{{professor?.joinDate | date: 'dd/MM/yyyy'}}</td>    
             <td style="text-align:left;">
@@ -37,11 +37,15 @@
                     <div *ngIf="professor?.courses.length>4"><hr><p style="display:inline"><span>{{professor?.courses[4].courseName}} </span> </p><br><br></div> 
                     <div *ngIf="professor?.courses.length>5"><hr><p style="display:inline"><span>{{professor?.courses[5].courseName}} </span> </p><br><br></div>                     
                 </div>
-            </td>    
+            </td>  
+             <!--  
             <td>
+               
                 <button (click) = "EditProfessor(professor)" class="btn accept" style="margin-bottom:5px">Izmijeni</button>
                 <button (click) = "DeleteProfessor(professor)" class="btn decline">Ukloni</button>
+               
             </td>
+             -->
         </tr>
     </ng-container>
 </table>

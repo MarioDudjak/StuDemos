@@ -6,7 +6,7 @@
         <div *ngIf="isLogged" class="membership">
           <button class="member-btn" (click)="logout()" >Odjava</button>
         </div>
-        <div *ngIf="!isLogged"class="membership">
+        <div *ngIf="!isLogged" class="membership">
           <button  class="member-btn" [routerLink]="['/login']" >Prijava</button>
           <button  class="member-btn" [routerLink]="['/register']" >Registracija</button>
           </div>

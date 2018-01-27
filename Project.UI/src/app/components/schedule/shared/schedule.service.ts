@@ -69,7 +69,7 @@ export class ScheduleService {
                             response[i]["already-chosen"][j]["time"]=element["time"];   
                             response[i]["already-chosen"][j]["student"]={};                     
                             response[i]["already-chosen"][j]["student"]["id"]=element["studentID"];
-                            response[i]["already-chosen"][j]["student"]["name"]=
+                            response[i]["already-chosen"][j]["student"]["name"]=students[s];
                             j++;
                         }); 
                     }
@@ -80,6 +80,7 @@ export class ScheduleService {
                 i++;                
             }
         });
+        console.log(response);
         return response; 
     }
 
@@ -129,9 +130,7 @@ export class ScheduleService {
             "courseID":this.courseID,
             "studentID":localStorage.getItem("userId")
         }
-        console.log(courseTerm);
         let response = await this.httpService.post(courseTerm,"courseTerm/create");
-        console.log(response);
         return response;
     }
 

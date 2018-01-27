@@ -41,20 +41,18 @@ export class ProfessorService {
             if(element["professors"].includes(profId)){
                 response[i]["courseName"]=element["courseName"];
                 response[i]["courseId"]=element["courseCode"];
-            
                 if(element["studentsNames"]){
                     let studentNames = element["studentsNames"].split(",");  
                     var j=0;
-                    response[i]["students"]=new Array(4);
+                    response[i]["students"]=[];
                     studentNames.forEach(element => {
                         response[i]["students"][j]=element;
                         j++;
                     });
                 }
-            
+                i++;                
             }
             }
-    
         });
         return response;
     }
