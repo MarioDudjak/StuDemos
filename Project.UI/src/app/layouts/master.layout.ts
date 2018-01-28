@@ -1,5 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { LoginService } from '../shared';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
     selector: 'master-layout',
@@ -9,17 +10,16 @@ import { LoginService } from '../shared';
 })
 
 export class MasterLayout implements OnInit {
-     
+        subscription: Subscription;    
         isLogged:boolean = false;
-        constructor(private loginService:LoginService) { }
+        constructor(private loginService:LoginService) { 
+            this.subscription = loginService.isLogged.subscribe((value) => {
+                this.isLogged = value;});
+        }
         
         ngOnInit(){
-        if(localStorage.getItem('userId')){
-            this.isLogged = true;
-        }
+        
     }
-        logout(){
-            this.loginService.logout();
-        }
+       
     
 }

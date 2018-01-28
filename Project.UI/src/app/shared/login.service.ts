@@ -8,11 +8,12 @@ import "rxjs/add/observable/throw";
 import { URLSearchParams } from '@angular/http';
 import {Router} from '@angular/router';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class LoginService {
     private messageSource = new BehaviorSubject<any>("");    
-    public isLogged=false;
+    isLogged: Subject<boolean> = new Subject<boolean>();
     constructor(private http:Http,
         private httpService:HttpService,
         private router:Router) { }
@@ -37,6 +38,7 @@ export class LoginService {
         try{
             response = JSON.parse((await this.http.post(query, body, options).toPromise())["_body"]);
             localStorage.setItem('access_token', response["access_token"]);
+            this.isLogged.next(true);
             this.getUserData(username);     
             return response["access_token"];
         } catch (error) {
@@ -55,6 +57,7 @@ export class LoginService {
     }
 
     public logout(){
+        this.isLogged.next(false);        
         localStorage.removeItem('access_token');
         localStorage.removeItem('userName');
         localStorage.removeItem('userId');
@@ -66,7 +69,6 @@ export class LoginService {
     }
 
     private async redirectUser(roleName:string){
-        this.isLogged=true;
             switch(roleName){
                 case "Student":
                 try{
